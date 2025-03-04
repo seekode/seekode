@@ -76,9 +76,6 @@ J'ai une solide maîtrise d'un très large éventail de technologies, mais celle
 
 <img align="right" width="350" src="https://raw.githubusercontent.com/seekode/seekode/master/static/images/home/header.png" alt="phone" />
 
-<br>
-<br>
-
 🚀 Nous accompagnons les professionnels pour maximiser leur rentabilité, accroître leur visibilité et optimiser leur productivité avec des sites web 🌐 premium, entièrement sur mesure 📏 et aux tarifs imbattables 📈.
 
 ❓Pourquoi nous ? Depuis 2020, nous nous efforçons de trouver toutes les solutions possibles pour réduire drastiquement l'investissement nécessaire à la création d'un site web sans que cela se répercute sur la qualité.
