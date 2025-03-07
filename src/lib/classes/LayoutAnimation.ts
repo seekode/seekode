@@ -2,8 +2,8 @@ export class LayoutAnimation {
 	#canvas: HTMLCanvasElement;
 	#drawArea: CanvasRenderingContext2D;
 	#tid?: number;
-	#width: number;
-	#height: number;
+	static width: number;
+	static height: number;
 
 	#particles: Particle[] = [];
 
@@ -12,13 +12,14 @@ export class LayoutAnimation {
 		this.#drawArea = this.#canvas.getContext('2d')!;
 		window.addEventListener('resize', this.#deBouncer);
 
-		this.#width = this.#canvas.width = window.innerWidth;
-		this.#height = this.#canvas.height = window.innerHeight;
-		const particleAmount = (this.#width * this.#height) / 30000;
+		LayoutAnimation.width = this.#canvas.width = window.innerWidth;
+		LayoutAnimation.height = this.#canvas.height = window.innerHeight;
+		const particleAmount = (LayoutAnimation.width * LayoutAnimation.height) / 30000;
+		// const particleAmount = (LayoutAnimation.width * LayoutAnimation.height) / 15000;
 		Particle.opts.particleAmount = particleAmount < 20 ? 20 : particleAmount;
 
 		for (let i = 0; i < Particle.opts.particleAmount; i++) {
-			this.#particles.push(new Particle(this.#drawArea, this.#width, this.#height));
+			this.#particles.push(new Particle(this.#drawArea));
 		}
 		this.#loop();
 	}
@@ -31,12 +32,12 @@ export class LayoutAnimation {
 	};
 
 	#resizeReset = () => {
-		this.#width = this.#canvas.width = window.innerWidth;
-		this.#height = this.#canvas.height = window.innerHeight;
+		LayoutAnimation.width = this.#canvas.width = window.innerWidth;
+		LayoutAnimation.height = this.#canvas.height = window.innerHeight;
 	};
 
 	#loop = () => {
-		this.#drawArea.clearRect(0, 0, this.#width, this.#height);
+		this.#drawArea.clearRect(0, 0, LayoutAnimation.width, LayoutAnimation.height);
 		for (let i = 0; i < this.#particles.length; i++) {
 			this.#particles[i].update();
 			this.#particles[i].draw();
@@ -76,15 +77,15 @@ export class Particle {
 		rgb: [200, 200, 200],
 		particleAmount: 50,
 		defaultSpeed: 0.1,
+		// defaultSpeed: 1,
 		variantSpeed: 0.1,
-		defaultRadius: 2,
+		defaultRadius: 3,
+		// defaultRadius: 4,
 		variantRadius: 2.5,
 		linkRadius: 200
 	};
 
 	#drawArea: CanvasRenderingContext2D;
-	#width: number;
-	#height: number;
 
 	x: number;
 	y: number;
@@ -94,13 +95,11 @@ export class Particle {
 	#radius: number;
 	#vector: { x: number; y: number };
 
-	constructor(drawArea: CanvasRenderingContext2D, width: number, height: number) {
+	constructor(drawArea: CanvasRenderingContext2D) {
 		this.#drawArea = drawArea;
-		this.#width = width;
-		this.#height = height;
 
-		this.x = Math.random() * width;
-		this.y = Math.random() * height;
+		this.x = Math.random() * LayoutAnimation.width;
+		this.y = Math.random() * LayoutAnimation.height;
 		this.#speed = Particle.opts.defaultSpeed + Math.random() * Particle.opts.variantSpeed;
 		this.#directionAngle = Math.floor(Math.random() * 360);
 		this.#color = Particle.opts.particleColor;
@@ -126,14 +125,14 @@ export class Particle {
 	}
 
 	#border() {
-		if (this.x >= this.#width || this.x <= 0) {
+		if (this.x >= LayoutAnimation.width || this.x <= 0) {
 			this.#vector.x *= -1;
 		}
-		if (this.y >= this.#height || this.y <= 0) {
+		if (this.y >= LayoutAnimation.height || this.y <= 0) {
 			this.#vector.y *= -1;
 		}
-		if (this.x > this.#width) this.x = this.#width;
-		if (this.y > this.#height) this.y = this.#height;
+		if (this.x > LayoutAnimation.width) this.x = LayoutAnimation.width;
+		if (this.y > LayoutAnimation.height) this.y = LayoutAnimation.height;
 		if (this.x < 0) this.x = 0;
 		if (this.y < 0) this.y = 0;
 	}

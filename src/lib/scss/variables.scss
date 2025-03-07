@@ -1,7 +1,20 @@
-$primary: #22a791;
-$danger: #ff7070;
-$dark: #292f36;
-$light: #ededed;
-$background-opacity: rgba(255, 255, 255, 0.5);
+@use 'src/lib/scss/themes/light-theme' as *;
+@use 'src/lib/scss/themes/dark-theme' as *;
+
+$primary: var(--primary);
+$danger: var(--danger);
+$color: var(--color);
+$background: var(--background);
+$background-opacity: var(--background-opacity);
+
+$spacing: 2rem;
+$padding: $spacing * 2;
+$border-radius: 4rem;
 
 $roboto: 'Roboto', sans-serif;
+
+@mixin backdrop {
+	background: $background-opacity;
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+}
