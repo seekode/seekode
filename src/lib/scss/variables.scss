@@ -1,15 +1,31 @@
 @use 'src/lib/scss/themes/light-theme' as *;
 @use 'src/lib/scss/themes/dark-theme' as *;
 
+:root {
+	--margin: 1rem;
+	--padding: 1rem;
+	--border-radius: 1.5rem;
+}
+
+@media screen and (min-width: 800px) {
+	:root {
+		--padding: 2rem;
+		--margin: 2rem;
+		--border-radius: 3rem;
+	}
+}
+
 $primary: var(--primary);
 $danger: var(--danger);
 $color: var(--color);
 $background: var(--background);
 $background-opacity: var(--background-opacity);
+$box-shadow: var(--box-shadow);
 
-$spacing: 2rem;
-$padding: $spacing * 2;
-$border-radius: 4rem;
+$margin: var(--margin);
+$padding: var(--padding);
+$border-radius: var(--border-radius);
+$transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
 $roboto: 'Roboto', sans-serif;
 
@@ -17,4 +33,12 @@ $roboto: 'Roboto', sans-serif;
 	background: $background-opacity;
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
+	border-radius: $border-radius;
+	box-shadow: $box-shadow;
+}
+
+@mixin cards {
+	@include backdrop;
+
+	padding: $padding;
 }

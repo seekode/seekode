@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { LayoutAnimation } from '$lib/classes/LayoutAnimation';
+	import LayoutAnimation from '$lib/classes/LayoutAnimation';
+	import { i18n } from '$lib/i18n';
 	import { theme } from '$lib/stores/theme';
-	import { onMount } from 'svelte';
-	import type { Snippet } from 'svelte';
+	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
+	import { onMount, type Snippet } from 'svelte';
 
 	interface Props {
 		children: Snippet;
@@ -19,12 +20,14 @@
 			document.documentElement.setAttribute('data-theme', value);
 		});
 	});
-	
 </script>
 
 <div>
-	{@render children()}
+	<ParaglideJS {i18n}>
+		{@render children()}
+	</ParaglideJS>
 </div>
+
 <canvas bind:this={canvas}></canvas>
 
 <style lang="scss">
@@ -39,9 +42,8 @@
 
 	div {
 		width: 100%;
-		max-width: 1920px;
-		min-height: 100vh;
 		min-height: 100dvh;
 		position: relative;
+		overflow-x: hidden;
 	}
 </style>

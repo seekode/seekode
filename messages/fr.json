@@ -1,0 +1,10 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"nav_home": "Accueil",
+	"nav_creation_of_website": "Création de site web",
+	"nav_training": "Formation",
+	"nav_our_creations": "Nos créations",
+	"home_header_title": "Créons ensemble une expérience web unique!",
+	"home_header_text": "Pourquoi choisir entre la qualité, la performance, et le prix, quand on peut avoir les 3 ?",
+	"home_header_button": "Créer mon site"
+}

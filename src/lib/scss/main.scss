@@ -4,16 +4,34 @@
 	* {
 		margin: 0;
 		padding: 0;
+		box-sizing: border-box;
 		font-family: $roboto;
 		color: $color;
 		text-decoration: none;
 	}
 
 	body {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 		background: $background;
-		overflow-x: hidden;
+	}
+
+	button {
+		padding: 0.5rem 1rem;
+		border: none;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		cursor: pointer;
+		border-radius: calc($border-radius - $padding);
+		background: $primary;
+	}
+
+	button.text {
+		background: none;
+	}
+
+	@media screen and (max-width: 800px) {
+		p {
+			font-size: 0.8rem;
+		}
 	}
 }

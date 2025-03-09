@@ -1,7 +1,7 @@
-export class LayoutAnimation {
+export default class LayoutAnimation {
 	#canvas: HTMLCanvasElement;
 	#drawArea: CanvasRenderingContext2D;
-	#tid?: number;
+	#tid?: ReturnType<typeof setTimeout>;
 	static width: number;
 	static height: number;
 
@@ -15,7 +15,6 @@ export class LayoutAnimation {
 		LayoutAnimation.width = this.#canvas.width = window.innerWidth;
 		LayoutAnimation.height = this.#canvas.height = window.innerHeight;
 		const particleAmount = (LayoutAnimation.width * LayoutAnimation.height) / 30000;
-		// const particleAmount = (LayoutAnimation.width * LayoutAnimation.height) / 15000;
 		Particle.opts.particleAmount = particleAmount < 20 ? 20 : particleAmount;
 
 		for (let i = 0; i < Particle.opts.particleAmount; i++) {
@@ -77,10 +76,8 @@ export class Particle {
 		rgb: [200, 200, 200],
 		particleAmount: 50,
 		defaultSpeed: 0.1,
-		// defaultSpeed: 1,
 		variantSpeed: 0.1,
 		defaultRadius: 3,
-		// defaultRadius: 4,
 		variantRadius: 2.5,
 		linkRadius: 200
 	};
@@ -137,5 +134,3 @@ export class Particle {
 		if (this.y < 0) this.y = 0;
 	}
 }
-
-export default { LayoutAnimation, Particle };
