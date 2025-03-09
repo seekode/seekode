@@ -35,6 +35,7 @@ $roboto: 'Roboto', sans-serif;
 	backdrop-filter: blur(10px);
 	border-radius: $border-radius;
 	box-shadow: $box-shadow;
+	transition: $transition;
 }
 
 @mixin cards {

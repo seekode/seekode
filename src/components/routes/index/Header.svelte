@@ -1,4 +1,5 @@
 <script>
+	import Button from '$components/ui/Button.svelte';
 	import Logo from '$components/ui/Logo.svelte';
 	import { l } from '$lib/i18n';
 </script>
@@ -12,6 +13,7 @@
 			<h1>{l.home_header_title()}</h1>
 			<p>{l.home_header_text()}</p>
 			<button>{l.home_header_button()}</button>
+			<!-- <Button>{l.home_header_button()}</Button> -->
 		</div>
 	</div>
 	<div class="bottom">

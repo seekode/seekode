@@ -1,15 +1,14 @@
 <script lang="ts">
-	import IconSun from '~icons/solar/sun-2-linear';
 	import IconLanguage from '~icons/ion/language-outline';
 	import FlagFr from '~icons/flag/fr-4x3';
 	import FlagSh from '~icons/flag/sh-4x3';
-	import { toogle } from '$lib/stores/theme';
 	import { i18n, l } from '$lib/i18n';
 	import { page } from '$app/state';
 	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
 	import { goto } from '$app/navigation';
 	import LogoInText from '$components/ui/LogoInText.svelte';
 	import { fade } from 'svelte/transition';
+	import ToogleTheme from '$components/ui/ToogleTheme.svelte';
 
 	interface Props {
 		activeLink: string;
@@ -60,7 +59,14 @@
 				{l.nav_our_creations()}
 			</a>
 		</div>
-		<button aria-label="Toggle menu" onclick={() => (menuOpen = !menuOpen)} class:active={menuOpen}>
+		<button
+			aria-label="Toggle menu"
+			onclick={() => {
+				languageOpen = false;
+				menuOpen = !menuOpen;
+			}}
+			class:active={menuOpen}
+		>
 			<div></div>
 		</button>
 	</div>
@@ -70,13 +76,14 @@
 				<button
 					aria-label="Change language"
 					class:active={languageOpen}
-					onclick={() => (languageOpen = !languageOpen)}
+					onclick={() => {
+						menuOpen = false;
+						languageOpen = !languageOpen;
+					}}
 				>
 					<IconLanguage />
 				</button>
-				<button onclick={toogle} aria-label="Toggle theme">
-					<IconSun />
-				</button>
+				<ToogleTheme width="3.5rem" height="100%" padding="0 1rem" />
 			</div>
 			<div class="settings__language">
 				<button class="text" onclick={() => switchToLanguage('fr')}>
@@ -193,6 +200,7 @@
 					transform: translate(-50%, -50%);
 					border-radius: 5rem;
 					background: $primary;
+					transition: $transition;
 
 					&::before,
 					&::after {
@@ -203,6 +211,7 @@
 						left: 0;
 						border-radius: 5rem;
 						background: $primary;
+						transition: $transition;
 					}
 
 					&::before {
@@ -300,7 +309,6 @@
 			&--active {
 				max-height: 12rem;
 				padding: 0 2rem;
-				box-shadow: 0 0 16px -12px black;
 			}
 		}
 	}
@@ -373,6 +381,10 @@
 				bottom: 0;
 				right: 50%;
 				transform: translateX(50%);
+
+				&--active {
+					bottom: calc(4rem + $margin);
+				}
 			}
 		}
 
