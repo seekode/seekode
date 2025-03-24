@@ -1,7 +1,16 @@
-<script>
+<script lang="ts">
 	import Button from '$components/ui/Button.svelte';
 	import Logo from '$components/ui/Logo.svelte';
 	import { l } from '$lib/i18n';
+	import { getContext } from 'svelte';
+
+	interface Context {
+		openModal: (triggerRef?: HTMLElement) => void;
+	}
+
+	const { openModal }: Context = getContext('contactModal');
+
+	let buttonRef = $state<HTMLButtonElement | undefined>(undefined);
 </script>
 
 <header>
@@ -12,8 +21,9 @@
 		<div class="text">
 			<h1>{l.home_header_title()}</h1>
 			<p>{l.home_header_text()}</p>
-			<button>{l.home_header_button()}</button>
-			<!-- <Button>{l.home_header_button()}</Button> -->
+			<Button bind:btn={buttonRef} onclick={() => openModal(buttonRef)}>
+				{l.home_header_button()}
+			</Button>
 		</div>
 	</div>
 	<div class="bottom">
@@ -33,9 +43,10 @@
 				Instagram 📸
 			</a>
 			<a href="https://www.tiktok.com/@seekode" target="_blank">Tiktok 📸</a>
+			<a href="https://discord.com/invite/g494as8mxM" target="_blank">Discord 🎓</a>
 			<a href="https://www.linkedin.com/in/nicolas-texier-dev/" target="_blank">LinkedIn 💼</a>
-			<a href="mailto:nicolas@seekode.com">Mail 📧</a>
-			<a href="tel:0621240684">Phone 📱</a>
+			<a href="mailto:nicolas@seekode.com">nicolas@seekode.dev 📧</a>
+			<a href="tel:0621240684">06.21.24.06.84 📱</a>
 		</div>
 	</div>
 </header>
@@ -43,7 +54,7 @@
 <style lang="scss">
 	header {
 		height: calc(100svh - 4rem - $margin);
-		min-height: 34rem;
+		min-height: 36rem;
 		padding: $margin;
 		position: relative;
 		display: flex;
@@ -94,7 +105,7 @@
 
 			&.bottom {
 				display: flex;
-				max-height: 15rem;
+				max-height: 17rem;
 				justify-content: space-between;
 				gap: $margin;
 
@@ -291,7 +302,7 @@
 							width: 100%;
 						}
 
-						button {
+						:global(button) {
 							align-self: flex-end;
 						}
 					}

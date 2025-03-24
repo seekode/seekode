@@ -13,8 +13,16 @@
 
 	let canvas: HTMLCanvasElement;
 
+	function isFirefoxMobile(): boolean {
+		const userAgent = navigator.userAgent.toLowerCase();
+		return (
+			userAgent.includes('firefox') &&
+			(userAgent.includes('android') || userAgent.includes('iphone'))
+		);
+	}
+
 	onMount(() => {
-		new LayoutAnimation(canvas);
+		if (!isFirefoxMobile()) new LayoutAnimation(canvas);
 
 		theme.subscribe((value) => {
 			document.documentElement.setAttribute('data-theme', value);

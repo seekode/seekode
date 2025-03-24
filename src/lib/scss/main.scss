@@ -8,6 +8,7 @@
 		font-family: $roboto;
 		color: $color;
 		text-decoration: none;
+		scroll-behavior: smooth;
 	}
 
 	body {
@@ -30,6 +31,31 @@
 		transition: $transition;
 	}
 
+	h2 {
+		margin-bottom: 1rem;
+		position: relative;
+		font-size: 3rem;
+
+		&::before {
+			content: '';
+			width: 2.5rem;
+			height: 5px;
+			position: absolute;
+			top: calc(100% + 0.5rem);
+			left: 50%;
+			transform: translateX(-50%);
+			border-radius: 5rem;
+			background: $primary;
+		}
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: calc($margin * 2);
+	}
+
 	button {
 		padding: 0.5rem 1rem;
 		border: none;
@@ -39,6 +65,10 @@
 		cursor: pointer;
 		border-radius: calc($border-radius - $padding);
 		background: $primary;
+
+		&:hover {
+			background: $primary-active;
+		}
 	}
 
 	button.text {

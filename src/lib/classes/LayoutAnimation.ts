@@ -69,7 +69,7 @@ export default class LayoutAnimation {
 	};
 }
 
-export class Particle {
+class Particle {
 	static opts = {
 		particleColor: '#22a791',
 		lineColor: 'rgb(200,200,200)',

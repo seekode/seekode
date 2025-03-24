@@ -226,17 +226,14 @@
 				&.active {
 					div {
 						transform: translate(-50%, -50%) rotate(45deg);
-						background: $danger;
 
 						&::before {
 							transform: rotate(90deg);
 							bottom: 0;
-							background: $danger;
 						}
 
 						&::after {
 							top: 0;
-							background: $danger;
 						}
 					}
 				}
@@ -381,6 +378,13 @@
 				bottom: 0;
 				right: 50%;
 				transform: translateX(50%);
+				display: flex;
+				flex-direction: column;
+				justify-content: end;
+
+				> div {
+					flex-direction: column-reverse;
+				}
 
 				&--active {
 					bottom: calc(4rem + $margin);
@@ -398,6 +402,11 @@
 			right: auto;
 			left: $margin;
 			transform: translateX(0);
+
+			&--active {
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 	}
 </style>

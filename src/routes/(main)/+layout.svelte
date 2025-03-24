@@ -1,6 +1,7 @@
 <script lang="ts">
 	import NavBar from '$components/layout/main/NavBar.svelte';
-	import type { Snippet } from 'svelte';
+	import Modal from '$components/ui/Modal.svelte';
+	import { setContext, type Snippet } from 'svelte';
 	import { fly } from 'svelte/transition';
 
 	interface Props {
@@ -10,6 +11,7 @@
 
 	const { children, data }: Props = $props();
 
+	// gestion url
 	const urls = ['/', '/creation-of-website', '/training', '/our-creations'];
 
 	let activeLink = $state('/');
@@ -27,6 +29,17 @@
 			previousUrl = currentUrl;
 		}
 	});
+
+	// contact modal
+	let contactModal = $state(false);
+	let triggerRef = $state<HTMLElement | undefined>(undefined);
+
+	const openModal = (ref?: HTMLElement) => {
+		triggerRef = ref ?? undefined;
+		contactModal = true;
+	};
+
+	setContext('contactModal', { openModal });
 </script>
 
 <NavBar {activeLink} />
@@ -38,6 +51,7 @@
 		{@render children()}
 	</div>
 {/key}
+<Modal title="Contact" {triggerRef} bind:display={contactModal}></Modal>
 
 <style lang="scss">
 	div {

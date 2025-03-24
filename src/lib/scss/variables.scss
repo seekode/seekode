@@ -16,11 +16,14 @@
 }
 
 $primary: var(--primary);
+$primary-active: var(--primary-active);
 $danger: var(--danger);
 $color: var(--color);
 $background: var(--background);
+$background-card: var(--background-card);
 $background-opacity: var(--background-opacity);
 $box-shadow: var(--box-shadow);
+$blur: blur(10px);
 
 $margin: var(--margin);
 $padding: var(--padding);
