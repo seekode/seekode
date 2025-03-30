@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Button from '$components/ui/Button.svelte';
-	import Logo from '$components/ui/Logo.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Logo from '$lib/components/ui/Logo.svelte';
 	import { l } from '$lib/i18n';
 	import { getContext } from 'svelte';
 
@@ -53,9 +53,10 @@
 
 <style lang="scss">
 	header {
-		height: calc(100svh - 4rem - $margin);
+		height: calc(100svh);
 		min-height: 36rem;
 		padding: $margin;
+		padding-bottom: calc($margin + 4rem + $margin);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -210,6 +211,7 @@
 		header {
 			height: auto;
 			min-height: calc(100svh - 4rem - var(--margin));
+			padding-bottom: $margin;
 
 			> div {
 				&.top {

@@ -1,6 +1,6 @@
 <script>
-	import CreationOfWebsite from '$components/routes/index/CreationOfWebsite.svelte';
-	import Header from '$components/routes/index/Header.svelte';
+	import CreationOfWebsite from './CreationOfWebsite.svelte';
+	import Header from './Header.svelte';
 </script>
 
 <Header />

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import NavBar from '$components/layout/main/NavBar.svelte';
-	import Modal from '$components/ui/Modal.svelte';
+	import NavBar from '$lib/components/layout/NavBar.svelte';
+	import Modal from '$lib/components/ui/Modal.svelte';
 	import { setContext, type Snippet } from 'svelte';
 	import { fly } from 'svelte/transition';
 

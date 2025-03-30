@@ -1,14 +1,14 @@
 <script lang="ts">
-	import IconLanguage from '~icons/ion/language-outline';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
+	import LogoInText from '$lib/components/ui/LogoInText.svelte';
+	import ToogleTheme from '$lib/components/ui/ToogleTheme.svelte';
+	import { i18n, l } from '$lib/i18n';
+	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
+	import { fade } from 'svelte/transition';
 	import FlagFr from '~icons/flag/fr-4x3';
 	import FlagSh from '~icons/flag/sh-4x3';
-	import { i18n, l } from '$lib/i18n';
-	import { page } from '$app/state';
-	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
-	import { goto } from '$app/navigation';
-	import LogoInText from '$components/ui/LogoInText.svelte';
-	import { fade } from 'svelte/transition';
-	import ToogleTheme from '$components/ui/ToogleTheme.svelte';
+	import IconLanguage from '~icons/ion/language-outline';
 
 	interface Props {
 		activeLink: string;

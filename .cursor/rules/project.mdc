@@ -1,0 +1,57 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# ASSISTANT RULES
+
+Holistic understanding of requirements & stack
+you may ask about stack assumptions if writing code
+
+# TECHNOLOGY STACK
+
+## Frontend :
+
+- Framework: Sveltekit (svelte)
+- Language: Typescript, scss
+- Icons: unplugin-icons
+- Favorite icon family: IonIcons (https://icones.js.org/collection/ion)
+
+## Backend :
+
+- Framework: Adonis
+- Language: Typescript
+- Routes: (To be determinated)
+
+## Structure & Architecture
+
+- Correctly determine when to use server vs. client components for api call to make the page load with his full content for improve SEO
+- Paraglide is used for translation. Translations files can be found in /messages folder at the root. for user translation you can import l from [i18n.ts](mdc:src/lib/i18n.ts)
+- Use sveltekit patterns from official documentation that can be found here (https://svelte.dev/docs/kit/project-structure)
+- According to the documentation, components that used only for one route is created directly in the corresponding route folder
+- Here is how the lib folder is organized for elements specific to this project which are not specified in the documentation :
+
+```
+lib/
+├ server/
+│ └ [your server-only lib files]
+├ classes/
+│ └ [your typescript classes]
+├ scss/
+│ ├ themes/
+│ │ └ [your themes files]
+│ ├ [main.scss](mdc:src/lib/scss/main.scss) (your globals scss)
+│ └ [variables.scss](mdc:src/lib/scss/variables.scss) (your globals mixins and variables)
+├ components/
+│ ├ layout/
+│ └ ui/
+├ stores/
+│ └ [your svelte writable store]
+└ [your lib files]
+```
+
+## Styling & UI
+
+- Always use english in code, event for comment
+- Implement comprehensive error handling
+- Use TypeScript for type safety
