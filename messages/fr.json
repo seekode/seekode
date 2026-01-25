@@ -1,4 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from fr!"
+	"hello_world": "Salut, {name} from fr!",
+	"nav_a_project": "Un projet ?",
+	"nav_our_projects": "Nos projets",
+	"nav_access_training": "Accéder à la formation"
 }
