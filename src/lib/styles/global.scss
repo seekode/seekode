@@ -1,0 +1,38 @@
+@use 'variables' as *;
+@use 'reset';
+
+:root {
+	// Default to dark theme
+	--bg-primary: #{$dark-bg-primary};
+	--bg-secondary: #{$dark-bg-secondary};
+	--text-primary: #{$dark-text-primary};
+	--text-secondary: #{$dark-text-secondary};
+	--text-muted: #{$dark-text-muted};
+
+	// Glass effect
+	--glass-bg: rgba(27, 28, 29, 0.8);
+}
+
+// Light theme
+[data-theme='light'] {
+	--bg-primary: #{$light-bg-primary};
+	--bg-secondary: #{$light-bg-secondary};
+	--text-primary: #{$light-text-primary};
+	--text-secondary: #{$light-text-secondary};
+	--text-muted: #{$light-text-muted};
+
+	// Glass effect for light theme
+	--glass-bg: rgba(255, 255, 255, 0.8);
+}
+
+html {
+	font-family: $font-family;
+	font-weight: $font-weight-normal;
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+}
+
+body {
+	min-height: 100vh;
+	min-height: 100dvh;
+}
