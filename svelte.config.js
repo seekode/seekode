@@ -5,7 +5,7 @@ import { sveltePreprocess } from 'svelte-preprocess';
 const config = {
 	preprocess: sveltePreprocess({
 		scss: {
-			prependData: `@use 'src/lib/styles/shared' as *;`
+			prependData: `@use 'src/lib/styles/abstracts' as *;`
 		}
 	}),
 	kit: {

@@ -55,6 +55,7 @@
 		"vitest-browser-svelte": "^2.0.1"
 	},
 	"dependencies": {
-		"@lucide/svelte": "^0.563.1"
+		"@lucide/svelte": "^0.563.1",
+		"@rollup/rollup-win32-arm64-msvc": "^4.56.0"
 	}
 }
