@@ -5,9 +5,11 @@
 	// Default to dark theme
 	--bg-primary: #{$dark-bg-primary};
 	--bg-secondary: #{$dark-bg-secondary};
+	--bg-hover: #{$dark-bg-hover};
 	--text-primary: #{$dark-text-primary};
 	--text-secondary: #{$dark-text-secondary};
 	--text-muted: #{$dark-text-muted};
+	--text-muted-hover: #{$dark-text-muted-hover};
 
 	// Glass effect
 	--glass-bg: rgba(27, 28, 29, 0.8);
@@ -17,9 +19,11 @@
 [data-theme='light'] {
 	--bg-primary: #{$light-bg-primary};
 	--bg-secondary: #{$light-bg-secondary};
+	--bg-hover: #{$light-bg-hover};
 	--text-primary: #{$light-text-primary};
 	--text-secondary: #{$light-text-secondary};
 	--text-muted: #{$light-text-muted};
+	--text-muted-hover: #{$light-text-muted-hover};
 
 	// Glass effect for light theme
 	--glass-bg: rgba(255, 255, 255, 0.8);
@@ -28,17 +32,14 @@
 html {
 	font-family: $font-family;
 	font-weight: $font-weight-normal;
+	font-size: $font-size-sm;
 	background-color: var(--bg-primary);
 	color: var(--text-primary);
+	transition: $transition-slow $transition-timing;
 }
 
 body {
 	min-height: 100vh;
 	min-height: 100dvh;
-}
-
-button {
-	padding: $spacing-2 $spacing-4;
-	border: 1px solid var(--text-primary);
-	border-radius: $radius-full;
+	overflow-x: hidden;
 }
