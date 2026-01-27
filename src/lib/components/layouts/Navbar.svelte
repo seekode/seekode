@@ -312,8 +312,8 @@
 						top: calc(100% + $spacing-2);
 						right: 0;
 						min-width: 150px;
-						background-color: $dark-bg-secondary;
-						border: 1px solid rgba(255, 255, 255, 0.1);
+						background-color: var(--bg-secondary);
+						border: 1px solid var(--border-color);
 						border-radius: $radius-md;
 						box-shadow: $shadow-lg;
 						z-index: $z-dropdown;
@@ -347,7 +347,7 @@
 							background: transparent;
 							border: none;
 							border-radius: $radius-sm;
-							color: $dark-text-secondary;
+							color: var(--text-secondary);
 							font-size: $font-size-sm;
 							font-weight: $font-weight-light;
 							text-align: left;
@@ -357,8 +357,8 @@
 								color $transition-fast $transition-timing;
 
 							&:hover {
-								background-color: rgba(255, 255, 255, 0.08);
-								color: $dark-text-primary;
+								background-color: var(--bg-tertiary);
+								color: var(--text-primary);
 							}
 
 							&.active {
