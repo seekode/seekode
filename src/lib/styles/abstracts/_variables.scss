@@ -1,12 +1,13 @@
 // Colors
-$color-primary: #22a791;
+$color-primary: #1bc8ac;
 $color-primary-light: #2bbfa5;
 $color-primary-dark: #198a77;
 $color-secondary: #ffc95d /*#ff6f61 */;
 
 // Dark theme
-$dark-bg-primary: #080808;
-$dark-bg-secondary: #111111;
+$dark-bg-primary: #111111;
+$dark-bg-secondary: #0e0e0e;
+$dark-bg-tertiary: #080808;
 $dark-bg-hover: rgba(255, 255, 255, 0.08);
 $dark-section-bg: linear-gradient(180deg, $dark-bg-primary 0%, $dark-bg-secondary 100%);
 $dark-text-primary: #e5e5e5;
@@ -15,8 +16,9 @@ $dark-text-muted: #393939;
 $dark-text-muted-hover: rgba(255, 255, 255, 0.25);
 
 // Light theme
-$light-bg-primary: #ffffff;
-$light-bg-secondary: #fafafa;
+$light-bg-primary: #fafafa;
+$light-bg-secondary: #f2f2f2;
+$light-bg-tertiary: #e8e8e8;
 $light-bg-hover: rgba(8, 8, 8, 0.08);
 $light-section-bg: linear-gradient(180deg, $light-bg-primary 0%, $light-bg-secondary 100%);
 $light-text-primary: #09090b;
@@ -38,9 +40,9 @@ $font-size-5xl: 3rem; // 48px
 $font-size-6xl: 3.75rem; // 60px
 $font-size-7xl: 4.5rem; // 72px
 
-$font-weight-normal: 400;
+$font-weight-light: 300;
+$font-weight-regular: 400;
 $font-weight-medium: 500;
-$font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 $line-height-tight: 1.1;

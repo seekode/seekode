@@ -39,7 +39,6 @@
 
 <nav>
 	<div>
-		<!-- <img src="assets/images/logo/text.svg" alt="Logo text" /> -->
 		<LogoText />
 	</div>
 	<ul class="links" class:links--open={isMenuOpen}>
@@ -53,6 +52,7 @@
 			<Button
 				type="muted"
 				square
+				thin
 				onclick={toggleTheme}
 				ariaLabel={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
 			>
@@ -65,6 +65,7 @@
 				<Button
 					classes="language-switcher__trigger"
 					type="muted"
+					thin
 					onclick={() => (isLanguageOpen = !isLanguageOpen)}
 					ariaExpanded={isLanguageOpen}
 					ariaHaspopup="true"
@@ -87,12 +88,13 @@
 				</div>
 			</div>
 		</div>
-		<Button type="secondary" rounded>Accéder a la formation</Button>
+		<Button classes="formation" type="secondary" rounded thin>Accéder a la formation</Button>
 	</div>
 	<div class="menu">
 		<Button
 			type="muted"
 			square
+			thin
 			onclick={() => (isMenuOpen = !isMenuOpen)}
 			ariaExpanded={isMenuOpen}
 		>
@@ -109,7 +111,7 @@
 		width: 100vw;
 		height: 100vh;
 		backdrop-filter: blur(10px);
-		z-index: 1;
+		z-index: 100;
 		opacity: 0;
 		visibility: hidden;
 		pointer-events: none;
@@ -134,8 +136,8 @@
 		max-width: 2000px;
 		height: 6rem;
 		padding: 0 $spacing-4;
-		position: absolute;
-		z-index: $z-fixed;
+		position: fixed;
+		z-index: 101;
 		top: $spacing-4;
 		left: 50%;
 		transform: translateX(-50%);
@@ -170,12 +172,13 @@
 			flex-direction: column;
 			align-items: center;
 			gap: $spacing-8;
+			font-size: $font-size-sm;
 			border-radius: $radius-lg;
 			transition:
 				opacity $transition-slow $transition-timing,
 				visibility $transition-slow $transition-timing,
 				transform $transition-slow $transition-timing;
-			transition-delay: $transition-slow / 4;
+			transition-delay: calc($transition-slow / 4);
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;
@@ -188,7 +191,6 @@
 				top: auto;
 				left: auto;
 				flex-direction: row;
-				gap: $spacing-4;
 				background: none;
 				backdrop-filter: blur(0);
 				box-shadow: none;
@@ -196,6 +198,10 @@
 				visibility: visible;
 				pointer-events: auto;
 				transform: translate(0);
+			}
+
+			@include lg {
+				gap: $spacing-12;
 			}
 
 			&--open {
@@ -343,7 +349,7 @@
 							border-radius: $radius-sm;
 							color: $dark-text-secondary;
 							font-size: $font-size-sm;
-							font-weight: $font-weight-normal;
+							font-weight: $font-weight-light;
 							text-align: left;
 							cursor: pointer;
 							transition:
@@ -363,6 +369,10 @@
 						}
 					}
 				}
+			}
+
+			:global(.formation) {
+				font-size: $font-size-sm;
 			}
 		}
 
@@ -388,6 +398,7 @@
 					height: 100%;
 					position: absolute;
 					background: var(--text-primary);
+					transition: $transition-slow $transition-timing;
 					transition: $transition-slow $transition-timing;
 				}
 
