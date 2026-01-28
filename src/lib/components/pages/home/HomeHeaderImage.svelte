@@ -492,6 +492,11 @@
 		--on-bg: #1e1e1e;
 		--text: #f8f8f8;
 		--text-muted: #aba69f;
+		:global([data-theme='light']) & {
+			--bg: white;
+			--on-bg: #f7f7f7;
+			--text: #171717;
+		}
 
 		color: var(--text);
 		font-size: 13px;
@@ -534,6 +539,11 @@
 			gap: 0.5rem;
 			background-color: var(--bg);
 			box-shadow: 5px 0 15px -10px black;
+
+			:global([data-theme='light']) & {
+				border-right: 1px solid lightgray;
+				box-shadow: none;
+			}
 
 			&__space {
 				margin-bottom: 1rem;
@@ -677,6 +687,16 @@
 			--font-muted: #a5a6aa;
 			--icon: #464961;
 
+			:global([data-theme='light']) & {
+				--bg: #dcdcdd;
+				--bg-app: #ebebec;
+				--bg-editor: #fafafa;
+				--border: #d0d0d1;
+				--font: #5f656f;
+				--font-muted: #888b98;
+				--icon: #565970;
+			}
+
 			--border-size: 1px;
 
 			color: var(--font);
@@ -779,22 +799,41 @@
 
 						&--add {
 							color: #82b37d;
+							:global([data-theme='light']) & {
+								color: #7ea985;
+							}
 							span {
 								color: #82b37d;
+								:global([data-theme='light']) & {
+									color: #7ea985;
+								}
 							}
 						}
 
 						&--update {
 							color: #c9b77a;
+							:global([data-theme='light']) & {
+								color: #ac9145;
+							}
 							span {
 								color: #c9b77a;
+
+								:global([data-theme='light']) & {
+									color: #ac9145;
+								}
 							}
 						}
 
 						&--ignore {
 							color: #464961;
+							:global([data-theme='light']) & {
+								color: #8b92a4;
+							}
 							span {
 								color: #464961;
+								:global([data-theme='light']) & {
+									color: #8b92a4;
+								}
 							}
 						}
 					}
@@ -878,6 +917,9 @@
 
 								&--light {
 									background-color: #2d323b;
+									:global([data-theme='light']) & {
+										background-color: #efeff0;
+									}
 								}
 
 								&__num {

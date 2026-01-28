@@ -21,13 +21,17 @@
 
 	const handleClickOutside = (event: MouseEvent) => {
 		const target = event.target as HTMLElement;
-		if (!target.closest('.language-switcher')) {
+		if (isLanguageOpen && !target.closest('.language-switcher')) {
 			isLanguageOpen = false;
+			return;
+		}
+		if (!target.closest('.action') && !target.closest('.links') && !target.closest('.menu')) {
+			isMenuOpen = false;
 		}
 	};
 
 	$effect(() => {
-		if (isLanguageOpen) {
+		if (isLanguageOpen || isMenuOpen) {
 			document.addEventListener('click', handleClickOutside);
 			return () => document.removeEventListener('click', handleClickOutside);
 		}
@@ -138,13 +142,19 @@
 		padding: 0 $spacing-4;
 		position: fixed;
 		z-index: 101;
-		top: $spacing-4;
+		top: auto;
+		bottom: $spacing-4;
 		left: 50%;
 		transform: translateX(-50%);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		border-radius: $radius-lg;
+
+		@include sm {
+			top: $spacing-4;
+			bottom: auto;
+		}
 
 		@include xl {
 			padding: 0 $spacing-8;
@@ -166,7 +176,7 @@
 			width: 15.3rem;
 			padding: $spacing-4;
 			position: absolute;
-			top: calc(100% + 8rem + $spacing-4 * 2);
+			bottom: calc(100% + 8rem + $spacing-4 * 2);
 			right: 0;
 			display: flex;
 			flex-direction: column;
@@ -183,6 +193,11 @@
 			visibility: hidden;
 			pointer-events: none;
 			transform: translateX($spacing-4);
+
+			@include sm {
+				top: calc(100% + 8rem + $spacing-4 * 2);
+				bottom: auto;
+			}
 
 			@include md {
 				width: auto;
@@ -218,7 +233,7 @@
 			height: 8rem;
 			padding: $spacing-4;
 			position: absolute;
-			top: calc(100% + $spacing-4);
+			bottom: calc(100% + $spacing-4);
 			right: 0;
 			flex-direction: column;
 			justify-content: flex-end;
@@ -231,6 +246,11 @@
 			visibility: hidden;
 			pointer-events: none;
 			transform: translateX($spacing-4);
+
+			@include sm {
+				top: calc(100% + $spacing-4);
+				bottom: auto;
+			}
 
 			@include md {
 				width: auto;

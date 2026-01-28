@@ -18,6 +18,7 @@
 			</p>
 			<Button>Voir la formation</Button>
 		</div>
+		<div class="fake-img"></div>
 	</div>
 	<div class="content"></div>
 	<div class="container-image">
@@ -27,27 +28,28 @@
 
 <style lang="scss">
 	header {
-		min-height: 100vh;
-		min-height: 100dvh;
+		width: 100%;
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;
-		gap: 47rem;
+		gap: 37rem;
 
 		@media (min-width: 362px) {
-			gap: 42rem;
+			gap: 33rem;
 		}
 
 		@media (min-width: 487px) {
-			gap: 38rem;
+			gap: 27rem;
 		}
 
 		@media (min-width: 542px) {
-			gap: 35rem;
+			gap: 25rem;
 		}
 
 		@include sm {
+			min-height: 100vh;
+			min-height: 100dvh;
 			gap: 35rem;
 		}
 
@@ -61,21 +63,21 @@
 			flex-direction: row;
 		}
 
+		@media (min-width: 2000px) {
+			justify-content: center;
+		}
+
 		.container {
 			width: 100%;
 			height: 100%;
-			padding: 10rem $spacing-4 0 $spacing-4;
+			padding: $spacing-4 $spacing-4 0 $spacing-4;
 			position: absolute;
 			z-index: 1;
 			top: 0;
 			left: 0;
 			display: flex;
 			align-items: start;
-			background: linear-gradient(177deg, rgba(24, 24, 24, 0) 0%, var(--bg-primary) 92%);
-
-			:global([data-theme='light']) & {
-				background: linear-gradient(177deg, rgba(24, 24, 24, 0) 0%, var(--bg-primary) 100%);
-			}
+			gap: $spacing-32;
 
 			@include sm {
 				padding: 10rem $spacing-12 0 $spacing-12;
@@ -85,18 +87,31 @@
 				padding: 0;
 				align-items: center;
 			}
+
+			@media (min-width: 2000px) {
+				justify-content: center;
+			}
+
+			.fake-img {
+				flex: 1;
+				max-width: 1720px;
+				display: none;
+				@media (min-width: 2000px) {
+					display: block;
+				}
+			}
 		}
 
 		.content {
 			width: 100%;
-			max-width: 32rem;
+			max-width: 31.5rem;
 			display: flex;
 			flex-direction: column;
 			align-items: start;
 			gap: $spacing-8;
 
 			@include xl {
-				width: 32rem;
+				width: 31.5rem;
 				margin-left: 10rem;
 			}
 
@@ -107,15 +122,21 @@
 
 		.container-image {
 			width: 90%;
+			max-width: 1720px;
 			height: 25rem;
 			max-height: 50vh;
 			max-height: 50dvh;
 			position: relative;
 			overflow: hidden;
-			mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), black 200%);
+			mask-composite: intersect;
+			mask-image:
+				linear-gradient(to right, rgba(0, 0, 0, 0.1) 15%, black 130%),
+				linear-gradient(to top, rgba(0, 0, 0, 0) 15%, black 100%);
 
 			:global([data-theme='light']) & {
-				mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), black 50%);
+				mask-image:
+					linear-gradient(to right, rgba(0, 0, 0, 0.15), black 100%),
+					linear-gradient(to top, rgba(0, 0, 0, 0), black 120%);
 			}
 
 			@include sm {
@@ -135,10 +156,6 @@
 				max-height: none;
 				flex: 1;
 				align-self: flex-end;
-
-				:global([data-theme='light']) & {
-					mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), black 100%);
-				}
 			}
 		}
 	}
