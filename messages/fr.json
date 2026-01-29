@@ -1,7 +1,18 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Salut, {name} from fr!",
 	"nav_a_project": "Un projet ?",
 	"nav_our_projects": "Nos projets",
-	"nav_access_training": "Accéder à la formation"
+	"nav_access_training": "Accéder à la formation",
+	"home_header_on_title": "Bienvenue chez Seekode !",
+	"home_header_title": "Apprenez à coder comme un vrai développeur.",
+	"home_header_first_text": "Être développeur, ce n’est pas juste connaître une techno. C’est savoir résoudre des problèmes, s’adapter et progresser vite.",
+	"home_header_second_text": "Apprenez à comprendre n’importe quelle techno, à choisir les bons outils, et à travailler comme un pro, même en dehors des tutos.",
+	"home_header_text_button": "Voir la formation",
+	"home_social_proof_on_title": "Formez-vous comme Djason !",
+	"home_social_proof_title": "Djason Chery à debloqué son potentiel de développeur grâce à Seelearn.",
+	"home_social_proof_first_text": "Plus de 10 projets réalisés sur différentes technologies en quelques mois.",
+	"home_social_proof_second_text": "Formé à l’apprentissage d’une nouvelle technologie en quelques jours.",
+	"home_social_proof_tertiary_text": "Capable de mener des projets en équipe ou en freelance.",
+	"home_social_proof_primary_btn": "Je me forme",
+	"home_social_proof_secondary_btn": "Voir les projets de djason"
 }

@@ -31,6 +31,13 @@
 	}
 }
 
+@mixin container-gradient {
+	width: 100%;
+	background: var(--bg-section);
+	padding-top: $spacing-32;
+	padding-bottom: $spacing-32;
+}
+
 // Container
 @mixin container {
 	width: 100%;

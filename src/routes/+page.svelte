@@ -1,4 +1,5 @@
 <script>
+	import HomeComunity from '$lib/components/pages/home/HomeComunity.svelte';
 	import HomeHeader from '$lib/components/pages/home/HomeHeader.svelte';
 	import HomeSocialProof from '$lib/components/pages/home/HomeSocialProof.svelte';
 	import HomeTechnoSlide from '$lib/components/pages/home/HomeTechnoSlide.svelte';
@@ -14,6 +15,7 @@
 	<HomeSocialProof />
 	<HomeTechnoSlide />
 </div>
+<HomeComunity />
 
 <style>
 	div {
@@ -21,6 +23,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-primary) 80vh);
+		background: var(--bg-primary);
 	}
 </style>

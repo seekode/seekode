@@ -1,6 +1,7 @@
 <script>
 	import Button from '$lib/components/ui/Button.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
+	import { m } from '$lib/paraglide/messages';
 </script>
 
 <section>
@@ -9,28 +10,28 @@
 		<img src="assets/images/djason.webp" alt="Apprenant" />
 	</div>
 	<div class="content">
-		<Title tag="h2" prefix="Formez-vous comme Djason !" center>
-			Djason Chery à debloqué son potentiel de développeur grâce à Seelearn.
+		<Title tag="h2" prefix={m.home_social_proof_on_title()} center>
+			{m.home_social_proof_title()}
 		</Title>
 		<ul class="content__list">
-			<li>Plus de 10 projets réalisés sur différentes technologies en quelques mois.</li>
-			<li>Formé à l’apprentissage d’une nouvelle technologie en quelques jours.</li>
-			<li class="last">Capable de mener des projets en équipe ou en freelance.</li>
+			<li>{m.home_social_proof_first_text()}</li>
+			<li>{m.home_social_proof_second_text()}</li>
+			<li class="last">{m.home_social_proof_tertiary_text()}</li>
 		</ul>
 		<div class="content__actions">
-			<Button>Je me forme</Button>
-			<Button type="secondary">Voir les projets de djason</Button>
+			<Button>{m.home_social_proof_primary_btn()}</Button>
+			<Button type="secondary">{m.home_social_proof_secondary_btn()}</Button>
 		</div>
 	</div>
 </section>
 
 <style lang="scss">
 	section {
-		max-width: calc(100% - $spacing-8);
-		margin: $spacing-32 0;
+		@include container;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		gap: $spacing-8;
 
 		@media (min-width: 850px) {
@@ -95,7 +96,7 @@
 			}
 
 			:global(.title span) {
-				width: 196px;
+				/* width: 196px; */
 				@media (min-width: 850px) {
 					left: 0.8rem;
 					transform: translateX(0);

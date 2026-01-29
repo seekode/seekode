@@ -25,6 +25,7 @@
 		margin-bottom: -1rem;
 
 		span {
+			width: max-content;
 			position: absolute;
 			left: 1.2rem;
 			bottom: 100%;

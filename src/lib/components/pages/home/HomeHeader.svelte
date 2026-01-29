@@ -1,22 +1,21 @@
 <script>
 	import Button from '$lib/components/ui/Button.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
+	import { m } from '$lib/paraglide/messages';
 	import HomeHeaderImage from './HomeHeaderImage.svelte';
 </script>
 
 <header>
 	<div class="container">
 		<div class="content">
-			<Title prefix="Bienvenue chez Seekode !">Apprenez à coder comme un vrai développeur.</Title>
+			<Title prefix={m.home_header_on_title()}>{m.home_header_title()}</Title>
 			<p>
-				Être développeur, ce n’est pas juste connaître une techno. C’est savoir résoudre des
-				problèmes, s’adapter et progresser vite.
+				{m.home_header_first_text()}
 				<br />
 				<br />
-				Apprenez à comprendre n’importe quelle techno, à choisir les bons outils, et à travailler comme
-				un pro, même en dehors des tutos.
+				{m.home_header_second_text()}
 			</p>
-			<Button>Voir la formation</Button>
+			<Button>{m.home_header_text_button()}</Button>
 		</div>
 		<div class="fake-img"></div>
 	</div>
