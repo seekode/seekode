@@ -136,9 +136,10 @@
 
 	nav {
 		@include glass-effect;
+		@include layout;
 		width: calc(100% - $spacing-4 * 2);
-		max-width: 2000px;
 		height: 6rem;
+		margin: 0;
 		padding: 0 $spacing-4;
 		position: fixed;
 		z-index: 101;
@@ -389,10 +390,6 @@
 						}
 					}
 				}
-			}
-
-			:global(.formation) {
-				font-size: $font-size-sm;
 			}
 		}
 

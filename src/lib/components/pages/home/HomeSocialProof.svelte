@@ -10,7 +10,7 @@
 		<img src="assets/images/djason.webp" alt="Apprenant" />
 	</div>
 	<div class="content">
-		<Title tag="h2" prefix={m.home_social_proof_on_title()} center>
+		<Title tag="h2" prefix={m.home_social_proof_on_title()} center reduce>
 			{m.home_social_proof_title()}
 		</Title>
 		<ul class="content__list">
@@ -84,10 +84,6 @@
 			}
 
 			:global(.title) {
-				@media (max-width: 550px) {
-					font-size: $font-size-2xl;
-				}
-
 				@media (min-width: 850px) {
 					text-align: start;
 				}

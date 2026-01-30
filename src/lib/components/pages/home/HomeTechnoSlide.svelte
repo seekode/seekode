@@ -63,7 +63,9 @@
 
 <style lang="scss">
 	.container {
+		max-width: 100%;
 		padding: $spacing-20 0;
+		overflow: hidden;
 
 		.slide {
 			width: 100%;

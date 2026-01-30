@@ -148,6 +148,7 @@
 		&--thin {
 			height: 2.5rem;
 			padding: 0 $spacing-4;
+			font-size: $font-size-sm;
 		}
 
 		&--rounded {

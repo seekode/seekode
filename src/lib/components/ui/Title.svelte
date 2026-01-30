@@ -5,13 +5,14 @@
 		center?: boolean;
 		children: Snippet;
 		prefix: string;
+		reduce?: boolean;
 		tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	}
 
-	let { center, children, prefix, tag = 'h1' }: TitleProps = $props();
+	let { center, children, prefix, reduce, tag = 'h1' }: TitleProps = $props();
 </script>
 
-<svelte:element this={tag} class="title" class:center>
+<svelte:element this={tag} class="title" class:center class:reduce>
 	<span class:center>{prefix}</span>
 	{@render children()}
 </svelte:element>
@@ -23,6 +24,12 @@
 		font-size: $font-size-4xl;
 		font-weight: $font-weight-medium;
 		margin-bottom: -1rem;
+
+		&.reduce {
+			@media (max-width: 550px) {
+				font-size: $font-size-2xl;
+			}
+		}
 
 		&.center {
 			text-align: center;

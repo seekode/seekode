@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Contact from '$lib/components/layouts/Contact.svelte';
 	import Navbar from '$lib/components/layouts/Navbar.svelte';
 	import '$lib/styles/global.scss';
 
@@ -7,3 +8,4 @@
 
 <Navbar />
 {@render children()}
+<Contact />
