@@ -6,12 +6,12 @@
 	--bg-primary: #{$dark-bg-primary};
 	--bg-secondary: #{$dark-bg-secondary};
 	--bg-tertiary: #{$dark-bg-tertiary};
-	--bg-hover: #{$dark-bg-hover};
 	--bg-section: #{$dark-bg-section};
 	--text-primary: #{$dark-text-primary};
 	--text-secondary: #{$dark-text-secondary};
 	--text-muted: #{$dark-text-muted};
 	--text-muted-hover: #{$dark-text-muted-hover};
+	--hover: #{$dark-hover};
 
 	// Glass effect
 	--glass-bg: rgba(27, 28, 29, 0.8);
@@ -22,7 +22,6 @@
 	--bg-primary: #{$light-bg-primary};
 	--bg-secondary: #{$light-bg-secondary};
 	--bg-tertiary: #{$light-bg-tertiary};
-	--bg-hover: #{$light-bg-hover};
 	--bg-section: #{$light-bg-section};
 	--text-primary: #{$light-text-primary};
 	--text-secondary: #{$light-text-secondary};

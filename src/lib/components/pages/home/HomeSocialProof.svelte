@@ -84,8 +84,6 @@
 			}
 
 			:global(.title) {
-				text-align: center;
-
 				@media (max-width: 550px) {
 					font-size: $font-size-2xl;
 				}
@@ -96,7 +94,6 @@
 			}
 
 			:global(.title span) {
-				/* width: 196px; */
 				@media (min-width: 850px) {
 					left: 0.8rem;
 					transform: translateX(0);
@@ -112,6 +109,7 @@
 
 				li {
 					position: relative;
+					color: var(--text-secondary);
 
 					&::before,
 					&::after {

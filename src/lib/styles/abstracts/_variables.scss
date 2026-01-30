@@ -8,23 +8,23 @@ $color-secondary: #ffc95d /*#ff6f61 */;
 $dark-bg-primary: #111111;
 $dark-bg-secondary: #0e0e0e;
 $dark-bg-tertiary: #080808;
-$dark-bg-hover: rgba(255, 255, 255, 0.08);
 $dark-bg-section: linear-gradient(180deg, $dark-bg-secondary 0%, $dark-bg-primary 100%);
 $dark-text-primary: #e5e5e5;
-$dark-text-secondary: #bfbfbf;
+$dark-text-secondary: #8a8a8a;
 $dark-text-muted: #393939;
 $dark-text-muted-hover: rgba(255, 255, 255, 0.25);
+$dark-hover: 255 255 255;
 
 // Light theme
 $light-bg-primary: #fafafa;
 $light-bg-secondary: #f2f2f2;
 $light-bg-tertiary: #e8e8e8;
-$light-bg-hover: rgba(8, 8, 8, 0.08);
 $light-bg-section: linear-gradient(180deg, $light-bg-primary 0%, $light-bg-secondary 100%);
 $light-text-primary: #09090b;
 $light-text-secondary: #52525b;
 $light-text-muted: #a1a1aa;
 $light-text-muted-hover: rgba(0, 0, 0, 0.25);
+$light-hover: 0 0 0;
 
 // Typography
 $font-family: 'Lexend', sans-serif;
@@ -78,7 +78,7 @@ $breakpoint-2xl: 1536px;
 $container-sm: 640px;
 $container-md: 768px;
 $container-lg: 1024px;
-$container-xl: 1200px;
+$container-xl: 1600px;
 
 // Border radius
 $radius-sm: 0.25rem; // 4px

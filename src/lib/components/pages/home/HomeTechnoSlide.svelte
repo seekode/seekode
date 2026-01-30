@@ -40,7 +40,7 @@
 <div class="container">
 	<div class="slide" aria-label="Technologies showcase">
 		<div class="slide__track slide__track--left">
-			{#each { length: 3 }, i (i)}
+			{#each { length: 4 }, i (i)}
 				{#each devTechnos as techno, y (y)}
 					<div class="slide__track__item" aria-hidden={i > 0}>
 						<span>{techno}</span>
@@ -122,13 +122,13 @@
 			transform: translateX(0);
 		}
 		100% {
-			transform: translateX(-33.333%);
+			transform: translateX(-25%);
 		}
 	}
 
 	@keyframes scrollRight {
 		0% {
-			transform: translateX(-33.333%);
+			transform: translateX(-25%);
 		}
 		100% {
 			transform: translateX(0);

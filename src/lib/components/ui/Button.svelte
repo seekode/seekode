@@ -136,7 +136,7 @@
 			&:hover {
 				color: var(--text-primary);
 				border: 1px solid var(--text-muted-hover);
-				background-color: var(--bg-hover);
+				background-color: rgb(var(--hover) / 0.08);
 			}
 
 			&[aria-expanded='true'] {

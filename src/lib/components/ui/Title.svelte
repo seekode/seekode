@@ -11,7 +11,7 @@
 	let { center, children, prefix, tag = 'h1' }: TitleProps = $props();
 </script>
 
-<svelte:element this={tag} class="title">
+<svelte:element this={tag} class="title" class:center>
 	<span class:center>{prefix}</span>
 	{@render children()}
 </svelte:element>
@@ -23,6 +23,10 @@
 		font-size: $font-size-4xl;
 		font-weight: $font-weight-medium;
 		margin-bottom: -1rem;
+
+		&.center {
+			text-align: center;
+		}
 
 		span {
 			width: max-content;
