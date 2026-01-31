@@ -28,7 +28,8 @@
 
 <style lang="scss">
 	.card {
-		max-width: 26rem;
+		flex: 1;
+		min-width: 20rem;
 		padding: $spacing-6;
 		border: 1px solid rgba($color-primary, 0.25);
 		display: flex;

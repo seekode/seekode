@@ -57,7 +57,7 @@
 @mixin layout {
 	width: calc(100% - $spacing-8 * 2);
 	max-width: 2000px;
-	margin: $spacing-8;
+	margin: $spacing-4 $spacing-8;
 }
 
 // design

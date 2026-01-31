@@ -49,11 +49,7 @@
 
 <style lang="scss">
 	svg {
-		color: white;
+		color: var(--text-primary);
 		transition: color $transition-slow $transition-timing;
-
-		:global([data-theme='light']) & {
-			color: #1a1a1a;
-		}
 	}
 </style>

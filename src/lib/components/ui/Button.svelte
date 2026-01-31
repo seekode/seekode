@@ -8,6 +8,7 @@
 		ariaLabel?: string;
 		children: Snippet;
 		classes?: string;
+		link?: string;
 		onclick?: (event: MouseEvent) => void;
 		rounded?: boolean;
 		square?: boolean;
@@ -21,6 +22,7 @@
 		ariaLabel,
 		children,
 		classes,
+		link,
 		onclick,
 		rounded,
 		square,
@@ -43,17 +45,32 @@
 	);
 </script>
 
-<button
-	class={customClasses}
-	aria-expanded={ariaExpanded}
-	aria-haspopup={ariaHaspopup}
-	aria-label={ariaLabel}
-	{onclick}
->
-	<div>
-		{@render children()}
-	</div>
-</button>
+{#if link}
+	<a
+		class={customClasses}
+		aria-expanded={ariaExpanded}
+		aria-haspopup={ariaHaspopup}
+		aria-label={ariaLabel}
+		href={link}
+		target="_blank"
+	>
+		<div>
+			{@render children()}
+		</div>
+	</a>
+{:else}
+	<button
+		class={customClasses}
+		aria-expanded={ariaExpanded}
+		aria-haspopup={ariaHaspopup}
+		aria-label={ariaLabel}
+		{onclick}
+	>
+		<div>
+			{@render children()}
+		</div>
+	</button>
+{/if}
 
 <style lang="scss">
 	.btn {

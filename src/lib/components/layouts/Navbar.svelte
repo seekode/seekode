@@ -47,9 +47,9 @@
 	</div>
 	<ul class="links" class:links--open={isMenuOpen}>
 		<li>Seelearn</li>
-		<li>{m.nav_a_project()}</li>
-		<li>Seekode</li>
-		<li>{m.nav_our_projects()}</li>
+		<!-- <li>{m.nav_a_project()}</li> -->
+		<!-- <li>Seekode</li> -->
+		<!-- <li>{m.nav_our_projects()}</li> -->
 	</ul>
 	<div class="action" class:action--open={isMenuOpen}>
 		<div class="action__line">
