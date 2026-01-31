@@ -1,5 +1,6 @@
 <script>
 	import HomeCommunity from '$lib/components/pages/home/HomeCommunity.svelte';
+	import HomeFaq from '$lib/components/pages/home/HomeFaq.svelte';
 	import HomeHeader from '$lib/components/pages/home/HomeHeader.svelte';
 	import HomeReview from '$lib/components/pages/home/HomeReview.svelte';
 	import HomeSocialProof from '$lib/components/pages/home/HomeSocialProof.svelte';
@@ -18,6 +19,7 @@
 </div>
 <HomeCommunity />
 <HomeReview />
+<HomeFaq />
 
 <style>
 	div {
