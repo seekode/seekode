@@ -42,6 +42,7 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.13.1",
 		"globals": "^16.5.0",
+		"nodemailer": "^7.0.13",
 		"playwright": "^1.57.0",
 		"prettier": "^3.7.4",
 		"prettier-plugin-svelte": "^3.4.0",
@@ -57,7 +58,6 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.563.1",
-		"@rollup/rollup-win32-arm64-msvc": "^4.56.0",
-		"nodemailer": "^7.0.13"
+		"@rollup/rollup-win32-arm64-msvc": "^4.56.0"
 	}
 }
