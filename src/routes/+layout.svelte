@@ -6,12 +6,16 @@
 	import CalendlyModal from '$lib/components/ui/CalendlyModal.svelte';
 	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
 	import { audience } from '$lib/stores/audience.svelte';
+	import { theme } from '$lib/stores/theme.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
 	import '$lib/styles/global.scss';
 
 	let { children, data } = $props();
 
-	untrack(() => audience.init(data.audience));
+	untrack(() => {
+		audience.init(data.audience);
+		theme.init(data.theme);
+	});
 </script>
 
 <Navbar />

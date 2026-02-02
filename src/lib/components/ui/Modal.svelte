@@ -73,7 +73,6 @@
 		left: 50%;
 		transform: translate(-50%, -50%) scaleY(0.5);
 		opacity: 0;
-		display: flex;
 		flex-direction: column;
 		align-items: center;
 		color: var(--text-primary);
@@ -84,6 +83,10 @@
 			display $transition-slow allow-discrete,
 			overlay $transition-slow allow-discrete;
 
+		&:not([open]) {
+			display: none;
+		}
+
 		&::backdrop {
 			background: rgba(0, 0, 0, 0.3);
 			backdrop-filter: blur(10px);
@@ -93,6 +96,7 @@
 		}
 
 		&[open] {
+			display: flex;
 			opacity: 1;
 			transform: translate(-50%, -50%) scaleY(1);
 			@starting-style {

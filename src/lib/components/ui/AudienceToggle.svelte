@@ -44,6 +44,11 @@
 				animation: pulse-ring 2.5s ease-out infinite;
 				pointer-events: none;
 				z-index: -1;
+
+				:global([data-theme='light']) & {
+					filter: blur(6px);
+					border: 5px solid rgba($color-primary, 1);
+				}
 			}
 
 			&::after {

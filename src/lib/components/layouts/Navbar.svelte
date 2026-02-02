@@ -5,19 +5,14 @@
 	import Button from '../ui/Button.svelte';
 	import LogoText from '../icons/LogoText.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
+	import { theme } from '$lib/stores/theme.svelte';
 
 	let isLanguageOpen = $state(false);
 	let isMenuOpen = $state(false);
-	let theme = $state<'light' | 'dark'>('dark');
 
 	const languageNames: Record<string, string> = {
 		fr: 'Français',
 		en: 'English'
-	};
-
-	const toggleTheme = () => {
-		theme = theme === 'dark' ? 'light' : 'dark';
-		document.documentElement.setAttribute('data-theme', theme);
 	};
 
 	const handleClickOutside = (event: MouseEvent) => {
@@ -58,10 +53,10 @@
 				type="muted"
 				square
 				thin
-				onclick={toggleTheme}
-				ariaLabel={theme === 'dark' ? m.nav_switch_light_mode() : m.nav_switch_dark_mode()}
+				onclick={() => theme.toggle()}
+				ariaLabel={theme.isDark ? m.nav_switch_light_mode() : m.nav_switch_dark_mode()}
 			>
-				<span class="theme-wrapper" class:dark={theme === 'dark'}>
+				<span class="theme-wrapper" class:dark={theme.isDark}>
 					<Sun size="20" class="sun-icon" />
 					<Moon size="20" class="moon-icon" />
 				</span>
