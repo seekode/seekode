@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import Button from '../ui/Button.svelte';
 	import Field from '../ui/Field.svelte';
 	import Title from '../ui/Title.svelte';
+	import * as m from '$lib/paraglide/messages';
 </script>
 
 <section>
@@ -9,23 +10,22 @@
 		<source src="assets/images/bg-contact.webm" type="video/webm" />
 	</video>
 	<div>
-		<Title prefix="Contactez-nous" reduce>
-			D’autres questions ? Une envie d’échanger ? Nous sommes là !
+		<Title prefix={m.contact_prefix()} reduce>
+			{m.contact_title()}
 		</Title>
 		<p>
-			Contactez-nous via ce formulaire et nous ferons tout notre possible pour vous répondre dans
-			les plus brefs délais.
+			{m.contact_description()}
 		</p>
 	</div>
 	<form>
 		<div>
-			<Field id="prenom" placeholder="John">Prénom</Field>
-			<Field id="nom" placeholder="Doe">Nom</Field>
+			<Field id="prenom" placeholder="John">{m.contact_first_name()}</Field>
+			<Field id="nom" placeholder="Doe">{m.contact_last_name()}</Field>
 		</div>
-		<Field id="email" placeholder="john.doe@gmail.com">E-mail</Field>
-		<Field id="num" placeholder="0621240684">Numéro de téléphone</Field>
+		<Field id="email" placeholder="john.doe@gmail.com">{m.contact_email()}</Field>
+		<Field id="num" placeholder="0621240684">{m.contact_phone()}</Field>
 		<div class="action">
-			<Button type="secondary" thin rounded>Envoyer ma demande</Button>
+			<Button type="secondary" thin rounded>{m.contact_submit()}</Button>
 		</div>
 	</form>
 </section>

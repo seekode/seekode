@@ -4,6 +4,7 @@
 	import * as m from '$lib/paraglide/messages';
 	import Button from '../ui/Button.svelte';
 	import LogoText from '../icons/LogoText.svelte';
+	import { calendlyModal } from '$lib/stores/calendly.svelte';
 
 	let isLanguageOpen = $state(false);
 	let isMenuOpen = $state(false);
@@ -41,12 +42,12 @@
 <!-- Mobile backdrop overlay -->
 <div class="mobile-backdrop" class:mobile-backdrop--active={isMenuOpen}></div>
 
-<nav>
+<nav id="nav">
 	<div>
 		<LogoText />
 	</div>
 	<ul class="links" class:links--open={isMenuOpen}>
-		<li>Seelearn</li>
+		<li>{m.nav_seelearn()}</li>
 		<!-- <li>{m.nav_a_project()}</li> -->
 		<!-- <li>Seekode</li> -->
 		<!-- <li>{m.nav_our_projects()}</li> -->
@@ -58,7 +59,7 @@
 				square
 				thin
 				onclick={toggleTheme}
-				ariaLabel={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+				ariaLabel={theme === 'dark' ? m.nav_switch_light_mode() : m.nav_switch_dark_mode()}
 			>
 				<span class="theme-wrapper" class:dark={theme === 'dark'}>
 					<Sun size="20" class="sun-icon" />
@@ -92,7 +93,9 @@
 				</div>
 			</div>
 		</div>
-		<Button classes="formation" type="secondary" rounded thin>{m.nav_access_training()}</Button>
+		<Button classes="formation" type="secondary" rounded thin onclick={() => calendlyModal.open()}
+			>{m.nav_access_training()}</Button
+		>
 	</div>
 	<div class="menu">
 		<Button
@@ -140,7 +143,7 @@
 		width: calc(100% - $spacing-4 * 2);
 		height: 6rem;
 		margin: 0;
-		padding: 0 $spacing-4;
+		padding: 0 var(--nav-padding);
 		position: fixed;
 		z-index: 101;
 		top: auto;
@@ -155,10 +158,6 @@
 		@include sm {
 			top: $spacing-4;
 			bottom: auto;
-		}
-
-		@include xl {
-			padding: 0 $spacing-8;
 		}
 
 		> div {
@@ -208,7 +207,7 @@
 				left: auto;
 				flex-direction: row;
 				background: none;
-				backdrop-filter: blur(0);
+				backdrop-filter: none;
 				box-shadow: none;
 				opacity: 1;
 				visibility: visible;
@@ -266,7 +265,7 @@
 				top: auto;
 				right: auto;
 				background: none;
-				backdrop-filter: blur(0);
+				backdrop-filter: none;
 				box-shadow: none;
 				opacity: 1;
 				visibility: visible;

@@ -15,6 +15,11 @@
 
 	// Glass effect
 	--glass-bg: rgba(27, 28, 29, 0.8);
+
+	--nav-padding: #{$spacing-4};
+	@include xl {
+		--nav-padding: #{$spacing-8};
+	}
 }
 
 // Light theme
@@ -39,6 +44,11 @@ html {
 	background-color: var(--bg-primary);
 	color: var(--text-primary);
 	transition: $transition-slow $transition-timing;
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: $color-primary var(--bg-primary);
 }
 
 body {

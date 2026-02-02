@@ -2,6 +2,7 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
 	import { m } from '$lib/paraglide/messages';
+	import { calendlyModal } from '$lib/stores/calendly.svelte';
 	import HomeHeaderImage from './HomeHeaderImage.svelte';
 </script>
 
@@ -15,7 +16,7 @@
 				<br />
 				{m.home_header_second_text()}
 			</p>
-			<Button>{m.home_header_text_button()}</Button>
+			<Button onclick={() => calendlyModal.open()}>{m.home_header_text_button()}</Button>
 		</div>
 		<div class="fake-img"></div>
 	</div>

@@ -1,25 +1,23 @@
-<script>
+<script lang="ts">
 	import LogoFullText from '../icons/LogoFullText.svelte';
 	import Button from '../ui/Button.svelte';
+	import * as m from '$lib/paraglide/messages';
 </script>
 
 <footer>
 	<div class="content">
 		<div>
-			<p>Seekode</p>
+			<p>{m.footer_seekode()}</p>
 			<ul>
-				<li>Seelearn - Formation</li>
-				<!-- <li>Lancer mon projet</li> -->
-				<!-- <li>Seekode - Présentation</li> -->
-				<!-- <li>Nos réalisations</li> -->
+				<li>{m.footer_seelearn_training()}</li>
 			</ul>
 		</div>
 		<div>
-			<p>Liens utiles</p>
+			<p>{m.footer_useful_links()}</p>
 			<ul>
-				<li>Mentions légales</li>
-				<li>Politique de confidentialité</li>
-				<li>Gestion des cookies</li>
+				<li>{m.footer_legal_notice()}</li>
+				<li>{m.footer_privacy_policy()}</li>
+				<li>{m.footer_cookie_management()}</li>
 			</ul>
 		</div>
 		<div></div>
@@ -27,19 +25,19 @@
 	<div class="line"></div>
 	<div class="credits">
 		<LogoFullText />
-		<p>© 2025 Seekode. All rights reserved.</p>
+		<p>{m.footer_copyright()}</p>
 		<div>
-			<Button link="https://seekode.dev" type="muted" square>
+			<Button link="https://www.tiktok.com/@seekode" type="muted" square>
 				<img src="assets/images/icons/tiktok.svg" alt="tiktok" />
 			</Button>
-			<Button link="https://seekode.dev" type="muted" square>
-				<img src="assets/images/icons/instagram.svg" alt="tiktok" />
+			<Button link="https://www.instagram.com/seekode.dev/" type="muted" square>
+				<img src="assets/images/icons/instagram.svg" alt="instagram" />
 			</Button>
-			<Button link="https://seekode.dev" type="muted" square>
-				<img src="assets/images/icons/youtube.svg" alt="tiktok" />
+			<Button link="https://www.youtube.com/@_seekode" type="muted" square>
+				<img src="assets/images/icons/youtube.svg" alt="youtube" />
 			</Button>
-			<Button link="https://seekode.dev" type="muted" square>
-				<img src="assets/images/icons/linkedin.svg" alt="tiktok" />
+			<Button link="https://www.linkedin.com/in/nicolas-texier-dev/" type="muted" square>
+				<img src="assets/images/icons/linkedin.svg" alt="linkedin" />
 			</Button>
 		</div>
 	</div>

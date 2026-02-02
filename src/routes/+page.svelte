@@ -1,15 +1,16 @@
-<script>
+<script lang="ts">
 	import HomeCommunity from '$lib/components/pages/home/HomeCommunity.svelte';
 	import HomeFaq from '$lib/components/pages/home/HomeFaq.svelte';
 	import HomeHeader from '$lib/components/pages/home/HomeHeader.svelte';
 	import HomeReview from '$lib/components/pages/home/HomeReview.svelte';
 	import HomeSocialProof from '$lib/components/pages/home/HomeSocialProof.svelte';
 	import HomeTechnoSlide from '$lib/components/pages/home/HomeTechnoSlide.svelte';
+	import * as m from '$lib/paraglide/messages';
 </script>
 
 <svelte:head>
-	<title>Seekode - Formation</title>
-	<meta name="description" content="Formation Seekode" />
+	<title>{m.page_title()}</title>
+	<meta name="description" content={m.page_description()} />
 </svelte:head>
 
 <div>

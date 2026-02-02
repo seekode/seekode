@@ -2,41 +2,43 @@
 	import Title from '$lib/components/ui/Title.svelte';
 	import type { HomeReviewCardProps } from './HomeReviewCard.svelte';
 	import HomeReviewCard from './HomeReviewCard.svelte';
+	import * as m from '$lib/paraglide/messages';
+	import Button from '$lib/components/ui/Button.svelte';
+	import { calendlyModal } from '$lib/stores/calendly.svelte';
 
 	const reviews: HomeReviewCardProps[] = [
 		{
-			content:
-				'Nicolas a été mon formateur à La Manu, et j’ai énormément appris grâce à lui. Même en dehors des heures de cours, <span>il prenait le temps de m’expliquer et de me guider</span>. Grâce à ses conseils et son accompagnement, <span>j’ai progressé très rapidement</span> et j’ai pu effectuer ma reconversion professionnelle avec succès en tant que développeur web. Avant cela, j’étais freelance monteur truquiste, et son enseignement a vraiment fait la différence.',
+			content: m.review_1_content(),
 			img: 'djason',
-			name: 'Djason',
-			work: 'DÉVELOPPEUR FREELANCE'
+			name: m.review_1_name(),
+			work: m.review_1_work()
 		},
 		{
-			content:
-				'Nicolas a été mon formateur à La Manu, et j’ai énormément appris grâce à lui. Même en dehors des heures de cours, <span>il prenait le temps de m’expliquer et de me guider</span>. Grâce à ses conseils et son accompagnement, <span>j’ai progressé très rapidement</span> et j’ai pu effectuer ma reconversion professionnelle avec succès en tant que développeur web. Avant cela, j’étais freelance monteur truquiste, et son enseignement a vraiment fait la différence.',
-			img: 'djason',
-			name: 'Djason',
-			work: 'DÉVELOPPEUR FREELANCE'
+			content: m.review_2_content(),
+			img: 'maxime',
+			name: m.review_2_name(),
+			work: m.review_2_work()
 		},
 		{
-			content:
-				'Nicolas a été mon formateur à La Manu, et j’ai énormément appris grâce à lui. Même en dehors des heures de cours, <span>il prenait le temps de m’expliquer et de me guider</span>. Grâce à ses conseils et son accompagnement, <span>j’ai progressé très rapidement</span> et j’ai pu effectuer ma reconversion professionnelle avec succès en tant que développeur web. Avant cela, j’étais freelance monteur truquiste, et son enseignement a vraiment fait la différence.',
-			img: 'djason',
-			name: 'Djason',
-			work: 'DÉVELOPPEUR FREELANCE'
+			content: m.review_3_content(),
+			img: 'romain',
+			name: m.review_3_name(),
+			work: m.review_3_work()
 		}
 	];
 </script>
 
 <section>
 	<div>
-		<Title prefix="Nos avis" center>100% de satisfaction à ce jour !</Title>
+		<Title prefix={m.review_prefix()} center>{m.review_title()}</Title>
 
 		<div>
 			{#each reviews as { content, img, name, work }, i (i)}
 				<HomeReviewCard {content} {img} {name} {work} />
 			{/each}
 		</div>
+
+		<Button onclick={() => calendlyModal.open()}>{m.review_join()}</Button>
 	</div>
 </section>
 
@@ -49,9 +51,9 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			gap: $spacing-32;
 
 			> div {
+				padding: $spacing-32 0 $spacing-12 0;
 				display: flex;
 				justify-content: center;
 				gap: $spacing-4;

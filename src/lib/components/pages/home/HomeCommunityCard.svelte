@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as m from '$lib/paraglide/messages';
+
 	export interface HomeCommunityCardProps {
 		action: (() => void) | string;
 		actionName: string;
@@ -15,7 +17,7 @@
 <svelte:element
 	this={isLink ? 'a' : 'button'}
 	class="card"
-	aria-label="{title} {isLink && "(s'ouvre dans un nouvel onglet)"}"
+	aria-label="{title} {isLink && m.community_card_opens_new_tab()}"
 	href={isLink ? (action as string) : undefined}
 	rel={isLink ? 'noopener noreferrer' : undefined}
 	target={isLink ? '_blank' : undefined}

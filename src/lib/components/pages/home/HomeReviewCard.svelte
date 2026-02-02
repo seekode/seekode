@@ -12,11 +12,13 @@
 </script>
 
 <div class="card">
-	<Quote />
-	<p>
-		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-		"{@html content}"
-	</p>
+	<div class="card__content">
+		<Quote />
+		<p>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+			"{@html content}"
+		</p>
+	</div>
 	<div class="card__author">
 		<img src="assets/images/review/{img}.webp" alt="auteur de l'avis" />
 		<div class="card__author__info">
@@ -34,6 +36,7 @@
 		border: 1px solid rgba($color-primary, 0.25);
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		gap: $spacing-6;
 		font-size: $font-size-sm;
 		border-radius: $radius-3xl;
@@ -47,6 +50,12 @@
 
 		:global(span) {
 			color: $color-primary;
+		}
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+			gap: $spacing-4;
 		}
 
 		&__author {

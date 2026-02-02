@@ -2,50 +2,48 @@
 	import Title from '$lib/components/ui/Title.svelte';
 	import type { HomeCommunityCardProps } from './HomeCommunityCard.svelte';
 	import HomeCommunityCard from './HomeCommunityCard.svelte';
+	import * as m from '$lib/paraglide/messages';
 
 	const cards: HomeCommunityCardProps[] = [
 		{
 			action: 'https://www.youtube.com/@_seekode',
 			icon: 'skool',
-			title: 'Des tutoriels détaillés',
-			text: 'Toute la communauté Seelearn est là pour vous accueillir et vous aider, quelque soit votre problème.',
-			actionName: 'Voir notre chaine YouTube'
+			title: m.community_card_skool_title(),
+			text: m.community_card_skool_text(),
+			actionName: m.community_card_skool_action()
 		},
 		{
 			action: 'https://www.youtube.com/@_seekode',
 			icon: 'live',
-			title: 'Des tutoriels détaillés1',
-			text: 'Toutes les semaines, Seelearn vous propose des lives exclusifs dans lesquels vous pourrez vous former davantage.',
-			actionName: 'Voir notre chaine YouTube'
+			title: m.community_card_live_title(),
+			text: m.community_card_live_text(),
+			actionName: m.community_card_live_action()
 		},
 		{
 			action: 'https://www.youtube.com/@_seekode',
 			icon: 'tiktok',
-			title: 'Des tutoriels détaillés2',
-			text: 'Notre plateforme TikTok vous permet d’accéder à des extraits de lives, tutoriels ou d’extraits gratuits de notre formation.',
-			actionName: 'Voir notre chaine YouTube'
+			title: m.community_card_tiktok_title(),
+			text: m.community_card_tiktok_text(),
+			actionName: m.community_card_tiktok_action()
 		},
 		{
 			action: 'https://www.youtube.com/@_seekode',
 			icon: 'youtube',
-			title: 'Des tutoriels détaillés3',
-			text: 'Notre chaîne YouTube vous donne accès à des extraits gratuits de notre formation Seelarn ainsi que les rediffusions de lives.',
-			actionName: 'Voir notre chaine YouTube'
+			title: m.community_card_youtube_title(),
+			text: m.community_card_youtube_text(),
+			actionName: m.community_card_youtube_action()
 		}
 	];
 </script>
 
 <section>
 	<div>
-		<Title prefix="Notre communauté" center>Seelearn, c'est aussi une communauté !</Title>
+		<Title prefix={m.community_prefix()} center>{m.community_title()}</Title>
 		<p>
-			En rejoignant Seelearn, vous ne serez jamais seul. Vous bénéficiez d’un suivi personnalisé
-			gratuit, de lives privés pour poser toutes vos questions, et d’une communauté active prête à
-			vous aider dès que vous êtes bloqué.
+			{m.community_description_1()}
 			<br />
 			<br />
-			On se motive entre membres, on partage ses réussites, et on trouve même des partenaires pour lancer
-			des projets ensemble.
+			{m.community_description_2()}
 		</p>
 		<div class="line"></div>
 		<div class="cards">

@@ -2,6 +2,7 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
 	import { m } from '$lib/paraglide/messages';
+	import { calendlyModal } from '$lib/stores/calendly.svelte';
 </script>
 
 <section>
@@ -19,8 +20,10 @@
 			<li class="last">{m.home_social_proof_tertiary_text()}</li>
 		</ul>
 		<div class="content__actions">
-			<Button>{m.home_social_proof_primary_btn()}</Button>
-			<Button type="secondary">{m.home_social_proof_secondary_btn()}</Button>
+			<Button onclick={() => calendlyModal.open()}>{m.home_social_proof_primary_btn()}</Button>
+			<Button type="secondary" link="https://djason-chery.dev/">
+				{m.home_social_proof_secondary_btn()}
+			</Button>
 		</div>
 	</div>
 </section>
