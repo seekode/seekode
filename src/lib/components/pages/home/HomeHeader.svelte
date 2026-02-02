@@ -9,8 +9,10 @@
 </script>
 
 <header>
-	<div class="audience-toggle">
-		<AudienceToggle halo />
+	<div class="audience-toggle-wrapper">
+		<div class="audience-toggle">
+			<AudienceToggle halo />
+		</div>
 	</div>
 	<div class="container">
 		<div class="content">
@@ -34,15 +36,43 @@
 </header>
 
 <style lang="scss">
-	.audience-toggle {
+	.audience-toggle-wrapper {
 		position: absolute;
-		bottom: $spacing-8;
-		left: 50%;
-		transform: translateX(-50%);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: calc(100% + $spacing-16);
+		pointer-events: none;
 		z-index: 10;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
 
 		@include xl {
+			height: calc(100%);
+			padding-bottom: $spacing-12;
+		}
+	}
+
+	.audience-toggle {
+		position: sticky;
+		// Mobile: navbar height (6rem) + navbar bottom ($spacing-4) + gap ($spacing-4)
+		bottom: calc(6rem + $spacing-4 + $spacing-4);
+		left: 50%;
+		transform: translateX(-50%);
+		width: fit-content;
+		margin: 0 auto;
+		pointer-events: auto;
+
+		@include sm {
+			// Navbar is at top from sm breakpoint, so just use normal spacing
+			bottom: $spacing-8;
+		}
+
+		@include xl {
+			position: absolute;
 			bottom: $spacing-12;
+			left: 50%;
 		}
 	}
 

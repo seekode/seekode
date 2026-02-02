@@ -31,6 +31,7 @@
 <style lang="scss">
 	section {
 		@include container;
+		padding-top: $spacing-32;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

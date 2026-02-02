@@ -60,10 +60,16 @@
 		border: 1px solid var(--text-muted);
 		border-radius: $radius-full;
 		cursor: pointer;
-		transition: border-color $transition-base $transition-timing;
+		transition:
+			border-color $transition-base $transition-timing,
+			transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
 		&:hover {
 			border-color: var(--text-secondary);
+		}
+
+		&:active {
+			transform: scale(1.05);
 		}
 
 		&__option {
@@ -93,14 +99,22 @@
 			position: absolute;
 			top: 4px;
 			left: 4px;
-			width: calc(50% - 4px);
+			right: 50%;
 			height: calc(100% - 8px);
 			background-color: $color-primary;
 			border-radius: $radius-full;
-			transition: transform $transition-base $transition-timing;
+			// Dev → Vibe: left moves first, right follows (stretch then contract)
+			transition:
+				left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+				right 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.12s;
 
 			&--vibe {
-				transform: translateX(100%);
+				left: 50%;
+				right: 4px;
+				// Vibe → Dev: right moves first, left follows (stretch then contract)
+				transition:
+					left 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.12s,
+					right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 			}
 		}
 	}
