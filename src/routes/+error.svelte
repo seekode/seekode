@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Button from '$lib/components/ui/Button.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import { localizeHref } from '$lib/paraglide/runtime';
 </script>
 
 <svelte:head>
-	<title>{$page.status} - {m.error_page_title()}</title>
+	<title>{page.status} - {m.error_page_title()}</title>
 </svelte:head>
 
 <section>

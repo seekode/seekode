@@ -1,15 +1,22 @@
-<script>
+<script lang="ts">
+	import AudienceToggle from '$lib/components/ui/AudienceToggle.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
 	import { m } from '$lib/paraglide/messages';
+	import { audience } from '$lib/stores/audience.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
 	import HomeHeaderImage from './HomeHeaderImage.svelte';
 </script>
 
 <header>
+	<div class="audience-toggle">
+		<AudienceToggle halo />
+	</div>
 	<div class="container">
 		<div class="content">
-			<Title prefix={m.home_header_on_title()}>{m.home_header_title()}</Title>
+			<Title prefix={m.home_header_on_title()}>
+				{audience.text(m.home_header_title, m.home_header_title_vibe)}
+			</Title>
 			<p>
 				{m.home_header_first_text()}
 				<br />
@@ -27,6 +34,18 @@
 </header>
 
 <style lang="scss">
+	.audience-toggle {
+		position: absolute;
+		bottom: $spacing-8;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 10;
+
+		@include xl {
+			bottom: $spacing-12;
+		}
+	}
+
 	header {
 		width: 100%;
 		position: relative;
