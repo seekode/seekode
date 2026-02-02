@@ -908,7 +908,7 @@
 								ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
 								'DejaVu Sans Mono', monospace;
 							color: var(--font-muted);
-							background-image: url('assets/images/logo/outline.svg');
+							background-image: url('/assets/images/logo/outline.svg');
 							background-repeat: no-repeat;
 							background-size: 30rem;
 							background-position: left 15rem bottom 9rem;

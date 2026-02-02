@@ -50,14 +50,19 @@
 		@include sm {
 			min-height: 100vh;
 			min-height: 100dvh;
+			height: 70rem;
 			gap: 35rem;
 		}
 
 		@include md {
+			height: 70rem;
 			gap: 29rem;
 		}
 
 		@include xl {
+			min-height: auto;
+			height: 100vh;
+			height: 100dvh;
 			align-items: center;
 			gap: $spacing-32;
 			flex-direction: row;
@@ -124,23 +129,22 @@
 			width: 90%;
 			max-width: 1720px;
 			height: 25rem;
-			max-height: 50vh;
-			max-height: 50dvh;
 			position: relative;
 			overflow: hidden;
 			mask-composite: intersect;
 			mask-image:
-				linear-gradient(to right, rgba(0, 0, 0, 0.1) 15%, black 130%),
-				linear-gradient(to top, rgba(0, 0, 0, 0) 15%, black 100%);
+				linear-gradient(to right, rgba(0, 0, 0, 0.1), black 100%),
+				linear-gradient(to top, rgba(0, 0, 0, 0), black 100%);
 
 			:global([data-theme='light']) & {
 				mask-image:
-					linear-gradient(to right, rgba(0, 0, 0, 0.15), black 100%),
-					linear-gradient(to top, rgba(0, 0, 0, 0), black 120%);
+					linear-gradient(to right, rgba(0, 0, 0, 0.15), black 50%),
+					linear-gradient(to top, rgba(0, 0, 0, 0), black 80%);
 			}
 
 			@include sm {
 				min-height: calc(100vh - 35rem);
+				height: 35rem;
 			}
 
 			@include md {
@@ -150,9 +154,13 @@
 			}
 
 			@include xl {
-				height: 80vh;
-				height: 80dvh;
-				min-height: auto;
+				/* height: 80vh;
+				height: 80dvh; */
+				/* min-height: auto; */
+				height: auto;
+				min-height: 80vh;
+				min-height: 80dvh;
+				/*  */
 				max-height: none;
 				flex: 1;
 				align-self: flex-end;

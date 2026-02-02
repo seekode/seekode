@@ -18,16 +18,16 @@ $dark-text-muted: #393939;
 $dark-text-muted-hover: rgba(255, 255, 255, 0.25);
 $dark-hover: 255 255 255;
 
-// Light theme
-$light-bg-primary: #fafafa;
-$light-bg-secondary: #f2f2f2;
-$light-bg-tertiary: #e8e8e8;
+// Light theme (soft/modern)
+$light-bg-primary: #f8f9fa;
+$light-bg-secondary: #f1f3f5;
+$light-bg-tertiary: #e9ecef;
 $light-bg-section: linear-gradient(180deg, $light-bg-primary 0%, $light-bg-secondary 100%);
-$light-text-primary: #09090b;
-$light-text-secondary: #52525b;
-$light-text-muted: #a1a1aa;
-$light-text-muted-hover: rgba(0, 0, 0, 0.25);
-$light-hover: 0 0 0;
+$light-text-primary: #1a1a2e;
+$light-text-secondary: #4a5568;
+$light-text-muted: #a0aec0;
+$light-text-muted-hover: rgba(0, 0, 0, 0.15);
+$light-hover: 26 26 46;
 
 // Typography
 $font-family: 'Lexend', sans-serif;

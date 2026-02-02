@@ -209,7 +209,10 @@
 			border-radius: $radius-2xl;
 			opacity: 0.1;
 			pointer-events: none;
-			background: linear-gradient(57deg, rgba(34, 167, 145, 5) 0, rgba(17, 17, 17, 0.1) 100%);
+			background: linear-gradient(57deg, rgba(34, 167, 145, 1) 0, rgba(17, 17, 17, 0.1) 100%);
+			:global([data-theme='light']) & {
+				opacity: 0.4;
+			}
 		}
 
 		> video {
@@ -222,6 +225,10 @@
 			opacity: 0.12;
 			z-index: -1;
 			pointer-events: none;
+
+			:global([data-theme='light']) & {
+				opacity: 0.2;
+			}
 		}
 
 		> div {

@@ -35,6 +35,11 @@
 		cursor: pointer;
 		transition: $transition-slow;
 		text-align: start;
+		color: $dark-text-primary;
+
+		:global([data-theme='light']) & {
+			opacity: 1;
+		}
 
 		&:hover {
 			opacity: 1;
@@ -83,7 +88,7 @@
 				div {
 					width: 100%;
 					height: 1px;
-					background: var(--text-primary);
+					background: $dark-text-primary;
 				}
 
 				p {
@@ -97,15 +102,15 @@
 			background-color: $color-primary;
 
 			.card__icon {
-				background-color: var(--text-primary);
+				background-color: $dark-text-primary;
 				&::before {
 					transform: rotate(0deg);
-					background-color: var(--text-primary);
+					background-color: $dark-text-primary;
 				}
 			}
 
 			h3 {
-				color: var(--text-primary);
+				color: $dark-text-primary;
 			}
 
 			.card__content {
