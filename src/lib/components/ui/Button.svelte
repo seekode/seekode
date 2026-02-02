@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { Booleanish } from 'svelte/elements';
+	import { fade } from 'svelte/transition';
 
 	interface ButtonProps {
 		ariaExpanded?: Booleanish | null | undefined;
@@ -9,9 +10,11 @@
 		children: Snippet;
 		classes?: string;
 		link?: string;
+		loading?: boolean;
 		onclick?: (event: MouseEvent) => void;
 		rounded?: boolean;
 		square?: boolean;
+		success?: string;
 		thin?: boolean;
 		type?: 'secondary' | 'muted';
 	}
@@ -23,9 +26,11 @@
 		children,
 		classes,
 		link,
+		loading,
 		onclick,
 		rounded,
 		square,
+		success,
 		thin,
 		type
 	}: ButtonProps = $props();
@@ -61,13 +66,22 @@
 {:else}
 	<button
 		class={customClasses}
+		class:loading
+		class:success
 		aria-expanded={ariaExpanded}
 		aria-haspopup={ariaHaspopup}
 		aria-label={ariaLabel}
-		{onclick}
+		onclick={loading || success ? undefined : onclick}
 	>
 		<div>
-			{@render children()}
+			{#if loading}
+				<span out:fade class="btn__loading"></span>
+			{/if}
+			{#if success}
+				<span out:fade class="btn__success">{success}</span>
+			{:else}
+				{@render children()}
+			{/if}
 		</div>
 	</button>
 {/if}
@@ -111,12 +125,24 @@
 			border-radius: $radius-md 0 0 $radius-md;
 		}
 
-		&:hover {
+		&:hover,
+		&.loading,
+		&.success {
 			color: var(--bg-primary);
 
 			&::before,
 			&::after {
 				width: calc(50% + 2px);
+			}
+		}
+
+		&.success {
+			pointer-events: none;
+			border-color: $color-success;
+
+			&::before,
+			&::after {
+				background-color: $color-success;
 			}
 		}
 
@@ -130,7 +156,9 @@
 				background-color: var(--text-primary);
 			}
 
-			&:hover {
+			&:hover,
+			&.loading,
+			&.success {
 				color: var(--bg-primary);
 			}
 
@@ -146,11 +174,13 @@
 			font-weight: $font-weight-light;
 
 			&::before,
-			&::after {
+			&::after,
+			&.success {
 				content: none;
 			}
 
-			&:hover {
+			&:hover,
+			&.loading {
 				color: var(--text-primary);
 				border: 1px solid var(--text-muted-hover);
 				background-color: rgb(var(--hover) / 0.08);
@@ -159,6 +189,10 @@
 			&[aria-expanded='true'] {
 				background-color: rgba($color-primary-light, 0.1);
 				border-color: rgba($color-primary, 0.5);
+			}
+
+			&.success {
+				color: var(--text-primary);
 			}
 		}
 
@@ -185,6 +219,29 @@
 			padding: 0;
 		}
 
+		&__loading {
+			position: absolute;
+			width: 1rem;
+			height: 1rem;
+			border: 2px solid currentColor;
+			border-top-color: transparent;
+			border-radius: 50%;
+			animation:
+				spin 0.6s linear infinite,
+				appear 0.3s ease-out;
+			color: $color-primary;
+		}
+
+		@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		&__success {
+			animation: appear 0.3s ease-out;
+		}
+
 		> div {
 			width: 100%;
 			height: 100%;
@@ -194,6 +251,16 @@
 			align-items: center;
 			justify-content: center;
 			gap: $spacing-2;
+			overflow: hidden;
+			transition: color $transition-base $transition-timing;
+		}
+
+		&.loading {
+			pointer-events: none;
+
+			> div {
+				color: transparent;
+			}
 		}
 	}
 </style>

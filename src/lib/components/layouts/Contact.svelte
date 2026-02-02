@@ -3,6 +3,118 @@
 	import Field from '../ui/Field.svelte';
 	import Title from '../ui/Title.svelte';
 	import * as m from '$lib/paraglide/messages';
+	import { toast } from '$lib/stores/toast.svelte';
+
+	let firstName = $state('');
+	let lastName = $state('');
+	let email = $state('');
+	let phone = $state('');
+	let loading = $state(false);
+	let success = $state('');
+
+	let touched = $state({
+		firstName: false,
+		lastName: false,
+		email: false,
+		phone: false
+	});
+
+	// formatters
+	const capitalize = (value: string) =>
+		value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+
+	const formatPhone = (value: string) => {
+		const digits = value.replace(/\D/g, '').slice(0, 10);
+		return digits.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+	};
+
+	// auto format
+	$effect(() => {
+		if (firstName && firstName !== capitalize(firstName)) {
+			firstName = capitalize(firstName);
+		}
+	});
+
+	$effect(() => {
+		if (lastName && lastName !== capitalize(lastName)) {
+			lastName = capitalize(lastName);
+		}
+	});
+
+	$effect(() => {
+		const formatted = formatPhone(phone);
+		if (phone !== formatted) {
+			phone = formatted;
+		}
+	});
+
+	// error handlers
+	const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+	const firstNameError = $derived(
+		touched.firstName && firstName.trim().length < 2 ? m.error_min_length({ min: '2' }) : undefined
+	);
+
+	const lastNameError = $derived(
+		touched.lastName && lastName.trim().length < 2 ? m.error_min_length({ min: '2' }) : undefined
+	);
+
+	const emailError = $derived.by(() => {
+		if (!touched.email) return undefined;
+		if (!email.trim()) return m.error_required();
+		if (!isValidEmail(email)) return m.error_email_invalid();
+		return undefined;
+	});
+
+	const phoneError = $derived.by(() => {
+		if (!touched.phone) return undefined;
+		if (!phone.trim()) return m.error_required();
+		if (phone.replace(/\s/g, '').length < 10) return m.error_phone_invalid();
+		return undefined;
+	});
+
+	const isFormValid = $derived(
+		firstName.trim().length >= 2 &&
+			lastName.trim().length >= 2 &&
+			isValidEmail(email) &&
+			phone.replace(/\s/g, '').length >= 10
+	);
+
+	const handleSubmit = async (event: SubmitEvent) => {
+		event.preventDefault();
+
+		touched = { firstName: true, lastName: true, email: true, phone: true };
+
+		if (!isFormValid) return;
+
+		loading = true;
+
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ firstName, lastName, email, phone })
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				toast.success('Message envoyé !');
+				success = 'message envoyé';
+				firstName = '';
+				lastName = '';
+				email = '';
+				phone = '';
+				touched = { firstName: false, lastName: false, email: false, phone: false };
+			} else {
+				toast.error("Erreur lors de l'envoi");
+			}
+		} catch {
+			toast.error("Erreur lors de l'envoi");
+		} finally {
+			loading = false;
+		}
+	};
 </script>
 
 <section>
@@ -17,15 +129,51 @@
 			{m.contact_description()}
 		</p>
 	</div>
-	<form>
+	<form onsubmit={handleSubmit}>
 		<div>
-			<Field id="prenom" placeholder="John">{m.contact_first_name()}</Field>
-			<Field id="nom" placeholder="Doe">{m.contact_last_name()}</Field>
+			<Field
+				id="prenom"
+				placeholder="John"
+				bind:value={firstName}
+				error={firstNameError}
+				onfocus={() => (touched.firstName = true)}
+			>
+				{m.contact_first_name()}
+			</Field>
+			<Field
+				id="nom"
+				placeholder="Doe"
+				bind:value={lastName}
+				error={lastNameError}
+				onfocus={() => (touched.lastName = true)}
+			>
+				{m.contact_last_name()}
+			</Field>
 		</div>
-		<Field id="email" placeholder="john.doe@gmail.com">{m.contact_email()}</Field>
-		<Field id="num" placeholder="0621240684">{m.contact_phone()}</Field>
+		<Field
+			id="email"
+			placeholder="john.doe@gmail.com"
+			type="email"
+			bind:value={email}
+			error={emailError}
+			onfocus={() => (touched.email = true)}
+		>
+			{m.contact_email()}
+		</Field>
+		<Field
+			id="num"
+			placeholder="06 12 34 56 78"
+			type="tel"
+			bind:value={phone}
+			error={phoneError}
+			onfocus={() => (touched.phone = true)}
+		>
+			{m.contact_phone()}
+		</Field>
 		<div class="action">
-			<Button type="secondary" thin rounded>{m.contact_submit()}</Button>
+			<Button type="secondary" thin rounded {loading} {success}>
+				{m.contact_submit()}
+			</Button>
 		</div>
 	</form>
 </section>

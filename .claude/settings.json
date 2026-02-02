@@ -2,6 +2,7 @@
 	"permissions": {
 		"defaultMode": "acceptEdits",
 		"allow": ["Bash(bun :*)", "Bash(git :*)"],
+		"deny": ["Read(./.env)", "Read(./.env.*)"],
 		"includeCoAuthoredBy": false
 	}
 }

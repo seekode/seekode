@@ -86,5 +86,9 @@
 	"review_join": "Joind them",
 	"modal_close": "Close",
 	"calendly_title": "Book your discovery call",
-	"calendly_loading": "Loading calendar..."
+	"calendly_loading": "Loading calendar...",
+	"error_required": "This field is required",
+	"error_email_invalid": "Invalid email address",
+	"error_phone_invalid": "Invalid phone number",
+	"error_min_length": "Minimum {min} characters"
 }

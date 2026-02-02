@@ -3,6 +3,7 @@
 	import Footer from '$lib/components/layouts/Footer.svelte';
 	import Navbar from '$lib/components/layouts/Navbar.svelte';
 	import CalendlyModal from '$lib/components/ui/CalendlyModal.svelte';
+	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
 	import '$lib/styles/global.scss';
 
@@ -15,4 +16,4 @@
 <Footer />
 
 <CalendlyModal open={calendlyModal.isOpen} onclose={() => calendlyModal.close()} />
-<!-- calendlyUrl="https://calendly.com/seekode/30min" -->
+<ToastContainer />

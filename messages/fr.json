@@ -86,5 +86,9 @@
 	"review_join": "Les rejoindres",
 	"modal_close": "Fermer",
 	"calendly_title": "Réservez votre appel découverte",
-	"calendly_loading": "Chargement du calendrier..."
+	"calendly_loading": "Chargement du calendrier...",
+	"error_required": "Ce champ est requis",
+	"error_email_invalid": "Adresse e-mail invalide",
+	"error_phone_invalid": "Numéro de téléphone invalide",
+	"error_min_length": "Minimum {min} caractères"
 }
