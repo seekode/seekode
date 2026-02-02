@@ -90,5 +90,8 @@
 	"error_required": "This field is required",
 	"error_email_invalid": "Invalid email address",
 	"error_phone_invalid": "Invalid phone number",
-	"error_min_length": "Minimum {min} characters"
+	"error_min_length": "Minimum {min} characters",
+	"error_page_title": "Page not found",
+	"error_page_description": "Oops! This page seems to have gotten lost in the code...",
+	"error_page_back_home": "Back to home"
 }

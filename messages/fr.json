@@ -90,5 +90,8 @@
 	"error_required": "Ce champ est requis",
 	"error_email_invalid": "Adresse e-mail invalide",
 	"error_phone_invalid": "Numéro de téléphone invalide",
-	"error_min_length": "Minimum {min} caractères"
+	"error_min_length": "Minimum {min} caractères",
+	"error_page_title": "Page introuvable",
+	"error_page_description": "Oups ! Cette page semble s'être perdue dans le code...",
+	"error_page_back_home": "Retour à l'accueil"
 }
