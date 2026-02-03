@@ -45,6 +45,74 @@
 	}
 }
 
+// Scroll reveal animations (used by use:reveal action)
+$reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+@keyframes revealFade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes revealLand {
+	from {
+		opacity: 0;
+		transform: scale(1.04) translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+@keyframes revealLandSlow {
+	from {
+		opacity: 0;
+		transform: scale(1.12) translateY(-25px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+.reveal-hidden {
+	opacity: 0;
+}
+
+.reveal-instant {
+	opacity: 1;
+}
+
+.reveal-fade {
+	animation: revealFade 900ms $reveal-ease forwards;
+}
+
+.reveal-land {
+	animation: revealLand 900ms $reveal-ease forwards;
+}
+
+.reveal-landSlow {
+	animation: revealLandSlow 2000ms $reveal-ease forwards;
+}
+
+@keyframes revealGrow {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+.reveal-grow {
+	transform-origin: center;
+	animation: revealGrow 900ms $reveal-ease forwards;
+}
+
 html {
 	font-family: $font-family;
 	font-weight: $font-weight-light;

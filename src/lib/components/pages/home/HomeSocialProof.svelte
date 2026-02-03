@@ -1,17 +1,18 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/components/ui/Button.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
 	import { m } from '$lib/paraglide/messages';
 	import { audience } from '$lib/stores/audience.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
+	import { reveal } from '$lib/utils/scroll';
 </script>
 
 <section>
-	<div class="card">
+	<div class="card" use:reveal={{ animation: 'landSlow' }}>
 		<div class="card__overlay"></div>
 		<img src="assets/images/djason.webp" alt="Apprenant" />
 	</div>
-	<div class="content">
+	<div class="content" use:reveal={{ animation: 'land' }}>
 		<Title tag="h2" prefix={audience.text(m.home_social_proof_on_title, m.home_social_proof_on_title_vibe)} center reduce>
 			{audience.text(m.home_social_proof_title, m.home_social_proof_title_vibe)}
 		</Title>

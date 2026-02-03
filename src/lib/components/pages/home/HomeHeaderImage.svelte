@@ -1,8 +1,14 @@
 <script lang="ts">
 	import { Folder, FolderOpen, File, Search, SquarePen } from '@lucide/svelte';
+
+	interface HomeHeaderImageProps {
+		visible?: boolean;
+	}
+
+	const { visible = false }: HomeHeaderImageProps = $props();
 </script>
 
-<div class="anytype" aria-hidden="true" inert>
+<div class="anytype" class:anytype--visible={visible} aria-hidden="true" inert>
 	<div class="anytype__panel">
 		<div class="anytype__panel__space">
 			<div class="anytype__panel__space__picture">
@@ -487,11 +493,75 @@
 </div>
 
 <style lang="scss">
+	// Animation timing - slow and cinematic
+	$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	$duration: 1500ms;
+	$stagger: 220ms;
+
+	// Container animation - zoom out effect (elements "land" on the page)
+	@keyframes containerAppear {
+		from {
+			opacity: 0;
+			transform: scale(calc(var(--base-scale) * 1.12));
+		}
+		to {
+			opacity: 1;
+			transform: scale(var(--base-scale));
+		}
+	}
+
+	@keyframes fadeInLeft {
+		from {
+			opacity: 0;
+			transform: translateX(-50px) scale(1.06);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0) scale(1);
+		}
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: scale(1.04);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@keyframes zedAppear {
+		from {
+			opacity: 0;
+			transform: translateX(-50%) scale(1.10) translateY(-30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(-50%) scale(1) translateY(0);
+		}
+	}
+
+	// Code lines staggered appearance
+	@keyframes lineAppear {
+		from {
+			opacity: 0;
+			transform: translateX(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
 	.anytype {
 		--bg: #171717;
 		--on-bg: #1e1e1e;
 		--text: #f8f8f8;
 		--text-muted: #aba69f;
+		--base-scale: 0.4;
+
 		:global([data-theme='light']) & {
 			--bg: white;
 			--on-bg: #f7f7f7;
@@ -506,28 +576,79 @@
 		position: absolute;
 		top: -20rem;
 		left: -30rem;
-		transform: scale(0.4);
+		transform: scale(var(--base-scale));
 		display: flex;
 		background-color: var(--bg);
 		border-radius: 15px;
 		overflow: hidden;
 
+		// Initial hidden state
+		opacity: 0;
+
+		// Visible state with staggered animations
+		&--visible {
+			animation: containerAppear $duration $ease-out-expo forwards;
+
+			.anytype__panel {
+				animation: fadeInLeft $duration $ease-out-expo calc($stagger * 1) forwards;
+			}
+
+			.anytype__content {
+				animation: fadeIn $duration $ease-out-expo calc($stagger * 2) forwards;
+			}
+
+			.zed {
+				animation: zedAppear $duration $ease-out-expo calc($stagger * 3) forwards;
+
+				.zed__title-bar {
+					animation: fadeIn $duration $ease-out-expo calc($stagger * 4) forwards;
+				}
+
+				.zed__app__dock {
+					animation: fadeInLeft $duration $ease-out-expo calc($stagger * 5) forwards;
+				}
+
+				.zed__app__workspace {
+					animation: fadeIn $duration $ease-out-expo calc($stagger * 6) forwards;
+
+					// Staggered code lines - each line appears 40ms after the previous
+					.code__line {
+						animation: lineAppear 600ms $ease-out-expo forwards;
+						// Base delay after workspace appears + individual line stagger
+						$line-base-delay: calc($stagger * 7);
+						$line-stagger: 40ms;
+
+						@for $i from 1 through 36 {
+							&:nth-child(#{$i}) {
+								animation-delay: calc(#{$line-base-delay} + #{$line-stagger} * #{$i - 1});
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Child elements start hidden
+		&__panel,
+		&__content {
+			opacity: 0;
+		}
+
 		@media (min-width: 362px) {
 			top: -20rem;
 			left: -32rem;
-			transform: scale(0.4);
 		}
 
 		@include sm {
+			--base-scale: 0.8;
 			top: -6.5rem;
 			left: -10rem;
-			transform: scale(0.8);
 		}
 
 		@include md {
+			--base-scale: 1;
 			top: 0;
 			left: 0;
-			transform: scale(1);
 		}
 
 		&__panel {
@@ -712,6 +833,15 @@
 			border-radius: 15px;
 			overflow: hidden;
 			background-color: var(--bg);
+
+			// Initial hidden state for animation
+			opacity: 0;
+
+			&__title-bar,
+			&__app__dock,
+			&__app__workspace {
+				opacity: 0;
+			}
 
 			&__title-bar {
 				font-size: 11px;
@@ -918,6 +1048,8 @@
 								display: flex;
 								align-items: center;
 								gap: 1.5rem;
+								// Initial hidden state for staggered animation
+								opacity: 0;
 
 								&--light {
 									background-color: #2d323b;

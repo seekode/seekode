@@ -5,6 +5,7 @@
 	import Title from '$lib/components/ui/Title.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import { audience } from '$lib/stores/audience.svelte';
+	import { reveal } from '$lib/utils/scroll';
 
 	const content: FaqCardData[] = $derived([
 		{
@@ -36,11 +37,13 @@
 
 <section>
 	<div>
-		<div>
+		<div class="header" use:reveal={{ animation: 'land' }}>
 			<Title prefix={m.faq_prefix()} center>{m.faq_title()}</Title>
 			<AudienceToggle halo />
 		</div>
-		<Faq {content} />
+		<div use:reveal>
+			<Faq {content} />
+		</div>
 	</div>
 </section>
 
@@ -56,7 +59,7 @@
 			align-items: center;
 			gap: $spacing-32;
 
-			> div {
+			> .header {
 				display: flex;
 				flex-direction: column;
 				align-items: center;

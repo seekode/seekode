@@ -5,6 +5,7 @@
 	import * as m from '$lib/paraglide/messages';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
+	import { reveal } from '$lib/utils/scroll';
 
 	const reviews: HomeReviewCardProps[] = [
 		{
@@ -30,15 +31,19 @@
 
 <section>
 	<div>
-		<Title prefix={m.review_prefix()} center>{m.review_title()}</Title>
+		<div use:reveal={{ animation: 'land' }}>
+			<Title prefix={m.review_prefix()} center>{m.review_title()}</Title>
+		</div>
 
-		<div>
+		<div class="reviews" use:reveal={{ animation: 'land', stagger: 120 }}>
 			{#each reviews as { content, img, name, work }, i (i)}
 				<HomeReviewCard {content} {img} {name} {work} />
 			{/each}
 		</div>
 
-		<Button onclick={() => calendlyModal.open()}>{m.review_join()}</Button>
+		<div use:reveal>
+			<Button onclick={() => calendlyModal.open()}>{m.review_join()}</Button>
+		</div>
 	</div>
 </section>
 
@@ -52,7 +57,7 @@
 			flex-direction: column;
 			align-items: center;
 
-			> div {
+			> .reviews {
 				padding: $spacing-32 0 $spacing-12 0;
 				display: flex;
 				justify-content: center;

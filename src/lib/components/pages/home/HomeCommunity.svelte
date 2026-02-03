@@ -3,6 +3,7 @@
 	import type { HomeCommunityCardProps } from './HomeCommunityCard.svelte';
 	import HomeCommunityCard from './HomeCommunityCard.svelte';
 	import * as m from '$lib/paraglide/messages';
+	import { reveal } from '$lib/utils/scroll';
 
 	const cards: HomeCommunityCardProps[] = [
 		{
@@ -38,15 +39,17 @@
 
 <section>
 	<div>
-		<Title prefix={m.community_prefix()} center>{m.community_title()}</Title>
-		<p>
-			{m.community_description_1()}
-			<br />
-			<br />
-			{m.community_description_2()}
-		</p>
-		<div class="line"></div>
-		<div class="cards">
+		<div use:reveal={{ animation: 'land' }}>
+			<Title prefix={m.community_prefix()} center>{m.community_title()}</Title>
+			<p>
+				{m.community_description_1()}
+				<br />
+				<br />
+				{m.community_description_2()}
+			</p>
+		</div>
+		<div class="line" use:reveal={{ animation: 'grow' }}></div>
+		<div class="cards" use:reveal={{ animation: 'land', stagger: 120 }}>
 			{#each cards as { title, text, action, actionName, icon } (title)}
 				<HomeCommunityCard {title} {text} {action} {actionName} {icon} />
 			{/each}
@@ -65,7 +68,14 @@
 			align-items: center;
 			gap: $spacing-12;
 
-			> p {
+			> div:first-child {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: $spacing-12;
+			}
+
+			p {
 				max-width: 46rem;
 				text-align: center;
 			}

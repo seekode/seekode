@@ -5,7 +5,21 @@
 	import { m } from '$lib/paraglide/messages';
 	import { audience } from '$lib/stores/audience.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
+	import { createScrollObserver } from '$lib/utils/scroll';
 	import HomeHeaderImage from './HomeHeaderImage.svelte';
+
+	let imageWrapperRef: HTMLDivElement | undefined = $state();
+	let imageVisible = $state(false);
+
+	$effect(() => {
+		if (!imageWrapperRef) return;
+		return createScrollObserver(
+			imageWrapperRef,
+			() => (imageVisible = true),
+			() => (imageVisible = false)
+		);
+	});
+
 </script>
 
 <header>
@@ -30,8 +44,8 @@
 		<div class="fake-img"></div>
 	</div>
 	<div class="content"></div>
-	<div class="container-image">
-		<HomeHeaderImage />
+	<div class="container-image" bind:this={imageWrapperRef}>
+		<HomeHeaderImage visible={imageVisible} />
 	</div>
 </header>
 
