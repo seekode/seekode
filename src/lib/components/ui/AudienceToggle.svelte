@@ -39,11 +39,11 @@
 				position: absolute;
 				inset: -12px -20px;
 				border-radius: $radius-full;
-				border: 3px solid rgba($color-primary, 0.5);
-				filter: blur(4px);
+				border: 3px solid rgba($color-primary, 1);
+				filter: blur(8px);
 				animation: pulse-ring 2.5s ease-out infinite;
 				pointer-events: none;
-				z-index: -1;
+				z-index: 0;
 
 				:global([data-theme='light']) & {
 					filter: blur(6px);
@@ -134,7 +134,7 @@
 		}
 		100% {
 			opacity: 0;
-			transform: scale(1);
+			transform: scale(1.1);
 		}
 	}
 </style>

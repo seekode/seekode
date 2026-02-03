@@ -5,7 +5,8 @@
       "Bash(bun test:*)",
       "mcp__svelte__svelte-autofixer",
       "Bash(npm run check:*)",
-      "Bash(npm run lint)"
+      "Bash(npm run lint)",
+      "WebSearch"
     ]
   },
   "enableAllProjectMcpServers": true,

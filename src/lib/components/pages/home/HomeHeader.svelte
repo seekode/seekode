@@ -16,14 +16,14 @@
 	</div>
 	<div class="container">
 		<div class="content">
-			<Title prefix={m.home_header_on_title()}>
+			<Title prefix={audience.text(m.home_header_on_title, m.home_header_on_title_vibe)}>
 				{audience.text(m.home_header_title, m.home_header_title_vibe)}
 			</Title>
 			<p>
-				{m.home_header_first_text()}
+				{audience.text(m.home_header_first_text, m.home_header_first_text_vibe)}
 				<br />
 				<br />
-				{m.home_header_second_text()}
+				{audience.text(m.home_header_second_text, m.home_header_second_text_vibe)}
 			</p>
 			<Button onclick={() => calendlyModal.open()}>{m.home_header_text_button()}</Button>
 		</div>

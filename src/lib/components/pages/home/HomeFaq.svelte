@@ -1,25 +1,45 @@
 <script lang="ts">
+	import AudienceToggle from '$lib/components/ui/AudienceToggle.svelte';
 	import Faq from '$lib/components/ui/faq/Faq.svelte';
 	import type { FaqCardData } from '$lib/components/ui/faq/FaqCard.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
 	import * as m from '$lib/paraglide/messages';
+	import { audience } from '$lib/stores/audience.svelte';
 
-	const content: FaqCardData[] = [
-		{ title: m.faq_q1_title(), text: m.faq_q1_text() },
-		{ title: m.faq_q2_title(), text: m.faq_q2_text() },
-		{ title: m.faq_q3_title(), text: m.faq_q3_text() },
+	const content: FaqCardData[] = $derived([
+		{
+			title: audience.text(m.faq_q1_title, m.faq_q1_title_vibe),
+			text: audience.text(m.faq_q1_text, m.faq_q1_text_vibe)
+		},
+		{
+			title: audience.text(m.faq_q2_title, m.faq_q2_title_vibe),
+			text: audience.text(m.faq_q2_text, m.faq_q2_text_vibe)
+		},
+		{
+			title: audience.text(m.faq_q3_title, m.faq_q3_title_vibe),
+			text: audience.text(m.faq_q3_text, m.faq_q3_text_vibe)
+		},
 		{ title: m.faq_q4_title(), text: m.faq_q4_text() },
 		{ title: m.faq_q5_title(), text: m.faq_q5_text() },
-		{ title: m.faq_q6_title(), text: m.faq_q6_text() },
-		{ title: m.faq_q7_title(), text: m.faq_q7_text() },
+		{
+			title: audience.text(m.faq_q6_title, m.faq_q6_title_vibe),
+			text: audience.text(m.faq_q6_text, m.faq_q6_text_vibe)
+		},
+		{
+			title: audience.text(m.faq_q7_title, m.faq_q7_title_vibe),
+			text: audience.text(m.faq_q7_text, m.faq_q7_text_vibe)
+		},
 		{ title: m.faq_q8_title(), text: m.faq_q8_text() },
 		{ title: m.faq_q9_title(), text: m.faq_q9_text() }
-	];
+	]);
 </script>
 
 <section>
 	<div>
-		<Title prefix={m.faq_prefix()} center>{m.faq_title()}</Title>
+		<div>
+			<Title prefix={m.faq_prefix()} center>{m.faq_title()}</Title>
+			<AudienceToggle halo />
+		</div>
 		<Faq {content} />
 	</div>
 </section>
@@ -35,6 +55,13 @@
 			flex-direction: column;
 			align-items: center;
 			gap: $spacing-32;
+
+			> div {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: $spacing-8;
+			}
 		}
 	}
 </style>

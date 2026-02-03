@@ -19,7 +19,8 @@
 	<div class="card__content">
 		<div class="card__content__inner">
 			<div></div>
-			<p>{data.text}</p>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+			<p>{@html data.text}</p>
 		</div>
 	</div>
 </button>
@@ -99,7 +100,7 @@
 
 		&.open {
 			opacity: 1;
-			background-color: $color-primary;
+			background-color: $color-primary-dark;
 
 			.card__icon {
 				background-color: $dark-text-primary;
