@@ -2,10 +2,10 @@
 	import { Languages, Sun, Moon } from '@lucide/svelte';
 	import { locales, getLocale, setLocale } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages';
-	import Button from '../ui/Button.svelte';
-	import LogoText from '../icons/LogoText.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
 	import { theme } from '$lib/stores/theme.svelte';
+	import LogoText from '$lib/components/icons/LogoText.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	let isLanguageOpen = $state(false);
 	let isMenuOpen = $state(false);
@@ -37,8 +37,8 @@
 <!-- Mobile backdrop overlay -->
 <div class="mobile-backdrop" class:mobile-backdrop--active={isMenuOpen}></div>
 
-<nav id="nav">
-	<div>
+<nav id="nav" class:nav--expanded={isMenuOpen}>
+	<div class="brand">
 		<LogoText />
 	</div>
 	<ul class="links" class:links--open={isMenuOpen}>
@@ -88,9 +88,9 @@
 				</div>
 			</div>
 		</div>
-		<Button classes="formation" type="secondary" rounded thin onclick={() => calendlyModal.open()}
-			>{m.nav_access_training()}</Button
-		>
+		<Button classes="formation" type="secondary" rounded thin onclick={() => calendlyModal.open()}>
+			{m.nav_access_training()}
+		</Button>
 	</div>
 	<div class="menu">
 		<Button
@@ -134,25 +134,46 @@
 
 	nav {
 		@include glass-effect;
-		@include layout;
-		width: calc(100% - $spacing-4 * 2);
-		height: 6rem;
+		// Mobile-first: compact pill
+		width: 10rem;
+		height: 3rem;
 		margin: 0;
-		padding: 0 var(--nav-padding);
+		padding: 0 $spacing-3;
 		position: fixed;
 		z-index: 101;
 		top: auto;
-		bottom: $spacing-4;
+		bottom: calc($spacing-4 + env(safe-area-inset-bottom, 0px));
 		left: 50%;
 		transform: translateX(-50%);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		border-radius: $radius-lg;
+		border-radius: $radius-full;
+		transition:
+			width $transition-slow $transition-timing,
+			height $transition-slow $transition-timing,
+			border-radius $transition-slow $transition-timing,
+			padding $transition-slow $transition-timing,
+			transform $transition-slow $transition-timing;
 
 		@include sm {
+			@include layout;
+			width: calc(100% - $spacing-4 * 2);
+			height: 6rem;
+			padding: 0 var(--nav-padding);
+			border-radius: $radius-lg;
 			top: $spacing-4;
 			bottom: auto;
+			transition: none;
+		}
+
+		// Menu open: pill morphs to full bar (mobile only)
+		&.nav--expanded {
+			transform: translateX(-50%) scale(1.2);
+
+			@include sm {
+				transform: translateX(-50%) scale(1);
+			}
 		}
 
 		> div {
@@ -166,13 +187,31 @@
 			}
 		}
 
+		.brand {
+			padding-left: $spacing-2;
+
+			@include sm {
+				padding-left: $spacing-4;
+			}
+
+			:global(svg) {
+				height: 18px;
+				width: auto;
+
+				@include sm {
+					height: auto;
+					width: 167px;
+				}
+			}
+		}
+
 		.links {
 			@include glass-effect;
 			width: 15.3rem;
 			padding: $spacing-4;
 			position: absolute;
 			bottom: calc(100% + 8rem + $spacing-4 * 2);
-			right: 0;
+			right: 50%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -187,11 +226,13 @@
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;
-			transform: translateX($spacing-4);
+			transform: translateX(50%);
 
 			@include sm {
 				top: calc(100% + 8rem + $spacing-4 * 2);
 				bottom: auto;
+				right: 0;
+				transform: translateX($spacing-4);
 			}
 
 			@include md {
@@ -218,7 +259,12 @@
 				opacity: 1;
 				visibility: visible;
 				pointer-events: auto;
-				transform: translate(0);
+				transition-delay: 100ms;
+
+				@include sm {
+					transition-delay: calc($transition-slow / 4);
+					transform: translate(0);
+				}
 			}
 		}
 
@@ -229,7 +275,7 @@
 			padding: $spacing-4;
 			position: absolute;
 			bottom: calc(100% + $spacing-4);
-			right: 0;
+			right: 50%;
 			flex-direction: column;
 			justify-content: flex-end;
 			border-radius: $radius-lg;
@@ -240,11 +286,13 @@
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;
-			transform: translateX($spacing-4);
+			transform: translateX(50%);
 
 			@include sm {
 				top: calc(100% + $spacing-4);
 				bottom: auto;
+				right: 0;
+				transform: translateX($spacing-4);
 			}
 
 			@include md {
@@ -272,7 +320,12 @@
 				opacity: 1;
 				visibility: visible;
 				pointer-events: auto;
-				transform: translate(0);
+				transition-delay: 100ms;
+
+				@include sm {
+					transition-delay: 0ms;
+					transform: translate(0);
+				}
 			}
 
 			&__line {
@@ -389,7 +442,11 @@
 
 		.menu {
 			justify-content: flex-end;
-			padding-right: $spacing-4;
+			padding-right: $spacing-2;
+
+			@include sm {
+				padding-right: $spacing-4;
+			}
 
 			@include xl {
 				display: none;
@@ -436,6 +493,27 @@
 						left: 0;
 						transform: rotate(-90deg);
 					}
+				}
+			}
+
+			:global(button) {
+				@media (max-width: $breakpoint-sm) {
+					border: none;
+					background-color: transparent;
+				}
+			}
+
+			:global(button:hover) {
+				@media (max-width: $breakpoint-sm) {
+					border: none;
+					background-color: transparent;
+				}
+			}
+
+			:global(button[aria-expanded='true']) {
+				@media (max-width: $breakpoint-sm) {
+					border: none;
+					background-color: transparent;
 				}
 			}
 		}

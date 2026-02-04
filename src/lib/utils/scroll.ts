@@ -137,7 +137,7 @@ export function reveal(
 	);
 
 	return {
-		update(newOptions: RevealOptions) {
+		update() {
 			node.classList.remove(`reveal-${animation}`);
 		},
 		destroy: cleanup

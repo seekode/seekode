@@ -131,7 +131,7 @@ body {
 	min-height: 100vh;
 	min-height: 100dvh;
 	overflow-x: hidden;
-	padding-bottom: $spacing-32;
+	padding-bottom: $spacing-20;
 
 	@include sm {
 		padding-bottom: 0;

@@ -70,8 +70,8 @@
 
 	.audience-toggle {
 		position: sticky;
-		// Mobile: navbar height (6rem) + navbar bottom ($spacing-4) + gap ($spacing-4)
-		bottom: calc(6rem + $spacing-4 + $spacing-4);
+		// Mobile: pill height (3.25rem) + pill bottom ($spacing-4) + gap ($spacing-4)
+		bottom: calc(3.25rem + $spacing-4 + $spacing-4);
 		left: 50%;
 		transform: translateX(-50%);
 		width: fit-content;
