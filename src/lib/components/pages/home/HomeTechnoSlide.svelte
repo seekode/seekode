@@ -35,11 +35,70 @@
 		'GOOGLE AI',
 		'DEEPSEEK'
 	];
+
+	let leftTrack: HTMLDivElement | undefined = $state();
+	let rightTrack: HTMLDivElement | undefined = $state();
+
+	let speed = 1;
+	let targetSpeed = 1;
+	// Left goes from 0 to -25%, right goes from -25% to 0%
+	let leftPos = 0;
+	let rightPos = -25;
+
+	$effect(() => {
+		if (!leftTrack || !rightTrack) return;
+
+		const prefersReducedMotion = window.matchMedia(
+			'(prefers-reduced-motion: reduce)'
+		).matches;
+		if (prefersReducedMotion) return;
+
+		let lastTime = performance.now();
+		let frame: number;
+
+		function animate(now: number) {
+			const dt = (now - lastTime) / 1000;
+			lastTime = now;
+
+			speed += (targetSpeed - speed) * 0.04;
+
+			// 25% in 60s at speed=1
+			const move = speed * (25 / 60) * dt;
+
+			leftPos -= move;
+			rightPos += move;
+
+			if (leftPos <= -25) leftPos += 25;
+			if (rightPos >= 0) rightPos -= 25;
+
+			leftTrack!.style.transform = `translateX(${leftPos}%)`;
+			rightTrack!.style.transform = `translateX(${rightPos}%)`;
+
+			frame = requestAnimationFrame(animate);
+		}
+
+		frame = requestAnimationFrame(animate);
+		return () => cancelAnimationFrame(frame);
+	});
+
+	function onEnter() {
+		targetSpeed = 0.15;
+	}
+
+	function onLeave() {
+		targetSpeed = 1;
+	}
 </script>
 
 <div class="container">
-	<div class="slide" aria-label="Technologies showcase">
-		<div class="slide__track slide__track--left">
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div
+		class="slide"
+		aria-label="Technologies showcase"
+		onmouseenter={onEnter}
+		onmouseleave={onLeave}
+	>
+		<div class="slide__track" bind:this={leftTrack}>
 			{#each { length: 4 }, i (i)}
 				{#each devTechnos as techno, y (y)}
 					<div class="slide__track__item" aria-hidden={i > 0}>
@@ -49,7 +108,7 @@
 			{/each}
 		</div>
 
-		<div class="slide__track slide__track--right">
+		<div class="slide__track" bind:this={rightTrack} style="transform: translateX(-25%)">
 			{#each { length: 3 }, i (i)}
 				{#each aiTechnos as techno, y (y)}
 					<div class="slide__track__item" aria-hidden={i > 0}>
@@ -79,20 +138,7 @@
 			&__track {
 				display: flex;
 				width: max-content;
-				animation-timing-function: linear;
-				animation-iteration-count: infinite;
-
-				&:hover {
-					animation-play-state: paused;
-				}
-
-				&--left {
-					animation: scrollLeft 60s linear infinite;
-				}
-
-				&--right {
-					animation: scrollRight 60s linear infinite;
-				}
+				will-change: transform;
 
 				&__item {
 					flex-shrink: 0;
@@ -109,31 +155,25 @@
 						letter-spacing: 0.05em;
 						white-space: nowrap;
 						user-select: none;
+						transition:
+							color $transition-slow $transition-timing,
+							transform $transition-slow $transition-timing;
 
 						:global([data-theme='light']) & {
 							color: rgba(0, 0, 0, 0.08);
 						}
 					}
+
+					&:hover span {
+						color: rgba(255, 255, 255, 0.2);
+						transform: scale(1.05);
+
+						:global([data-theme='light']) & {
+							color: rgba(0, 0, 0, 0.2);
+						}
+					}
 				}
 			}
-		}
-	}
-
-	@keyframes scrollLeft {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-25%);
-		}
-	}
-
-	@keyframes scrollRight {
-		0% {
-			transform: translateX(-25%);
-		}
-		100% {
-			transform: translateX(0);
 		}
 	}
 </style>

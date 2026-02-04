@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Quote from '$lib/components/icons/Quote.svelte';
+	import { tilt } from '$lib/utils/tilt';
 
 	export interface HomeReviewCardProps {
 		content: string;
@@ -11,7 +12,7 @@
 	const { content, img, name, work }: HomeReviewCardProps = $props();
 </script>
 
-<div class="card">
+<div class="card" use:tilt>
 	<div class="card__content">
 		<Quote />
 		<p>

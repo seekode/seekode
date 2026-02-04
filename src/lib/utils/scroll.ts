@@ -95,6 +95,17 @@ export function reveal(
 						child.style.animationFillMode = 'both';
 						child.classList.remove('reveal-hidden');
 						child.classList.add(`reveal-${animation}`);
+						// After animation ends, replace with static state to free transform
+						child.addEventListener(
+							'animationend',
+							() => {
+								child.classList.remove(`reveal-${animation}`);
+								child.style.animationDelay = '';
+								child.style.animationFillMode = '';
+								child.classList.add('reveal-instant');
+							},
+							{ once: true }
+						);
 					} else {
 						child.classList.remove('reveal-hidden');
 						child.classList.add('reveal-instant');
@@ -126,6 +137,14 @@ export function reveal(
 			node.classList.remove('reveal-hidden');
 			if (direction === 'down') {
 				node.classList.add(`reveal-${animation}`);
+				node.addEventListener(
+					'animationend',
+					() => {
+						node.classList.remove(`reveal-${animation}`);
+						node.classList.add('reveal-instant');
+					},
+					{ once: true }
+				);
 			} else {
 				node.classList.add('reveal-instant');
 			}

@@ -57,13 +57,13 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			gap: $spacing-32;
+			gap: $spacing-16;
 
 			> .header {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				gap: $spacing-8;
+				gap: $spacing-16;
 			}
 		}
 	}

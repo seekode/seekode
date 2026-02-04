@@ -3,6 +3,7 @@
 	import type { HomeCommunityCardProps } from './HomeCommunityCard.svelte';
 	import HomeCommunityCard from './HomeCommunityCard.svelte';
 	import * as m from '$lib/paraglide/messages';
+	import { parallax } from '$lib/utils/parallax';
 	import { reveal } from '$lib/utils/scroll';
 
 	const cards: HomeCommunityCardProps[] = [
@@ -39,7 +40,7 @@
 
 <section>
 	<div>
-		<div use:reveal={{ animation: 'land' }}>
+		<div use:reveal={{ animation: 'land' }} use:parallax={{ speed:1 }}>
 			<Title prefix={m.community_prefix()} center>{m.community_title()}</Title>
 			<p>
 				{m.community_description_1()}

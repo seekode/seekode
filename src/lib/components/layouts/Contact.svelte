@@ -171,7 +171,7 @@
 			{m.contact_phone()}
 		</Field>
 		<div class="action">
-			<Button type="secondary" thin rounded {loading} {success}>
+			<Button type="secondary" thin rounded {loading} {success} shimmer>
 				{m.contact_submit()}
 			</Button>
 		</div>

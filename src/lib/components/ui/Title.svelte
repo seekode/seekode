@@ -4,15 +4,16 @@
 	interface TitleProps {
 		center?: boolean;
 		children: Snippet;
+		gradient?: boolean;
 		prefix: string;
 		reduce?: boolean;
 		tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	}
 
-	let { center, children, prefix, reduce, tag = 'h1' }: TitleProps = $props();
+	let { center, children, gradient, prefix, reduce, tag = 'h1' }: TitleProps = $props();
 </script>
 
-<svelte:element this={tag} class="title" class:center class:reduce>
+<svelte:element this={tag} class="title" class:center class:reduce class:gradient>
 	<span class:center>{prefix}</span>
 	{@render children()}
 </svelte:element>
@@ -33,6 +34,28 @@
 
 		&.center {
 			text-align: center;
+		}
+
+		&.gradient {
+			background: linear-gradient(
+				90deg,
+				$color-primary 0%,
+				var(--text-primary) 50%,
+				$color-primary 100%
+			);
+			background-size: 300% auto;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: gradientFlow 7s ease infinite;
+
+			span {
+				-webkit-text-fill-color: var(--text-primary);
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				animation: none;
+			}
 		}
 
 		span {
@@ -66,6 +89,16 @@
 				left: 50%;
 				transform: translateX(-50%);
 			}
+		}
+	}
+
+	@keyframes gradientFlow {
+		0%,
+		100% {
+			background-position: 0% center;
+		}
+		50% {
+			background-position: 100% center;
 		}
 	}
 </style>

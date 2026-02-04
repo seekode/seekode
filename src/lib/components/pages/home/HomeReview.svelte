@@ -5,6 +5,7 @@
 	import * as m from '$lib/paraglide/messages';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
+	import { parallax } from '$lib/utils/parallax';
 	import { reveal } from '$lib/utils/scroll';
 
 	const reviews: HomeReviewCardProps[] = [
@@ -31,7 +32,7 @@
 
 <section>
 	<div>
-		<div use:reveal={{ animation: 'land' }}>
+		<div use:reveal={{ animation: 'land' }} use:parallax={{ speed: 1 }}>
 			<Title prefix={m.review_prefix()} center>{m.review_title()}</Title>
 		</div>
 
@@ -42,7 +43,7 @@
 		</div>
 
 		<div use:reveal>
-			<Button onclick={() => calendlyModal.open()}>{m.review_join()}</Button>
+			<Button onclick={() => calendlyModal.open()} shimmer>{m.review_join()}</Button>
 		</div>
 	</div>
 </section>

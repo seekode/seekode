@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import AudienceToggle from '$lib/components/ui/AudienceToggle.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
@@ -10,6 +11,13 @@
 
 	let imageWrapperRef: HTMLDivElement | undefined = $state();
 	let imageVisible = $state(false);
+	let ready = $state(false);
+
+	onMount(() => {
+		requestAnimationFrame(() => {
+			ready = true;
+		});
+	});
 
 	$effect(() => {
 		if (!imageWrapperRef) return;
@@ -19,7 +27,6 @@
 			() => (imageVisible = false)
 		);
 	});
-
 </script>
 
 <header>
@@ -29,8 +36,11 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="content">
-			<Title prefix={audience.text(m.home_header_on_title, m.home_header_on_title_vibe)}>
+		<div class="content" class:ready>
+			<Title
+				prefix={audience.text(m.home_header_on_title, m.home_header_on_title_vibe)}
+				gradient
+			>
 				{audience.text(m.home_header_title, m.home_header_title_vibe)}
 			</Title>
 			<p>
@@ -39,7 +49,7 @@
 				<br />
 				{audience.text(m.home_header_second_text, m.home_header_second_text_vibe)}
 			</p>
-			<Button onclick={() => calendlyModal.open()}>{m.home_header_text_button()}</Button>
+			<Button onclick={() => calendlyModal.open()} shimmer>{m.home_header_text_button()}</Button>
 		</div>
 		<div class="fake-img"></div>
 	</div>
@@ -106,10 +116,6 @@
 			gap: 27rem;
 		}
 
-		@media (min-width: 542px) {
-			gap: 25rem;
-		}
-
 		@include sm {
 			min-height: 100vh;
 			min-height: 100dvh;
@@ -119,7 +125,7 @@
 
 		@include md {
 			height: 70rem;
-			gap: 29rem;
+			gap: 31rem;
 		}
 
 		@include xl {
@@ -185,6 +191,46 @@
 
 			p {
 				color: var(--text-secondary);
+			}
+
+			> :global(*) {
+				opacity: 0;
+				transform: translateY(1.5rem);
+				filter: blur(6px);
+				transition:
+					opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+					transform 800ms cubic-bezier(0.16, 1, 0.3, 1),
+					filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			&.ready > :global(:nth-child(1)) {
+				opacity: 1;
+				transform: translateY(0);
+				filter: blur(0);
+				transition-delay: 200ms;
+			}
+
+			&.ready > :global(:nth-child(2)) {
+				opacity: 1;
+				transform: translateY(0);
+				filter: blur(0);
+				transition-delay: 450ms;
+			}
+
+			&.ready > :global(:nth-child(3)) {
+				opacity: 1;
+				transform: translateY(0);
+				filter: blur(0);
+				transition-delay: 700ms;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				> :global(*) {
+					opacity: 1;
+					transform: none;
+					filter: none;
+					transition: none;
+				}
 			}
 		}
 

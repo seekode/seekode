@@ -4,25 +4,37 @@
 	import { m } from '$lib/paraglide/messages';
 	import { audience } from '$lib/stores/audience.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
+	import { parallax } from '$lib/utils/parallax';
 	import { reveal } from '$lib/utils/scroll';
 </script>
 
 <section>
-	<div class="card" use:reveal={{ animation: 'landSlow' }}>
+	<div class="card" use:reveal={{ animation: 'landSlow' }} use:parallax={{ speed: 1 }}>
 		<div class="card__overlay"></div>
 		<img src="assets/images/djason.webp" alt="Apprenant" />
 	</div>
 	<div class="content" use:reveal={{ animation: 'land' }}>
-		<Title tag="h2" prefix={audience.text(m.home_social_proof_on_title, m.home_social_proof_on_title_vibe)} center reduce>
+		<Title
+			tag="h2"
+			prefix={audience.text(m.home_social_proof_on_title, m.home_social_proof_on_title_vibe)}
+			center
+			reduce
+		>
 			{audience.text(m.home_social_proof_title, m.home_social_proof_title_vibe)}
 		</Title>
 		<ul class="content__list">
 			<li>{audience.text(m.home_social_proof_first_text, m.home_social_proof_first_text_vibe)}</li>
-			<li>{audience.text(m.home_social_proof_second_text, m.home_social_proof_second_text_vibe)}</li>
-			<li class="last">{audience.text(m.home_social_proof_tertiary_text, m.home_social_proof_tertiary_text_vibe)}</li>
+			<li>
+				{audience.text(m.home_social_proof_second_text, m.home_social_proof_second_text_vibe)}
+			</li>
+			<li class="last">
+				{audience.text(m.home_social_proof_tertiary_text, m.home_social_proof_tertiary_text_vibe)}
+			</li>
 		</ul>
 		<div class="content__actions">
-			<Button onclick={() => calendlyModal.open()}>{m.home_social_proof_primary_btn()}</Button>
+			<Button onclick={() => calendlyModal.open()} shimmer
+				>{m.home_social_proof_primary_btn()}</Button
+			>
 			<Button type="secondary" link="https://djason-chery.dev/">
 				{m.home_social_proof_secondary_btn()}
 			</Button>

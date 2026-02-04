@@ -13,6 +13,7 @@
 		loading?: boolean;
 		onclick?: (event: MouseEvent) => void;
 		rounded?: boolean;
+		shimmer?: boolean;
 		square?: boolean;
 		success?: string;
 		thin?: boolean;
@@ -29,6 +30,7 @@
 		loading,
 		onclick,
 		rounded,
+		shimmer,
 		square,
 		success,
 		thin,
@@ -42,6 +44,7 @@
 			classes,
 			type && `btn--${type}`,
 			rounded && 'btn--rounded',
+			shimmer && 'btn--shimmer',
 			square && 'btn--square',
 			thin && 'btn--thin'
 		]
@@ -259,6 +262,53 @@
 			gap: $spacing-2;
 			overflow: hidden;
 			transition: color $transition-base $transition-timing;
+		}
+
+		&--shimmer {
+			background-image: linear-gradient(
+				105deg,
+				transparent 35%,
+				rgba(255, 255, 255, 0.12) 45%,
+				rgba(255, 255, 255, 0.2) 50%,
+				rgba(255, 255, 255, 0.12) 55%,
+				transparent 65%
+			);
+
+			:global([data-theme='light']) & {
+				background-image: linear-gradient(
+					105deg,
+					transparent 35%,
+					rgba(0, 0, 0, 0.06) 45%,
+					rgba(0, 0, 0, 0.1) 50%,
+					rgba(0, 0, 0, 0.06) 55%,
+					transparent 65%
+				);
+			}
+			background-size: 250% 100%;
+			background-position: 100% center;
+			animation: shimmer 5s ease-in-out 2s infinite;
+
+			&:hover {
+				animation: none;
+				background-image: none;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				animation: none;
+				background-image: none;
+			}
+		}
+
+		@keyframes shimmer {
+			0% {
+				background-position: 100% center;
+			}
+			15% {
+				background-position: -50% center;
+			}
+			100% {
+				background-position: -50% center;
+			}
 		}
 
 		&.loading {

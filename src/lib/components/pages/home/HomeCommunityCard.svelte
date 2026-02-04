@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages';
+	import { tilt } from '$lib/utils/tilt';
 
 	export interface HomeCommunityCardProps {
 		action: (() => void) | string;
@@ -17,6 +18,7 @@
 <svelte:element
 	this={isLink ? 'a' : 'button'}
 	class="card"
+	use:tilt
 	aria-label="{title} {isLink && m.community_card_opens_new_tab()}"
 	href={isLink ? (action as string) : undefined}
 	rel={isLink ? 'noopener noreferrer' : undefined}
@@ -38,7 +40,9 @@
 		flex-direction: column;
 		align-items: start;
 		gap: $spacing-4;
-		transition: $transition-slow;
+		transition:
+			border-color $transition-slow $transition-timing,
+			background $transition-slow $transition-timing;
 		border-radius: 20px;
 		border: 0.5px solid transparent;
 
