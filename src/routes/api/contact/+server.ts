@@ -21,11 +21,16 @@ const transporter = nodemailer.createTransport({
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {
-		const { firstName, lastName, email, phone } = await request.json();
+		const { firstName, lastName, email, phone, consent } = await request.json();
 
 		if (!firstName || !lastName || !email || !phone) {
 			console.log('[Contact] Error: Missing required fields');
 			return json({ success: false, error: 'Missing required fields' }, { status: 400 });
+		}
+
+		if (!consent) {
+			console.log('[Contact] Error: Consent not given');
+			return json({ success: false, error: 'Consent required' }, { status: 400 });
 		}
 
 		const mailOptions = {

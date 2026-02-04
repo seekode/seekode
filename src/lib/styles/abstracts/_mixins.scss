@@ -61,6 +61,13 @@
 	margin-inline: auto;
 }
 
+// Offset top padding to clear the fixed navbar (desktop only, navbar is bottom on mobile)
+@mixin nav-offset {
+	@include sm {
+		padding-top: calc(6rem + $spacing-16);
+	}
+}
+
 // design
 @mixin glass-effect {
 	background-color: var(--glass-bg);

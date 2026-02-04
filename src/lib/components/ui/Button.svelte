@@ -61,6 +61,7 @@
 		aria-label={ariaLabel}
 		href={link}
 		target="_blank"
+		rel="noopener noreferrer"
 	>
 		<div>
 			{@render children()}

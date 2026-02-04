@@ -8,15 +8,22 @@
 	}
 
 	let { open = $bindable(), onclose }: CalendlyModalProps = $props();
+
+	let loaded = $state(false);
+	$effect(() => {
+		if (open) loaded = true;
+	});
 </script>
 
 <Modal bind:open {onclose} noPaddings>
 	<div class="calendly-container">
-		<iframe
-			src="https://calendly.com/seekode/30min?hide_gdpr_banner=1&background_color=0e0e0e&text_color=e5e5e5&primary_color=1bc8ac"
-			title={m.calendly_title()}
-		>
-		</iframe>
+		{#if loaded}
+			<iframe
+				src="https://calendly.com/seekode/30min?background_color=0e0e0e&text_color=e5e5e5&primary_color=1bc8ac"
+				title={m.calendly_title()}
+			>
+			</iframe>
+		{/if}
 	</div>
 </Modal>
 

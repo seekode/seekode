@@ -9,6 +9,7 @@
 	let lastName = $state('');
 	let email = $state('');
 	let phone = $state('');
+	let consent = $state(false);
 	let loading = $state(false);
 	let success = $state('');
 
@@ -16,7 +17,8 @@
 		firstName: false,
 		lastName: false,
 		email: false,
-		phone: false
+		phone: false,
+		consent: false
 	});
 
 	// formatters
@@ -73,17 +75,22 @@
 		return undefined;
 	});
 
+	const consentError = $derived(
+		touched.consent && !consent ? m.error_consent_required() : undefined
+	);
+
 	const isFormValid = $derived(
 		firstName.trim().length >= 2 &&
 			lastName.trim().length >= 2 &&
 			isValidEmail(email) &&
-			phone.replace(/\s/g, '').length >= 10
+			phone.replace(/\s/g, '').length >= 10 &&
+			consent
 	);
 
 	const handleSubmit = async (event: SubmitEvent) => {
 		event.preventDefault();
 
-		touched = { firstName: true, lastName: true, email: true, phone: true };
+		touched = { firstName: true, lastName: true, email: true, phone: true, consent: true };
 
 		if (!isFormValid) return;
 
@@ -93,7 +100,7 @@
 			const response = await fetch('/api/contact', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ firstName, lastName, email, phone })
+				body: JSON.stringify({ firstName, lastName, email, phone, consent })
 			});
 
 			const result = await response.json();
@@ -105,7 +112,8 @@
 				lastName = '';
 				email = '';
 				phone = '';
-				touched = { firstName: false, lastName: false, email: false, phone: false };
+				consent = false;
+				touched = { firstName: false, lastName: false, email: false, phone: false, consent: false };
 			} else {
 				toast.error("Erreur lors de l'envoi");
 			}
@@ -170,6 +178,16 @@
 		>
 			{m.contact_phone()}
 		</Field>
+		<!-- eslint-disable svelte/no-at-html-tags -->
+		<div class="consent" class:consent--error={consentError}>
+			<label>
+				<input type="checkbox" bind:checked={consent} onchange={() => (touched.consent = true)} />
+				<span>{@html m.contact_consent()}</span>
+			</label>
+			{#if consentError}
+				<span class="consent__error">{consentError}</span>
+			{/if}
+		</div>
 		<div class="action">
 			<Button type="secondary" thin rounded {loading} {success} shimmer>
 				{m.contact_submit()}
@@ -240,6 +258,53 @@
 
 		form {
 			width: 25rem;
+
+			.consent {
+				width: 100%;
+				margin-bottom: $spacing-10;
+				position: relative;
+
+				label {
+					display: flex;
+					align-items: flex-start;
+					gap: $spacing-3;
+					cursor: pointer;
+					font-size: $font-size-xs;
+					color: var(--text-secondary);
+					line-height: $line-height-normal;
+
+					input[type='checkbox'] {
+						flex-shrink: 0;
+						margin-top: 2px;
+						accent-color: $color-primary;
+						cursor: pointer;
+					}
+
+					:global(a) {
+						color: $color-primary;
+						text-decoration: underline;
+						text-underline-offset: 2px;
+
+						&:hover {
+							opacity: 0.8;
+						}
+					}
+				}
+
+				&__error {
+					padding-left: calc(1rem + $spacing-3);
+					position: absolute;
+					top: calc(100% + $spacing-2);
+					z-index: 10;
+					font-size: $font-size-xs;
+					color: $color-error;
+					animation: appear 0.3s ease-out;
+				}
+
+				&--error label {
+					color: $color-error;
+				}
+			}
 		}
 	}
 </style>

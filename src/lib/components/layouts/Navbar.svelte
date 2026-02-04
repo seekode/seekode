@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Languages, Sun, Moon } from '@lucide/svelte';
-	import { locales, getLocale, setLocale } from '$lib/paraglide/runtime';
+	import { locales, getLocale, setLocale, localizeHref } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
 	import { theme } from '$lib/stores/theme.svelte';
@@ -39,10 +39,12 @@
 
 <nav id="nav" class:nav--expanded={isMenuOpen}>
 	<div class="brand">
-		<LogoText />
+		<a href={localizeHref('/')}>
+			<LogoText />
+		</a>
 	</div>
 	<ul class="links" class:links--open={isMenuOpen}>
-		<li>{m.nav_seelearn()}</li>
+		<li><a href={localizeHref('/')}>{m.nav_seelearn()}</a></li>
 		<!-- <li>{m.nav_a_project()}</li> -->
 		<!-- <li>Seekode</li> -->
 		<!-- <li>{m.nav_our_projects()}</li> -->

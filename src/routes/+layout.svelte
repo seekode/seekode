@@ -4,6 +4,7 @@
 	import Footer from '$lib/components/layouts/Footer.svelte';
 	import Navbar from '$lib/components/layouts/Navbar.svelte';
 	import CalendlyModal from '$lib/components/ui/CalendlyModal.svelte';
+	import CookieBanner from '$lib/components/ui/CookieBanner.svelte';
 	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
 	import { audience } from '$lib/stores/audience.svelte';
 	import { theme } from '$lib/stores/theme.svelte';
@@ -24,4 +25,5 @@
 <Footer />
 
 <CalendlyModal open={calendlyModal.isOpen} onclose={() => calendlyModal.close()} />
+<CookieBanner />
 <ToastContainer />

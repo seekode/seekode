@@ -2,6 +2,7 @@
 	import LogoFullText from '../icons/LogoFullText.svelte';
 	import Button from '../ui/Button.svelte';
 	import * as m from '$lib/paraglide/messages';
+	import { localizeHref } from '$lib/paraglide/runtime';
 </script>
 
 <footer>
@@ -9,15 +10,17 @@
 		<div>
 			<p>{m.footer_seekode()}</p>
 			<ul>
-				<li>{m.footer_seelearn_training()}</li>
+				<li><a href={localizeHref('/')}>{m.footer_seelearn_training()}</a></li>
 			</ul>
 		</div>
 		<div>
 			<p>{m.footer_useful_links()}</p>
 			<ul>
-				<li>{m.footer_legal_notice()}</li>
-				<li>{m.footer_privacy_policy()}</li>
-				<li>{m.footer_cookie_management()}</li>
+				<li><a href={localizeHref('/mentions-legales')}>{m.footer_legal_notice()}</a></li>
+				<li>
+					<a href={localizeHref('/politique-de-confidentialite')}>{m.footer_privacy_policy()}</a>
+				</li>
+				<li><a href={localizeHref('/cookies')}>{m.footer_cookie_management()}</a></li>
 			</ul>
 		</div>
 		<div></div>
@@ -70,11 +73,14 @@
 				li {
 					font-size: $font-size-sm;
 					color: var(--text-secondary);
-					cursor: pointer;
 					transition: $transition-slow;
 
 					&:hover {
 						color: var(--text-primary);
+					}
+
+					a {
+						color: inherit;
 					}
 				}
 			}
