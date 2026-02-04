@@ -162,7 +162,7 @@
 			height: 6rem;
 			padding: 0 var(--nav-padding);
 			border-radius: $radius-lg;
-			top: $spacing-4;
+			top: 0;
 			bottom: auto;
 			transition: none;
 		}

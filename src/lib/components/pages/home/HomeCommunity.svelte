@@ -5,24 +5,25 @@
 	import * as m from '$lib/paraglide/messages';
 	import { parallax } from '$lib/utils/parallax';
 	import { reveal } from '$lib/utils/scroll';
+	import { calendlyModal } from '$lib/stores/calendly.svelte';
 
 	const cards: HomeCommunityCardProps[] = [
 		{
-			action: 'https://www.youtube.com/@_seekode',
+			action: () => calendlyModal.open(),
 			icon: 'skool',
 			title: m.community_card_skool_title(),
 			text: m.community_card_skool_text(),
 			actionName: m.community_card_skool_action()
 		},
 		{
-			action: 'https://www.youtube.com/@_seekode',
+			action: 'https://www.youtube.com/playlist?list=PLdfGbcxeUhdNgN1NFbZk3-UNLEhJJ1Ffy',
 			icon: 'live',
 			title: m.community_card_live_title(),
 			text: m.community_card_live_text(),
 			actionName: m.community_card_live_action()
 		},
 		{
-			action: 'https://www.youtube.com/@_seekode',
+			action: 'https://www.tiktok.com/@seekode',
 			icon: 'tiktok',
 			title: m.community_card_tiktok_title(),
 			text: m.community_card_tiktok_text(),
@@ -40,7 +41,7 @@
 
 <section>
 	<div>
-		<div use:reveal={{ animation: 'land' }} use:parallax={{ speed:1 }}>
+		<div use:reveal={{ animation: 'land' }} use:parallax={{ speed: 1 }}>
 			<Title prefix={m.community_prefix()} center>{m.community_title()}</Title>
 			<p>
 				{m.community_description_1()}
@@ -94,6 +95,10 @@
 				justify-content: center;
 				gap: $spacing-4;
 				flex-wrap: wrap;
+
+				:global(button) {
+					text-align: start;
+				}
 			}
 		}
 	}

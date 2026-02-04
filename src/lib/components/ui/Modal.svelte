@@ -18,22 +18,36 @@
 	}: ModalProps = $props();
 
 	let dialog: HTMLDialogElement;
+	let closing = $state(false);
 
 	$effect(() => {
 		const nav = document.getElementById('nav');
 		if (open) {
+			closing = false;
 			dialog?.showModal();
 			const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 			document.body.style.paddingRight = `${scrollbarWidth}px`;
 			document.body.style.overflow = 'hidden';
 			if (nav) nav.style.paddingRight = `calc(var(--nav-padding) + ${scrollbarWidth}px)`;
-		} else {
-			dialog?.close();
-			document.body.style.paddingRight = '';
-			document.body.style.overflow = '';
-			if (nav) nav.style.paddingRight = '';
+		} else if (dialog?.open) {
+			closing = true;
 		}
 	});
+
+	const resetBodyStyles = () => {
+		const nav = document.getElementById('nav');
+		document.body.style.paddingRight = '';
+		document.body.style.overflow = '';
+		if (nav) nav.style.paddingRight = '';
+	};
+
+	const handleTransitionEnd = (e: TransitionEvent) => {
+		if (closing && e.propertyName === 'opacity') {
+			closing = false;
+			dialog?.close();
+			resetBodyStyles();
+		}
+	};
 
 	const handleClose = () => {
 		if (onclose) return onclose();
@@ -43,79 +57,103 @@
 
 <dialog
 	bind:this={dialog}
+	class:closing
 	onclick={(e) => {
 		if (e.target === dialog) handleClose();
 	}}
+	oncancel={(e) => {
+		e.preventDefault();
+		handleClose();
+	}}
+	ontransitionend={handleTransitionEnd}
 >
-	<div class="header">
-		<h2>Titre de la modal</h2>
-		<button onclick={handleClose} aria-label="Ferme le menu"></button>
-	</div>
-	<div class="content">
-		<div class="content__scroll" class:no-paddings={noPaddings}>
-			{@render children()}
+	<div class="modal">
+		<div class="header">
+			<h2>Titre de la modal</h2>
+			<button onclick={handleClose} aria-label="Ferme le menu"></button>
 		</div>
-	</div>
-	{#if footer}
-		<div class="footer">
-			{@render footer()}
+		<div class="content">
+			<div class="content__scroll" class:no-paddings={noPaddings}>
+				{@render children()}
+			</div>
 		</div>
-	{/if}
+		{#if footer}
+			<div class="footer">
+				{@render footer()}
+			</div>
+		{/if}
+	</div>
 </dialog>
 
 <style lang="scss">
 	dialog {
-		@include glass-effect;
-		width: 40rem;
-		max-width: calc(100vw - $spacing-8);
+		position: fixed;
+		inset: 0;
+		width: 100vw;
+		height: 100vh;
+		max-width: 100vw;
+		max-height: 100vh;
+		margin: 0;
+		padding: 0;
 		border: none;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%) scaleY(0.5);
-		opacity: 0;
-		flex-direction: column;
-		align-items: center;
+		background: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
 		color: var(--text-primary);
-		border-radius: $radius-lg;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		opacity: 0;
 		transition:
-			transform $transition-slow ease,
-			opacity $transition-slow ease,
-			display $transition-slow allow-discrete,
-			overlay $transition-slow allow-discrete;
+			opacity 0.5s ease,
+			display 0.5s allow-discrete,
+			overlay 0.5s allow-discrete;
 
 		&:not([open]) {
 			display: none;
 		}
 
 		&::backdrop {
-			background: rgba(0, 0, 0, 0.3);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			opacity: 0;
-			transition: opacity $transition-slow ease;
+			background: transparent;
 		}
 
 		&[open] {
 			display: flex;
 			opacity: 1;
-			transform: translate(-50%, -50%) scaleY(1);
+
 			@starting-style {
 				opacity: 0;
-				transform: translate(-50%, -50%) scaleY(0.5);
 			}
 
-			&::backdrop {
-				opacity: 1;
-				overscroll-behavior: contain;
-
-				@starting-style {
-					opacity: 0;
-				}
+			&.closing {
+				opacity: 0;
 			}
 		}
 
-		> div {
-			width: 100%;
+		.modal {
+			@include glass-effect;
+			width: 40rem;
+			max-width: calc(100vw - $spacing-8);
+			border-radius: $radius-lg;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			transform: scaleY(1);
+			transition: transform $transition-slow ease;
+
+			> div {
+				width: 100%;
+			}
+		}
+
+		&[open] .modal {
+			@starting-style {
+				transform: scaleY(0.5);
+			}
+		}
+
+		&[open].closing .modal {
+			transform: scaleY(0.5);
 		}
 
 		.header {

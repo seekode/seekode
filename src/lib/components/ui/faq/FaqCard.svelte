@@ -32,18 +32,18 @@
 		position: relative;
 		overflow-y: hidden;
 		border-radius: $radius-xl;
-		opacity: 0.5;
+		filter: opacity(0.5);
 		cursor: pointer;
 		transition: $transition-slow;
 		text-align: start;
 		color: $dark-text-primary;
 
 		:global([data-theme='light']) & {
-			opacity: 1;
+			filter: none;
 		}
 
 		&:hover {
-			opacity: 1;
+			filter: none;
 		}
 
 		&__icon {
@@ -99,7 +99,7 @@
 		}
 
 		&.open {
-			opacity: 1;
+			filter: none;
 			background-color: $color-primary-dark;
 
 			.card__icon {

@@ -37,10 +37,7 @@
 	</div>
 	<div class="container">
 		<div class="content" class:ready>
-			<Title
-				prefix={audience.text(m.home_header_on_title, m.home_header_on_title_vibe)}
-				gradient
-			>
+			<Title prefix={audience.text(m.home_header_on_title, m.home_header_on_title_vibe)} gradient>
 				{audience.text(m.home_header_title, m.home_header_title_vibe)}
 			</Title>
 			<p>

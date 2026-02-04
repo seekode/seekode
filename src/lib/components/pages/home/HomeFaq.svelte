@@ -41,9 +41,7 @@
 			<Title prefix={m.faq_prefix()} center>{m.faq_title()}</Title>
 			<AudienceToggle halo />
 		</div>
-		<div use:reveal>
-			<Faq {content} />
-		</div>
+		<Faq {content} />
 	</div>
 </section>
 

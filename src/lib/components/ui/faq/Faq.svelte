@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { FaqCardData } from './FaqCard.svelte';
 	import FaqCard from './FaqCard.svelte';
+	import { reveal } from '$lib/utils/scroll';
 
 	interface FaqProps {
 		content: FaqCardData[];
@@ -17,12 +18,12 @@
 </script>
 
 <div class="content">
-	<div class="content__column">
+	<div class="content__column" use:reveal={{ animation: 'land', stagger: 120 }}>
 		{#each left as data, i (i)}
 			<FaqCard {data} open={i + 1 == open} onclick={() => handleClick(i + 1)} />
 		{/each}
 	</div>
-	<div class="content__column">
+	<div class="content__column" use:reveal={{ animation: 'land', stagger: 120 }}>
 		{#each right as data, i (i)}
 			<FaqCard {data} open={(i + 1) * -1 == open} onclick={() => handleClick((i + 1) * -1)} />
 		{/each}
