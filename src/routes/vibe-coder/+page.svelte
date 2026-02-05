@@ -1,7 +1,7 @@
 <script lang="ts">
 	import HomeCommunity from '$lib/components/pages/home/HomeCommunity.svelte';
 	import HomeFaq from '$lib/components/pages/home/HomeFaq.svelte';
-	import HomeHeader from '$lib/components/pages/home/HomeHeader.svelte';
+	import HomeHero from '$lib/components/pages/home/HomeHero.svelte';
 	import HomeReview from '$lib/components/pages/home/HomeReview.svelte';
 	import HomeSocialProof from '$lib/components/pages/home/HomeSocialProof.svelte';
 	import HomeTechnoSlide from '$lib/components/pages/home/HomeTechnoSlide.svelte';
@@ -15,7 +15,7 @@
 <SeoHead title={m.vibe_coder_page_title()} description={m.vibe_coder_page_description()} />
 
 <div>
-	<HomeHeader />
+	<HomeHero />
 	<HomeSocialProof />
 	<HomeTechnoSlide />
 </div>
