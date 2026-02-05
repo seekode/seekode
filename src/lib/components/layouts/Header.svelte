@@ -192,6 +192,7 @@
 		align-items: center;
 		justify-content: space-between;
 		border-radius: $radius-full;
+		animation: slideUp 0.6s $transition-timing both;
 		transition:
 			width $transition-slow $transition-timing,
 			height $transition-slow $transition-timing,
@@ -208,6 +209,7 @@
 			top: 0;
 			bottom: auto;
 			transition: none;
+			animation: slideDown 0.6s $transition-timing both;
 		}
 
 		// Menu open: pill morphs to full bar (mobile only)
@@ -559,6 +561,34 @@
 					background-color: transparent;
 				}
 			}
+		}
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateX(-50%) translateY(-100%);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+	}
+
+	@keyframes slideUp {
+		from {
+			opacity: 0;
+			transform: translateX(-50%) translateY(100%);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		header {
+			animation: none;
 		}
 	}
 </style>

@@ -5,16 +5,14 @@
 	import HomeReview from '$lib/components/pages/home/HomeReview.svelte';
 	import HomeSocialProof from '$lib/components/pages/home/HomeSocialProof.svelte';
 	import HomeTechnoSlide from '$lib/components/pages/home/HomeTechnoSlide.svelte';
+	import SeoHead from '$lib/components/ui/SeoHead.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import { audience } from '$lib/stores/audience.svelte';
 
 	audience.set('vibe');
 </script>
 
-<svelte:head>
-	<title>{m.page_title()}</title>
-	<meta name="description" content={m.page_description()} />
-</svelte:head>
+<SeoHead title={m.vibe_coder_page_title()} description={m.vibe_coder_page_description()} />
 
 <div>
 	<HomeHeader />

@@ -12,7 +12,7 @@
 	<div class="anytype__panel">
 		<div class="anytype__panel__space">
 			<div class="anytype__panel__space__picture">
-				<img src="favicon.svg" alt="icon" />
+				<img src="favicon.svg" alt="icon" width="32" height="32" />
 			</div>
 			<div class="anytype__panel__space__text">
 				<span class="anytype__panel__space__text__title">Seelearn</span>
@@ -150,7 +150,7 @@
 				<p class="zed__title-bar__left__project-branch">master</p>
 			</div>
 			<div class="zed__title-bar__right">
-				<img src="favicon.svg" alt="logo" />
+				<img src="favicon.svg" alt="logo" width="32" height="32" />
 			</div>
 		</div>
 		<div class="zed__app">
@@ -535,7 +535,7 @@
 	@keyframes zedAppear {
 		from {
 			opacity: 0;
-			transform: translateX(-50%) scale(1.10) translateY(-30px);
+			transform: translateX(-50%) scale(1.1) translateY(-30px);
 		}
 		to {
 			opacity: 1;
@@ -1034,9 +1034,7 @@
 							flex: 1;
 							display: flex;
 							flex-direction: column;
-							font-family:
-								ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
-								'DejaVu Sans Mono', monospace;
+							font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 							color: var(--font-muted);
 							background-image: url('/assets/images/logo/outline.svg');
 							background-repeat: no-repeat;

@@ -26,7 +26,7 @@
 	onclick={!isLink ? (action as () => void) : undefined}
 	role={!isLink ? 'button' : undefined}
 >
-	<img src={`assets/images/icons/${icon}.svg`} alt={title} aria-hidden="true" />
+	<img src={`assets/images/icons/${icon}.svg`} alt={title} aria-hidden="true" width="24" height="24" loading="lazy" />
 	<h3>{title}</h3>
 	<p class="card__text">{text}</p>
 	<p class="card__actionName">{actionName}</p>

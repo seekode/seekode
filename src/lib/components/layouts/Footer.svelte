@@ -31,16 +31,16 @@
 		<p>{m.footer_copyright()}</p>
 		<div>
 			<Button link="https://www.tiktok.com/@seekode" type="muted" square ariaLabel="Seekode sur TikTok">
-				<img src="assets/images/icons/tiktok.svg" alt="" />
+				<img src="assets/images/icons/tiktok.svg" alt="" width="24" height="24" loading="lazy" />
 			</Button>
 			<Button link="https://www.instagram.com/seekode.dev/" type="muted" square ariaLabel="Seekode sur Instagram">
-				<img src="assets/images/icons/instagram.svg" alt="" />
+				<img src="assets/images/icons/instagram.svg" alt="" width="24" height="24" loading="lazy" />
 			</Button>
 			<Button link="https://www.youtube.com/@_seekode" type="muted" square ariaLabel="Seekode sur YouTube">
-				<img src="assets/images/icons/youtube.svg" alt="" />
+				<img src="assets/images/icons/youtube.svg" alt="" width="24" height="24" loading="lazy" />
 			</Button>
 			<Button link="https://www.linkedin.com/in/nicolas-texier-dev/" type="muted" square ariaLabel="Seekode sur LinkedIn">
-				<img src="assets/images/icons/linkedin.svg" alt="" />
+				<img src="assets/images/icons/linkedin.svg" alt="" width="24" height="24" loading="lazy" />
 			</Button>
 		</div>
 	</div>

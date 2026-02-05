@@ -1,11 +1,10 @@
 <script lang="ts">
+	import SeoHead from '$lib/components/ui/SeoHead.svelte';
 	import * as m from '$lib/paraglide/messages';
 </script>
 
 <!-- eslint-disable svelte/no-at-html-tags -->
-<svelte:head>
-	<title>{m.privacy_title()} - Seekode</title>
-</svelte:head>
+<SeoHead title="{m.privacy_title()} - Seekode" description={m.privacy_description()} />
 
 <section class="legal">
 	<div class="legal__container">

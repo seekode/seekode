@@ -2,6 +2,7 @@
 	import Title from '$lib/components/ui/Title.svelte';
 	import type { HomeReviewCardProps } from './HomeReviewCard.svelte';
 	import HomeReviewCard from './HomeReviewCard.svelte';
+	import JsonLd from '$lib/components/ui/JsonLd.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
@@ -28,7 +29,34 @@
 			work: m.review_3_work()
 		}
 	];
+
+	const courseSchema = {
+		'@context': 'https://schema.org',
+		'@type': 'Course',
+		name: 'Seelearn',
+		description: m.page_description(),
+		provider: {
+			'@type': 'Organization',
+			name: 'Seekode',
+			url: 'https://seekode.dev'
+		},
+		aggregateRating: {
+			'@type': 'AggregateRating',
+			ratingValue: '5',
+			bestRating: '5',
+			ratingCount: '3',
+			reviewCount: '3'
+		},
+		review: reviews.map((r) => ({
+			'@type': 'Review',
+			author: { '@type': 'Person', name: r.name },
+			reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+			reviewBody: r.content
+		}))
+	};
 </script>
+
+<JsonLd schema={courseSchema} />
 
 <section>
 	<div>

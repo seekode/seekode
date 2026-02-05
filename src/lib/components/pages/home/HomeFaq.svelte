@@ -2,6 +2,7 @@
 	import AudienceToggle from '$lib/components/ui/AudienceToggle.svelte';
 	import Faq from '$lib/components/ui/faq/Faq.svelte';
 	import type { FaqCardData } from '$lib/components/ui/faq/FaqCard.svelte';
+	import JsonLd from '$lib/components/ui/JsonLd.svelte';
 	import Title from '$lib/components/ui/Title.svelte';
 	import * as m from '$lib/paraglide/messages';
 	import { audience } from '$lib/stores/audience.svelte';
@@ -33,7 +34,22 @@
 		{ title: m.faq_q8_title(), text: m.faq_q8_text() },
 		{ title: m.faq_q9_title(), text: m.faq_q9_text() }
 	]);
+
+	const faqSchema = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: content.map((item) => ({
+			'@type': 'Question',
+			name: item.title,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: item.text
+			}
+		}))
+	});
 </script>
+
+<JsonLd schema={faqSchema} />
 
 <section>
 	<div>

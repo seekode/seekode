@@ -11,7 +11,7 @@
 <section>
 	<div class="card" use:reveal={{ animation: 'landSlow' }} use:parallax={{ speed: 1 }}>
 		<div class="card__overlay"></div>
-		<img src="assets/images/djason.webp" alt="Apprenant" />
+		<img src="assets/images/djason.webp" alt="Apprenant" width="279" height="382" />
 	</div>
 	<div class="content" use:reveal={{ animation: 'land' }}>
 		<Title

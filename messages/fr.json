@@ -173,5 +173,11 @@
 
 	"cookie_banner_text": "Ce site utilise des cookies fonctionnels pour mémoriser vos préférences (thème, profil). Lors de la prise de rendez-vous, des cookies tiers (Calendly) peuvent être déposés.",
 	"cookie_banner_link": "En savoir plus",
-	"cookie_banner_dismiss": "Compris"
+	"cookie_banner_dismiss": "Compris",
+
+	"vibe_coder_page_title": "Seekode - Formation Vibe Coding pour créer vos apps avec l'IA",
+	"vibe_coder_page_description": "Apprenez à créer vos applications avec l'IA sans devenir développeur. Les bases essentielles pour vibe coder sans limites.",
+	"cookies_description": "Gestion des cookies sur Seekode. Découvrez quels cookies fonctionnels sont utilisés et comment gérer vos préférences.",
+	"legal_notice_description": "Mentions légales de Seekode. Informations sur l'éditeur, l'hébergeur, la propriété intellectuelle et les responsabilités.",
+	"privacy_description": "Politique de confidentialité de Seekode. Comment vos données personnelles sont collectées, utilisées et protégées conformément au RGPD."
 }

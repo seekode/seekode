@@ -21,7 +21,13 @@
 		</p>
 	</div>
 	<div class="card__author">
-		<img src="assets/images/review/{img}.webp" alt="Photo de {name}" />
+		<img
+			src="assets/images/review/{img}.webp"
+			alt="Photo de {name}"
+			width="400"
+			height="400"
+			loading="lazy"
+		/>
 		<div class="card__author__info">
 			<p class="card__author__info__name">{name}</p>
 			<p class="card__author__info__work">{work}</p>
@@ -66,6 +72,7 @@
 
 			img {
 				width: 3rem;
+				height: 3rem;
 				border-radius: $radius-full;
 			}
 

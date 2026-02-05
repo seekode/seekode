@@ -173,5 +173,11 @@
 
 	"cookie_banner_text": "This site uses functional cookies to remember your preferences (theme, profile). When booking an appointment, third-party cookies (Calendly) may be set.",
 	"cookie_banner_link": "Learn more",
-	"cookie_banner_dismiss": "Got it"
+	"cookie_banner_dismiss": "Got it",
+
+	"vibe_coder_page_title": "Seekode - Vibe Coding Training to Build Apps with AI",
+	"vibe_coder_page_description": "Learn to build your apps with AI without becoming a developer. The essential foundations to vibe code without limits.",
+	"cookies_description": "Cookie management on Seekode. Learn which functional cookies are used and how to manage your preferences.",
+	"legal_notice_description": "Legal notice for Seekode. Information about the publisher, hosting provider, intellectual property and liability.",
+	"privacy_description": "Seekode privacy policy. How your personal data is collected, used and protected in compliance with GDPR."
 }
