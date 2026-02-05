@@ -61,8 +61,8 @@
 	margin-inline: auto;
 }
 
-// Offset top padding to clear the fixed navbar (desktop only, navbar is bottom on mobile)
-@mixin nav-offset {
+// Offset top padding to clear the fixed header (desktop only, header is bottom on mobile)
+@mixin header-offset {
 	@include sm {
 		padding-top: calc(6rem + $spacing-16);
 	}

@@ -69,7 +69,7 @@
 	.legal {
 		min-height: 70vh;
 		padding: $spacing-16 $spacing-4;
-		@include nav-offset;
+		@include header-offset;
 
 		@include md {
 			padding-inline: $spacing-8;

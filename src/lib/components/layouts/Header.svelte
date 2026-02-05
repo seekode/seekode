@@ -37,18 +37,20 @@
 <!-- Mobile backdrop overlay -->
 <div class="mobile-backdrop" class:mobile-backdrop--active={isMenuOpen}></div>
 
-<nav id="nav" class:nav--expanded={isMenuOpen}>
+<header id="header" class:header--expanded={isMenuOpen}>
 	<div class="brand">
 		<a href={localizeHref('/')}>
 			<LogoText />
 		</a>
 	</div>
-	<ul class="links" class:links--open={isMenuOpen}>
-		<li><a href={localizeHref('/')}>{m.nav_seelearn()}</a></li>
-		<!-- <li>{m.nav_a_project()}</li> -->
-		<!-- <li>Seekode</li> -->
-		<!-- <li>{m.nav_our_projects()}</li> -->
-	</ul>
+	<nav class="nav" class:nav--open={isMenuOpen}>
+		<ul>
+			<li><a href={localizeHref('/')}>{m.nav_seelearn()}</a></li>
+			<!-- <li>{m.nav_a_project()}</li> -->
+			<!-- <li>Seekode</li> -->
+			<!-- <li>{m.nav_our_projects()}</li> -->
+		</ul>
+	</nav>
 	<div class="action" class:action--open={isMenuOpen}>
 		<div class="action__line">
 			<Button
@@ -56,7 +58,7 @@
 				square
 				thin
 				onclick={() => theme.toggle()}
-				ariaLabel={theme.isDark ? m.nav_switch_light_mode() : m.nav_switch_dark_mode()}
+				ariaLabel={theme.isDark ? m.header_switch_light_mode() : m.header_switch_dark_mode()}
 			>
 				<span class="theme-wrapper" class:dark={theme.isDark}>
 					<Sun size="20" class="sun-icon" />
@@ -91,7 +93,7 @@
 			</div>
 		</div>
 		<Button classes="formation" type="secondary" rounded thin onclick={() => calendlyModal.open()}>
-			{m.nav_access_training()}
+			{m.header_access_training()}
 		</Button>
 	</div>
 	<div class="menu">
@@ -105,7 +107,7 @@
 			<div class="menu__line" class:menu__line--open={isMenuOpen}></div>
 		</Button>
 	</div>
-</nav>
+</header>
 
 <style lang="scss">
 	.mobile-backdrop {
@@ -134,7 +136,7 @@
 		}
 	}
 
-	nav {
+	header {
 		@include glass-effect;
 		// Mobile-first: compact pill
 		width: 10rem;
@@ -162,7 +164,7 @@
 			@include layout;
 			width: calc(100% - $spacing-4 * 2);
 			height: 6rem;
-			padding: 0 var(--nav-padding);
+			padding: 0 var(--header-padding);
 			border-radius: $radius-lg;
 			top: 0;
 			bottom: auto;
@@ -170,7 +172,7 @@
 		}
 
 		// Menu open: pill morphs to full bar (mobile only)
-		&.nav--expanded {
+		&.header--expanded {
 			transform: translateX(-50%) scale(1.2);
 
 			@include sm {
@@ -207,7 +209,7 @@
 			}
 		}
 
-		.links {
+		.nav {
 			@include glass-effect;
 			width: 15.3rem;
 			padding: $spacing-4;

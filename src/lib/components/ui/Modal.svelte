@@ -21,24 +21,24 @@
 	let closing = $state(false);
 
 	$effect(() => {
-		const nav = document.getElementById('nav');
+		const header = document.getElementById('header');
 		if (open) {
 			closing = false;
 			dialog?.showModal();
 			const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 			document.body.style.paddingRight = `${scrollbarWidth}px`;
 			document.body.style.overflow = 'hidden';
-			if (nav) nav.style.paddingRight = `calc(var(--nav-padding) + ${scrollbarWidth}px)`;
+			if (header) header.style.paddingRight = `calc(var(--header-padding) + ${scrollbarWidth}px)`;
 		} else if (dialog?.open) {
 			closing = true;
 		}
 	});
 
 	const resetBodyStyles = () => {
-		const nav = document.getElementById('nav');
+		const header = document.getElementById('header');
 		document.body.style.paddingRight = '';
 		document.body.style.overflow = '';
-		if (nav) nav.style.paddingRight = '';
+		if (header) header.style.paddingRight = '';
 	};
 
 	const handleTransitionEnd = (e: TransitionEvent) => {

@@ -7,7 +7,7 @@
 	import { audience } from '$lib/stores/audience.svelte';
 	import { calendlyModal } from '$lib/stores/calendly.svelte';
 	import { createScrollObserver } from '$lib/utils/scroll';
-	import HomeHeaderImage from './HomeHeaderImage.svelte';
+	import HomeHeroImage from './HomeHeroImage.svelte';
 
 	let imageWrapperRef: HTMLDivElement | undefined = $state();
 	let imageVisible = $state(false);
@@ -29,7 +29,7 @@
 	});
 </script>
 
-<header>
+<section>
 	<div class="audience-toggle-wrapper">
 		<div class="audience-toggle">
 			<AudienceToggle halo />
@@ -52,9 +52,9 @@
 	</div>
 	<div class="content"></div>
 	<div class="container-image" bind:this={imageWrapperRef}>
-		<HomeHeaderImage visible={imageVisible} />
+		<HomeHeroImage visible={imageVisible} />
 	</div>
-</header>
+</section>
 
 <style lang="scss">
 	.audience-toggle-wrapper {
@@ -86,7 +86,7 @@
 		pointer-events: auto;
 
 		@include sm {
-			// Navbar is at top from sm breakpoint, so just use normal spacing
+			// Header is at top from sm breakpoint, so just use normal spacing
 			bottom: $spacing-8;
 		}
 
@@ -97,7 +97,7 @@
 		}
 	}
 
-	header {
+	section {
 		width: 100%;
 		position: relative;
 		display: flex;
