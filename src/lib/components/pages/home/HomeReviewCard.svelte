@@ -21,7 +21,7 @@
 		</p>
 	</div>
 	<div class="card__author">
-		<img src="assets/images/review/{img}.webp" alt="auteur de l'avis" />
+		<img src="assets/images/review/{img}.webp" alt="Photo de {name}" />
 		<div class="card__author__info">
 			<p class="card__author__info__name">{name}</p>
 			<p class="card__author__info__work">{work}</p>

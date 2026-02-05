@@ -12,6 +12,8 @@
 <div class="toggle-wrapper" class:toggle-wrapper--halo={halo}>
 	<button
 		class="toggle"
+		role="switch"
+		aria-checked={audience.isDev}
 		onclick={() => audience.toggle()}
 		aria-label={audience.isDev ? 'Passer en mode Vibe Coder' : 'Passer en mode Développeur'}
 	>
@@ -135,6 +137,13 @@
 		100% {
 			opacity: 0;
 			transform: scale(1.1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.toggle-wrapper--halo::before,
+		.toggle-wrapper--halo::after {
+			animation: none;
 		}
 	}
 </style>

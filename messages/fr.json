@@ -5,6 +5,9 @@
 	"nav_our_projects": "Nos réalisations",
 	"header_access_training": "Accéder à la formation",
 	"nav_seelearn": "Seelearn",
+	"modal_close": "Fermer la modale",
+	"header_home_link": "Seekode - Accueil",
+	"header_menu_toggle": "Ouvrir le menu",
 	"header_switch_light_mode": "Passer en mode clair",
 	"header_switch_dark_mode": "Passer en mode sombre",
 	"home_header_on_title": "Formation sur mesure",
@@ -104,8 +107,7 @@
 	"review_3_name": "Romain",
 	"review_3_work": "DÉVELOPPEUR FREELANCE",
 	"review_join": "Les rejoindres",
-	"modal_close": "Fermer",
-	"calendly_title": "Réservez votre appel découverte",
+	"calendly_title": "Réservez votre appel",
 	"calendly_loading": "Chargement du calendrier...",
 	"error_required": "Ce champ est requis",
 	"error_email_invalid": "Adresse e-mail invalide",
@@ -166,6 +168,8 @@
 
 	"contact_consent": "J'accepte que mes données soient traitées pour répondre à ma demande, conformément à la <a href=\"/politique-de-confidentialite\">politique de confidentialité</a>.",
 	"error_consent_required": "Vous devez accepter la politique de confidentialité",
+	"contact_success": "Message envoyé !",
+	"contact_error": "Erreur lors de l'envoi",
 
 	"cookie_banner_text": "Ce site utilise des cookies fonctionnels pour mémoriser vos préférences (thème, profil). Lors de la prise de rendez-vous, des cookies tiers (Calendly) peuvent être déposés.",
 	"cookie_banner_link": "En savoir plus",

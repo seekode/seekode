@@ -13,7 +13,7 @@
 	const { data, open, onclick }: FaqCardProps = $props();
 </script>
 
-<button class="card" class:open {onclick}>
+<button class="card" class:open {onclick} aria-expanded={open}>
 	<span class="card__icon" aria-hidden="true"></span>
 	<h3>{data.title}</h3>
 	<div class="card__content">
@@ -32,7 +32,7 @@
 		position: relative;
 		overflow-y: hidden;
 		border-radius: $radius-xl;
-		filter: opacity(0.5);
+		filter: opacity(0.7);
 		cursor: pointer;
 		transition: $transition-slow;
 		text-align: start;

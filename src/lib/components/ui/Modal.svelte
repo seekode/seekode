@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import * as m from '$lib/paraglide/messages';
 
 	interface ModalProps {
 		children: Snippet;
@@ -7,6 +8,7 @@
 		onclose?: () => void;
 		open: boolean;
 		noPaddings?: boolean;
+		title: string;
 	}
 
 	let {
@@ -14,7 +16,8 @@
 		footer,
 		onclose,
 		open = $bindable(false),
-		noPaddings = false
+		noPaddings = false,
+		title
 	}: ModalProps = $props();
 
 	let dialog: HTMLDialogElement;
@@ -58,6 +61,8 @@
 <dialog
 	bind:this={dialog}
 	class:closing
+	aria-modal="true"
+	aria-labelledby="modal-title"
 	onclick={(e) => {
 		if (e.target === dialog) handleClose();
 	}}
@@ -69,8 +74,8 @@
 >
 	<div class="modal">
 		<div class="header">
-			<h2>Titre de la modal</h2>
-			<button onclick={handleClose} aria-label="Ferme le menu"></button>
+			<h2 id="modal-title">{title}</h2>
+			<button onclick={handleClose} aria-label={m.modal_close()}></button>
 		</div>
 		<div class="content">
 			<div class="content__scroll" class:no-paddings={noPaddings}>
@@ -163,29 +168,39 @@
 			justify-content: center;
 
 			button {
-				width: 1rem;
-				height: 1rem;
+				width: 2.75rem;
+				height: 2.75rem;
 				position: absolute;
-				right: $spacing-4;
-				top: $spacing-4;
+				right: $spacing-2;
+				top: $spacing-2;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: $radius-md;
+				cursor: pointer;
+				transition: background-color $transition-fast $transition-timing;
+
+				&:hover {
+					background-color: rgb(var(--hover) / 0.1);
+				}
 
 				&::before,
 				&::after {
 					content: '';
-					width: 100%;
+					width: 1rem;
 					height: 1px;
 					position: absolute;
 					top: 50%;
-					left: 0;
+					left: 50%;
 					background: var(--text-primary);
 				}
 
 				&::before {
-					transform: translateY(-50%) rotate(45deg);
+					transform: translate(-50%, -50%) rotate(45deg);
 				}
 
 				&::after {
-					transform: translateY(-50%) rotate(-45deg);
+					transform: translate(-50%, -50%) rotate(-45deg);
 				}
 			}
 		}

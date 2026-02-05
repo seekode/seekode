@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { toast } from '$lib/stores/toast.svelte';
+	import { reducedMotion } from '$lib/stores/reducedMotion.svelte';
 	import { fly, fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import { Check, X, TriangleAlert, Info } from '@lucide/svelte';
+	import * as m from '$lib/paraglide/messages';
 
 	const icons = {
 		success: Check,
@@ -30,15 +32,20 @@
 		<div
 			class="toast toast--{item.type}"
 			role="alert"
-			in:fly={{ y: isMobile ? -50 : 50, duration: 300 }}
-			out:fade={{ duration: 200 }}
-			animate:flip={{ duration: 300 }}
+			aria-atomic="true"
+			in:fly={{ y: isMobile ? -50 : 50, duration: reducedMotion.value ? 0 : 300 }}
+			out:fade={{ duration: reducedMotion.value ? 0 : 200 }}
+			animate:flip={{ duration: reducedMotion.value ? 0 : 300 }}
 		>
 			<span class="toast__icon">
 				<Icon size={18} />
 			</span>
 			<span class="toast__message">{item.message}</span>
-			<button class="toast__close" onclick={() => toast.remove(item.id)} aria-label="Fermer">
+			<button
+				class="toast__close"
+				onclick={() => toast.remove(item.id)}
+				aria-label={m.modal_close()}
+			>
 				<X size={16} />
 			</button>
 		</div>

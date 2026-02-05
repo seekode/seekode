@@ -1,3 +1,5 @@
+import { reducedMotion } from '$lib/stores/reducedMotion.svelte';
+
 export type ScrollDirection = 'up' | 'down';
 
 /**
@@ -14,9 +16,7 @@ export function createScrollObserver(
 	onShow: (direction: ScrollDirection) => void,
 	onHide: () => void
 ): () => void {
-	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-	if (prefersReducedMotion) {
+	if (reducedMotion.value) {
 		onShow('down');
 		return () => {};
 	}

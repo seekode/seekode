@@ -42,7 +42,7 @@
 <section>
 	<div>
 		<div use:reveal={{ animation: 'land' }} use:parallax={{ speed: 1 }}>
-			<Title prefix={m.community_prefix()} center>{m.community_title()}</Title>
+			<Title prefix={m.community_prefix()} center tag="h2">{m.community_title()}</Title>
 			<p>
 				{m.community_description_1()}
 				<br />

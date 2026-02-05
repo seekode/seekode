@@ -15,7 +15,7 @@
 	});
 </script>
 
-<Modal bind:open {onclose} noPaddings>
+<Modal bind:open {onclose} noPaddings title={m.calendly_title()}>
 	<div class="calendly-container">
 		{#if loaded}
 			<iframe

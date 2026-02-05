@@ -38,7 +38,7 @@
 <section>
 	<div>
 		<div class="header" use:reveal={{ animation: 'land' }}>
-			<Title prefix={m.faq_prefix()} center>{m.faq_title()}</Title>
+			<Title prefix={m.faq_prefix()} center tag="h2">{m.faq_title()}</Title>
 			<AudienceToggle halo />
 		</div>
 		<Faq {content} />

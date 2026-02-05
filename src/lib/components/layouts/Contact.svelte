@@ -106,8 +106,8 @@
 			const result = await response.json();
 
 			if (result.success) {
-				toast.success('Message envoyé !');
-				success = 'message envoyé';
+				toast.success(m.contact_success());
+				success = m.contact_success();
 				firstName = '';
 				lastName = '';
 				email = '';
@@ -115,10 +115,10 @@
 				consent = false;
 				touched = { firstName: false, lastName: false, email: false, phone: false, consent: false };
 			} else {
-				toast.error("Erreur lors de l'envoi");
+				toast.error(m.contact_error());
 			}
 		} catch {
-			toast.error("Erreur lors de l'envoi");
+			toast.error(m.contact_error());
 		} finally {
 			loading = false;
 		}
@@ -130,7 +130,7 @@
 		<source src="assets/images/bg-contact.webm" type="video/webm" />
 	</video>
 	<div>
-		<Title prefix={m.contact_prefix()} reduce>
+		<Title prefix={m.contact_prefix()} reduce tag="h2">
 			{m.contact_title()}
 		</Title>
 		<p>
@@ -145,6 +145,8 @@
 				bind:value={firstName}
 				error={firstNameError}
 				onfocus={() => (touched.firstName = true)}
+				required
+				autocomplete="given-name"
 			>
 				{m.contact_first_name()}
 			</Field>
@@ -154,6 +156,8 @@
 				bind:value={lastName}
 				error={lastNameError}
 				onfocus={() => (touched.lastName = true)}
+				required
+				autocomplete="family-name"
 			>
 				{m.contact_last_name()}
 			</Field>
@@ -165,6 +169,8 @@
 			bind:value={email}
 			error={emailError}
 			onfocus={() => (touched.email = true)}
+			required
+			autocomplete="email"
 		>
 			{m.contact_email()}
 		</Field>
@@ -175,17 +181,27 @@
 			bind:value={phone}
 			error={phoneError}
 			onfocus={() => (touched.phone = true)}
+			required
+			autocomplete="tel"
 		>
 			{m.contact_phone()}
 		</Field>
 		<!-- eslint-disable svelte/no-at-html-tags -->
 		<div class="consent" class:consent--error={consentError}>
 			<label>
-				<input type="checkbox" bind:checked={consent} onchange={() => (touched.consent = true)} />
+				<input
+					type="checkbox"
+					bind:checked={consent}
+					onchange={() => (touched.consent = true)}
+					required
+					aria-required="true"
+					aria-describedby={consentError ? 'consent-error' : undefined}
+					aria-invalid={consentError ? true : undefined}
+				/>
 				<span>{@html m.contact_consent()}</span>
 			</label>
 			{#if consentError}
-				<span class="consent__error">{consentError}</span>
+				<span id="consent-error" class="consent__error">{consentError}</span>
 			{/if}
 		</div>
 		<div class="action">

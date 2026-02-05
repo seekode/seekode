@@ -16,15 +16,26 @@
 		placeholder,
 		value = $bindable(''),
 		error,
+		required,
+		type = 'text',
 		...restProps
 	}: FieldProps = $props();
 </script>
 
 <div class="field" class:field--error={error}>
-	<label for={id}>{@render children()}</label>
-	<input {id} type="text" {placeholder} bind:value {...restProps} />
+	<label for={id}>{@render children()}{#if required}<span class="field__required" aria-hidden="true"> *</span>{/if}</label>
+	<input
+		{id}
+		{type}
+		{placeholder}
+		bind:value
+		{required}
+		aria-describedby={error ? `${id}-error` : undefined}
+		aria-invalid={error ? true : undefined}
+		{...restProps}
+	/>
 	{#if error}
-		<span class="field__error">{error}</span>
+		<span id="{id}-error" class="field__error">{error}</span>
 	{/if}
 </div>
 
@@ -55,6 +66,10 @@
 			font-size: $font-size-xs;
 			bottom: calc(100% + $spacing-1);
 			transition: color $transition-slow $transition-timing;
+		}
+
+		&__required {
+			color: $color-error;
 		}
 
 		input {

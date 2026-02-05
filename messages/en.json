@@ -5,6 +5,9 @@
 	"nav_our_projects": "Our projects",
 	"header_access_training": "Access training",
 	"nav_seelearn": "Seelearn",
+	"modal_close": "Close modal",
+	"header_home_link": "Seekode - Home",
+	"header_menu_toggle": "Open menu",
 	"header_switch_light_mode": "Switch to light mode",
 	"header_switch_dark_mode": "Switch to dark mode",
 	"home_header_on_title": "Custom training",
@@ -104,8 +107,7 @@
 	"review_3_name": "Romain",
 	"review_3_work": "FREELANCE DEVELOPER",
 	"review_join": "Join them",
-	"modal_close": "Close",
-	"calendly_title": "Book your discovery call",
+	"calendly_title": "Book your call",
 	"calendly_loading": "Loading calendar...",
 	"error_required": "This field is required",
 	"error_email_invalid": "Invalid email address",
@@ -166,6 +168,8 @@
 
 	"contact_consent": "I agree that my data will be processed to respond to my request, in accordance with the <a href=\"/politique-de-confidentialite\">privacy policy</a>.",
 	"error_consent_required": "You must accept the privacy policy",
+	"contact_success": "Message sent!",
+	"contact_error": "Error while sending",
 
 	"cookie_banner_text": "This site uses functional cookies to remember your preferences (theme, profile). When booking an appointment, third-party cookies (Calendly) may be set.",
 	"cookie_banner_link": "Learn more",

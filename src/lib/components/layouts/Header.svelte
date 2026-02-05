@@ -9,11 +9,39 @@
 
 	let isLanguageOpen = $state(false);
 	let isMenuOpen = $state(false);
+	let languageTriggerRef: HTMLElement | undefined = $state();
+	let languageDropdownRef: HTMLElement | undefined = $state();
 
 	const languageNames: Record<string, string> = {
 		fr: 'Français',
 		en: 'English'
 	};
+
+	const handleLanguageKeydown = (e: KeyboardEvent) => {
+		if (!isLanguageOpen) return;
+
+		const items = [...(languageDropdownRef?.querySelectorAll('button') ?? [])] as HTMLElement[];
+		const current = items.indexOf(document.activeElement as HTMLElement);
+
+		if (e.key === 'Escape') {
+			e.preventDefault();
+			isLanguageOpen = false;
+			languageTriggerRef?.querySelector('button')?.focus();
+		} else if (e.key === 'ArrowDown') {
+			e.preventDefault();
+			items[current + 1 < items.length ? current + 1 : 0]?.focus();
+		} else if (e.key === 'ArrowUp') {
+			e.preventDefault();
+			items[current - 1 >= 0 ? current - 1 : items.length - 1]?.focus();
+		}
+	};
+
+	$effect(() => {
+		if (isLanguageOpen) {
+			const items = languageDropdownRef?.querySelectorAll('button');
+			if (items?.length) (items[0] as HTMLElement).focus();
+		}
+	});
 
 	const handleClickOutside = (event: MouseEvent) => {
 		const target = event.target as HTMLElement;
@@ -39,11 +67,11 @@
 
 <header id="header" class:header--expanded={isMenuOpen}>
 	<div class="brand">
-		<a href={localizeHref('/')}>
+		<a href={localizeHref('/')} aria-label="{m.header_home_link()}">
 			<LogoText />
 		</a>
 	</div>
-	<nav class="nav" class:nav--open={isMenuOpen}>
+	<nav id="header-nav" class="nav" class:nav--open={isMenuOpen}>
 		<ul>
 			<li><a href={localizeHref('/')}>{m.nav_seelearn()}</a></li>
 			<!-- <li>{m.nav_a_project()}</li> -->
@@ -51,7 +79,7 @@
 			<!-- <li>{m.nav_our_projects()}</li> -->
 		</ul>
 	</nav>
-	<div class="action" class:action--open={isMenuOpen}>
+	<div id="header-actions" class="action" class:action--open={isMenuOpen}>
 		<div class="action__line">
 			<Button
 				type="muted"
@@ -65,21 +93,30 @@
 					<Moon size="20" class="moon-icon" />
 				</span>
 			</Button>
-			<div class="language-switcher">
-				<Button
-					classes="language-switcher__trigger"
-					type="muted"
-					thin
-					onclick={() => (isLanguageOpen = !isLanguageOpen)}
-					ariaExpanded={isLanguageOpen}
-					ariaHaspopup="true"
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class="language-switcher" onkeydown={handleLanguageKeydown}>
+				<div bind:this={languageTriggerRef}>
+					<Button
+						classes="language-switcher__trigger"
+						type="muted"
+						thin
+						onclick={() => (isLanguageOpen = !isLanguageOpen)}
+						ariaExpanded={isLanguageOpen}
+						ariaHaspopup="true"
+					>
+						<Languages size={20} />
+						<span>{getLocale().toUpperCase()}</span>
+					</Button>
+				</div>
+				<div
+					class="language-switcher__dropdown"
+					class:open={isLanguageOpen}
+					role="menu"
+					bind:this={languageDropdownRef}
 				>
-					<Languages size={20} />
-					<span>{getLocale().toUpperCase()}</span>
-				</Button>
-				<div class="language-switcher__dropdown" class:open={isLanguageOpen}>
 					{#each locales as locale (locale)}
 						<button
+							role="menuitem"
 							class:active={locale === getLocale()}
 							onclick={() => {
 								setLocale(locale);
@@ -103,6 +140,8 @@
 			thin
 			onclick={() => (isMenuOpen = !isMenuOpen)}
 			ariaExpanded={isMenuOpen}
+			ariaControls="header-nav header-actions"
+			ariaLabel={m.header_menu_toggle()}
 		>
 			<div class="menu__line" class:menu__line--open={isMenuOpen}></div>
 		</Button>

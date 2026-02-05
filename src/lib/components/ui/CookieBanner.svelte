@@ -3,6 +3,7 @@
 	import { Cookie } from '@lucide/svelte';
 	import * as m from '$lib/paraglide/messages';
 	import { localizeHref } from '$lib/paraglide/runtime';
+	import { reducedMotion } from '$lib/stores/reducedMotion.svelte';
 	import { fly } from 'svelte/transition';
 
 	const STORAGE_KEY = 'cookie-banner-dismissed';
@@ -33,7 +34,7 @@
 </script>
 
 {#if visible}
-	<div class="banner" transition:fly={{ y: -30, duration: 300 }}>
+	<div class="banner" role="status" aria-live="polite" transition:fly={{ y: -30, duration: reducedMotion.value ? 0 : 300 }}>
 		<Cookie size={18} class="banner-icon" />
 		<p>
 			{m.cookie_banner_text()}

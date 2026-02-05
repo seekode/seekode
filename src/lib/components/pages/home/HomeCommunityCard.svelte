@@ -19,7 +19,7 @@
 	this={isLink ? 'a' : 'button'}
 	class="card"
 	use:tilt
-	aria-label="{title} {isLink && m.community_card_opens_new_tab()}"
+	aria-label={isLink ? `${title} ${m.community_card_opens_new_tab()}` : title}
 	href={isLink ? (action as string) : undefined}
 	rel={isLink ? 'noopener noreferrer' : undefined}
 	target={isLink ? '_blank' : undefined}

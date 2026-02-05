@@ -33,7 +33,7 @@
 <section>
 	<div>
 		<div use:reveal={{ animation: 'land' }} use:parallax={{ speed: 1 }}>
-			<Title prefix={m.review_prefix()} center>{m.review_title()}</Title>
+			<Title prefix={m.review_prefix()} center tag="h2">{m.review_title()}</Title>
 		</div>
 
 		<div class="reviews" use:reveal={{ animation: 'land', stagger: 120 }}>

@@ -30,17 +30,17 @@
 		<LogoFullText />
 		<p>{m.footer_copyright()}</p>
 		<div>
-			<Button link="https://www.tiktok.com/@seekode" type="muted" square>
-				<img src="assets/images/icons/tiktok.svg" alt="tiktok" />
+			<Button link="https://www.tiktok.com/@seekode" type="muted" square ariaLabel="Seekode sur TikTok">
+				<img src="assets/images/icons/tiktok.svg" alt="" />
 			</Button>
-			<Button link="https://www.instagram.com/seekode.dev/" type="muted" square>
-				<img src="assets/images/icons/instagram.svg" alt="instagram" />
+			<Button link="https://www.instagram.com/seekode.dev/" type="muted" square ariaLabel="Seekode sur Instagram">
+				<img src="assets/images/icons/instagram.svg" alt="" />
 			</Button>
-			<Button link="https://www.youtube.com/@_seekode" type="muted" square>
-				<img src="assets/images/icons/youtube.svg" alt="youtube" />
+			<Button link="https://www.youtube.com/@_seekode" type="muted" square ariaLabel="Seekode sur YouTube">
+				<img src="assets/images/icons/youtube.svg" alt="" />
 			</Button>
-			<Button link="https://www.linkedin.com/in/nicolas-texier-dev/" type="muted" square>
-				<img src="assets/images/icons/linkedin.svg" alt="linkedin" />
+			<Button link="https://www.linkedin.com/in/nicolas-texier-dev/" type="muted" square ariaLabel="Seekode sur LinkedIn">
+				<img src="assets/images/icons/linkedin.svg" alt="" />
 			</Button>
 		</div>
 	</div>

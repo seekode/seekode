@@ -116,4 +116,10 @@
 			opacity: 0.2;
 		}
 	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.error__code__zero__ring {
+			animation: none;
+		}
+	}
 </style>

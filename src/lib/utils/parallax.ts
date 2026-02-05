@@ -1,3 +1,5 @@
+import { reducedMotion } from '$lib/stores/reducedMotion.svelte';
+
 interface ParallaxOptions {
 	/** Speed factor. Positive = drifts up on scroll down (default: 0.1) */
 	speed?: number;
@@ -18,7 +20,7 @@ export function parallax(
 ): { destroy: () => void } {
 	const speed = options.speed ?? 0.1;
 
-	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	if (reducedMotion.value) {
 		return { destroy() {} };
 	}
 

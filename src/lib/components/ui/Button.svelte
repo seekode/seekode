@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { Booleanish } from 'svelte/elements';
+	import { reducedMotion } from '$lib/stores/reducedMotion.svelte';
 	import { fade } from 'svelte/transition';
 
 	interface ButtonProps {
+		ariaControls?: string;
 		ariaExpanded?: Booleanish | null | undefined;
 		ariaHaspopup?: 'dialog' | 'menu' | Booleanish | 'grid' | 'listbox' | 'tree' | null | undefined;
 		ariaLabel?: string;
@@ -21,6 +23,7 @@
 	}
 
 	let {
+		ariaControls,
 		ariaExpanded,
 		ariaHaspopup,
 		ariaLabel,
@@ -72,6 +75,7 @@
 		class={customClasses}
 		class:loading
 		class:success
+		aria-controls={ariaControls}
 		aria-expanded={ariaExpanded}
 		aria-haspopup={ariaHaspopup}
 		aria-label={ariaLabel}
@@ -79,10 +83,10 @@
 	>
 		<div>
 			{#if loading}
-				<span out:fade class="btn__loading"></span>
+				<span out:fade={{ duration: reducedMotion.value ? 0 : 200 }} class="btn__loading"></span>
 			{/if}
 			{#if success}
-				<span out:fade class="btn__success">{success}</span>
+				<span out:fade={{ duration: reducedMotion.value ? 0 : 200 }} class="btn__success">{success}</span>
 			{:else}
 				{@render children()}
 			{/if}

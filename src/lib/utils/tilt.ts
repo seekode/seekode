@@ -9,6 +9,8 @@ interface TiltOptions {
 	speed?: number;
 }
 
+import { reducedMotion } from '$lib/stores/reducedMotion.svelte';
+
 /**
  * Svelte action for 3D tilt on hover with optional glare.
  *
@@ -27,9 +29,8 @@ export function tilt(
 	const glare = options.glare ?? true;
 	const speed = options.speed ?? 0.15;
 
-	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const hasHover = window.matchMedia('(hover: hover)').matches;
-	if (prefersReducedMotion || !hasHover) {
+	if (reducedMotion.value || !hasHover) {
 		return { destroy() {} };
 	}
 
